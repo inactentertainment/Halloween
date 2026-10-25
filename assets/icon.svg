@@ -1,1 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><rect width="128" height="128" rx="28" fill="#17101d"/><circle cx="64" cy="65" r="44" fill="#ed852f"/><path d="M64 26Q65 14 81 18" stroke="#6b8f3b" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M37 59l14-8 1 17zm40-8 14 8-15 9zM36 84q28 18 56 0" fill="#1b1320" stroke="#1b1320" stroke-width="5" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="Sinister carved pumpkin, Haunted Towne">
+<defs><radialGradient id="bg"><stop stop-color="#490a17"/><stop offset="1" stop-color="#080405"/></radialGradient><radialGradient id="pump" cx="35%" cy="24%" r="90%"><stop stop-color="#ffab53"/><stop offset=".4" stop-color="#dc5d22"/><stop offset=".8" stop-color="#81210f"/><stop offset="1" stop-color="#330b0b"/></radialGradient><linearGradient id="blood" x2="0" y2="1"><stop stop-color="#d33843"/><stop offset="1" stop-color="#650b17"/></linearGradient><filter id="sh"><feGaussianBlur stdDeviation="6"/></filter></defs>
+<rect width="256" height="256" rx="42" fill="url(#bg)"/><ellipse cx="128" cy="151" rx="95" ry="81" fill="#7b1b16" filter="url(#sh)"/>
+<path d="M127 43c8-16 22-20 36-14-9 10-12 18-10 27 13 2 23 10 28 24-14-6-29-5-43 1-10 7-15 14-16 25-11-18-8-35 5-63Z" fill="#394b21" stroke="#152512" stroke-width="4"/>
+<path d="M127 70c-43-14-78 8-87 44-10 39-5 73 29 96 33 22 82 24 119 3 30-17 36-51 29-89-8-37-47-66-90-54Z" fill="url(#pump)" stroke="#5b1d13" stroke-width="5"/>
+<path d="M80 88c-23 37-19 86 9 114M172 87c26 43 21 87-3 119M130 80c-13 35-14 77-2 128" fill="none" stroke="#6b1b12" stroke-width="5" opacity=".5"/>
+<path d="M77 127 117 139 72 163 62 151Z" fill="#0b0305" stroke="#541010" stroke-width="5"/><path d="M180 127 141 139 186 163 194 151Z" fill="#0b0305" stroke="#541010" stroke-width="5"/>
+<path d="M123 148 133 148 145 169 115 169Z" fill="#100205"/><path d="M70 177c17 2 32 6 47 4l11-12 11 13c18 1 34-2 53-8-12 29-34 44-63 45-27-1-49-15-59-42Z" fill="#110205" stroke="#6f180d" stroke-width="5"/>
+<path d="m96 182 12 11 11-12 12 15 13-15 12 10 12-13" fill="none" stroke="#e57839" stroke-width="5" stroke-linejoin="round"/>
+<path d="M114 204c-1 9-1 18-8 27M150 203c5 7 6 16 4 24M173 191c7 12 8 19 6 27" stroke="url(#blood)" stroke-width="9" fill="none" stroke-linecap="round"/>
+<path d="M59 118c8-15 19-20 36-21M168 98c13 0 23 5 30 19" stroke="#381013" stroke-width="7" fill="none" stroke-linecap="round"/>
+</svg>
