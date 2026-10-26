@@ -1,0 +1,55 @@
+/* True active nav + approved horror illustration. No invisible navigation overlays. */
+body.ht-final-home-route #header{display:block!important;position:sticky;top:0;z-index:4000;background:#030202!important}
+body.ht-final-home-route .ht-toprail{display:none!important}
+body.ht-final-home-route #header .brand{display:none!important}
+body.ht-final-home-route #header .bar{background:#030202!important;border-top:1px solid #401010;border-bottom:1px solid #8b2320!important}
+body.ht-final-home-route #header .bar-inner{justify-content:center;min-height:47px}
+body.ht-final-home-route #header .nav{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:7px}
+body.ht-final-home-route #header .nav>a,body.ht-final-home-route #header .ht-nav-menu>a{font:700 clamp(11px,.95vw,15px)/1.25 Georgia,serif;padding:10px 9px;color:#f9ece7}
+body.ht-final-home-route #header .ht-nav-menu{display:flex;align-items:center}
+body.ht-final-home-route #header .ht-nav-menu .ht-nav-dropdown{top:100%;left:0}
+body.ht-final-home-route #header .ht-costume-toggle{min-width:33px}
+body.ht-final-home-route .ht-approved-home{display:none!important}
+.ht-final-home{background:#050202;color:#f6e5df}
+.ht-final-art-scene{position:relative;width:100%;background:#040202}
+.ht-final-art{width:100%;height:auto;display:block;aspect-ratio:3/2}
+.ht-photo-hotspots{position:absolute;inset:0;pointer-events:none}
+.ht-photo-hotspot{position:absolute;top:55.1%;height:14.1%;display:block;pointer-events:auto;border:2px solid transparent;border-radius:11px;transition:box-shadow .25s,background .25s,transform .25s}
+.ht-photo-hotspot span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.ht-photo-hotspot:hover,.ht-photo-hotspot:focus-visible{outline:0;box-shadow:0 0 22px #e52222d9,inset 0 0 22px #dc211d44;background:#9a18151a;transform:translateY(-3px);border-color:#e53730}
+.ht-card-0{left:1.3%;width:13.1%}.ht-card-1{left:14.9%;width:12.6%}.ht-card-2{left:27.8%;width:12.1%}.ht-card-3{left:40.3%;width:11.2%}.ht-card-4{left:51.8%;width:10.8%}.ht-card-5{left:63.2%;width:11.2%}.ht-card-6{left:74.9%;width:11.6%}.ht-card-7{left:86.9%;width:11.8%}
+.ht-live-descent{position:absolute;top:71%;left:10%;width:80%;display:flex;flex-direction:column;align-items:center;text-align:center;gap:2px;pointer-events:none}
+.ht-live-descent h2{color:#ffe0d8;text-shadow:0 2px 9px #000,0 0 12px #650b0b;letter-spacing:.16em;font:600 clamp(13px,2.35vw,36px)/1.2 Georgia,serif;margin:0}
+.ht-live-arrow{pointer-events:auto;display:flex;flex-direction:column;align-items:center;color:#ff3026;text-decoration:none;text-shadow:0 0 13px #ff1818;animation:ht-abyss-blink 2.5s ease-in-out infinite}
+.ht-live-arrow>span{font:700 clamp(32px,5vw,76px)/.7 Georgia,serif}
+.ht-live-arrow small{font:700 clamp(9px,.9vw,13px)/1.5 system-ui,sans-serif;letter-spacing:.2em;color:#f5dbd2;margin-top:10px}
+.ht-underground-link{position:absolute;top:82%;left:28%;width:44%;height:17%;border-radius:35%;display:block}
+.ht-underground-link:hover,.ht-underground-link:focus-visible{box-shadow:inset 0 0 35px #b21218,0 0 17px #ff252544;outline:2px solid #af201e}
+.ht-mobile-photo-grid{display:none}
+.ht-final-more{background:#070303;border-top:1px solid #6a1e1c;padding:42px 18px 64px}
+.ht-final-more h2{font:700 clamp(26px,3vw,42px) Georgia,serif}
+.ht-final-more p{max-width:850px}
+@keyframes ht-abyss-blink{50%{filter:brightness(1.7);transform:translateY(6px)}}
+@media(max-width:780px){
+body.ht-final-home-route #header .brand{display:flex!important}
+body.ht-final-home-route #header .bar-inner{justify-content:space-between}
+body.ht-final-home-route #header .nav{display:none;align-items:stretch;max-height:70vh;overflow:auto}
+body.ht-final-home-route #header .nav.open{display:flex;flex-direction:column;align-items:stretch}
+body.ht-final-home-route #header .ht-nav-menu{flex-wrap:wrap}
+body.ht-final-home-route #header .ht-nav-menu>a{flex:1}
+body.ht-final-home-route #header .ht-nav-dropdown{width:100%}
+.ht-photo-hotspots{display:none}
+.ht-final-art-scene{overflow:hidden}
+.ht-final-art{width:100%;height:auto;min-height:350px;object-fit:cover;object-position:center top}
+.ht-live-descent{top:75%;left:3%;width:94%}
+.ht-live-descent h2{font-size:clamp(11px,3vw,23px);letter-spacing:.07em}
+.ht-live-arrow>span{font-size:45px}
+.ht-live-arrow small{font-size:10px}
+.ht-underground-link{top:86%;left:28%;width:44%;height:13%}
+.ht-mobile-photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:10px}
+.ht-mobile-photo-card{position:relative;min-height:132px;display:flex;align-items:flex-end;justify-content:center;text-decoration:none;border:1px solid #a22522;border-radius:12px;background-image:linear-gradient(0deg,#080202ed,transparent 85%),url('./assets/haunted-towne-final.webp');background-size:cover;background-position:center;overflow:hidden;padding:12px;text-align:center}
+.ht-mobile-photo-card span{font:700 16px/1.2 Georgia,serif;color:#fff2e9;text-shadow:0 2px 8px #000}
+.ht-mobile-photo-card:focus-visible,.ht-mobile-photo-card:hover{outline:2px solid #f24631;box-shadow:0 0 19px #951816}
+.ht-mpc-0{background-position:2% 62%}.ht-mpc-1{background-position:18% 62%}.ht-mpc-2{background-position:32% 62%}.ht-mpc-3{background-position:44% 62%}.ht-mpc-4{background-position:56% 62%}.ht-mpc-5{background-position:67% 62%}.ht-mpc-6{background-position:80% 62%}.ht-mpc-7{background-position:95% 62%}
+}
+@media(prefers-reduced-motion:reduce){.ht-live-arrow{animation:none}.ht-photo-hotspot{transition:none}}
