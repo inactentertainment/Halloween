@@ -1,0 +1,14 @@
+/* Light, optional horror-film lens: gradients rather than animated canvases or downloads. */
+#ht-cinema-overlay{position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0;transition:opacity .25s;background:radial-gradient(ellipse at center,transparent 34%,rgba(0,0,0,.51) 100%),linear-gradient(180deg,rgba(28,4,4,.08),transparent 45%,rgba(20,0,0,.07));}
+html.ht-film-lens #ht-cinema-overlay{opacity:1}
+html.ht-film-grain #ht-cinema-overlay::after{content:"";position:absolute;inset:0;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E")}
+#ht-cinema-controls{position:fixed;top:82px;right:10px;z-index:1003;font:12px/1.4 system-ui,sans-serif;color:#f5e1db}
+#ht-cinema-controls button{background:#170505ee;color:#ffede5;border:1px solid #59211c;padding:8px 10px;border-radius:9px;font:700 12px system-ui;cursor:pointer}
+#ht-cinema-controls button:hover{background:#4c1110}
+#ht-cinema-options[hidden]{display:none!important}
+#ht-cinema-options{margin-top:5px;background:#0b0405fa;padding:12px;border:1px solid #5e211a;border-radius:12px;max-width:225px;box-shadow:0 10px 28px #0009;display:grid;gap:8px}
+#ht-cinema-options p{margin:3px 0 0;font-size:11px;color:#d4aaa3}
+.ht-cursed-pulse{animation:ht-cursed-glitch .42s steps(2,end)}
+@keyframes ht-cursed-glitch{0%{filter:none;transform:translateX(0)}24%{filter:contrast(1.6) saturate(.3);transform:translateX(-2px)}40%{filter:hue-rotate(-18deg);transform:translateX(2px)}75%{filter:contrast(1.2);transform:translateX(-1px)}100%{filter:none;transform:none}}
+@media(prefers-reduced-motion:reduce){#ht-cinema-overlay{transition:none}.ht-cursed-pulse{animation:none!important}html.ht-film-grain #ht-cinema-overlay::after{display:none}}
+@media(max-width:700px){#ht-cinema-controls{top:66px;right:6px}#ht-cinema-controls button{font-size:11px;padding:6px 8px}}
