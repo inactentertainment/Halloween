@@ -108,7 +108,7 @@
  var cover=document.getElementById("ht-detail-cover"),artKind=isMovie?"movies":"books";
  var sourceLink=document.createElement("a");sourceLink.id="ht-detail-art-credit";sourceLink.className="ht-detail-art-credit";
  sourceLink.textContent="Haunted Towne title illustration";
- var coverBox=cover.parentElement;if(coverBox&&coverBox.parentElement)coverBox.parentElement.insertBefore(sourceLink,coverBox.nextSibling);
+ var coverBox=cover.parentElement;if(coverBox)coverBox.appendChild(sourceLink);
  function applyArt(entry){
    if(entry&&entry.url){
      cover.src=entry.url;
