@@ -30,7 +30,7 @@ function htGallery(which){
  '<section class="section"><div class="wrap"><div class="notice ht-media-notice">'+(film?'Poster images are sourced from encyclopedia metadata when available. Verified official trailers play inside the site; otherwise the trailer control opens a film-specific YouTube search.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
  '<div class="toolbar"><input id="rank-q" class="field" type="search" aria-label="Search titles" placeholder="Search '+(film?'movies or genres':'books or authors')+'"><select id="rank-cat" class="field"><option value="">All '+(film?'genres':'authors')+'</option>'+(film?[...new Set(arr.map(x=>x.genre))]:[]).map(x=>'<option>'+esc(x)+'</option>').join('')+'</select><select id="rank-order" class="field"><option value="rank">Curated order</option><option value="title">Title A–Z</option>'+sorts+'</select></div>'+
  '<p class="note ht-storage-note">“Save” stores a watchlist or reading list only in this browser on this device. No account or cross-device syncing is needed.</p>'+
- '<div class="actions"><button type="button" class="button-outline" id="export-list">Export saved '+(film?'movies':'books')+'</button></div><div class="ht-gallery" id="rank-results" aria-live="polite"></div>'+
+ '<div class="actions"><button type="button" class="button-outline" id="export-list">Export saved '+(film?'movies':'books')+'</button></div><p id="ht-artwork-progress" class="note ht-art-progress" role="status">Checking artwork sources…</p><div class="ht-gallery" id="rank-results" aria-live="polite"></div>'+
  '<div class="ht-player" id="ht-player" hidden aria-hidden="true"><div class="ht-player-shade" data-close-trailer></div><div class="ht-player-panel" role="dialog" aria-modal="true" aria-label="Horror movie trailer"><div class="ht-player-heading"><h2 id="ht-trailer-title">Movie Trailer</h2><button type="button" class="ht-close" data-close-trailer aria-label="Close trailer">✕ Close</button></div><div class="ht-video-slot" id="ht-video-slot"></div><p class="note">Trailers are hosted by their creators on YouTube. Playback is voluntary; no trailer autoplays while you browse.</p></div></div></div></section>';
 }
 ranking=htGallery;
@@ -44,77 +44,52 @@ filteredRanking=function(){
  else if(sort==='author')items.sort((a,b)=>a.author.localeCompare(b.author));
  const cached=htMediaCache[kind],limit=items.length;
  const tile=items.map(x=>{
-   const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const image=foundTrailer?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':cached[x.rank]||htArtwork(x.title,kind),url=htAmazon(x,film);
+   const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const record=window.HTMediaSource?.get(kind,x.rank),sourced=record?.url;const image=sourced||((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':window.HTMediaSource?.fallback(x.title,kind)||htArtwork(x.title,kind)),url=htAmazon(x,film);
    const actions='<div class="ht-actions"><a href="./detail.html?kind='+(film?'movie':'book')+'&id='+x.rank+'" class="small-button">See More →</a><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
    (film?(foundTrailer?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">▶ Play trailer</button>':'<a class="small-button" target="_blank" rel="noopener noreferrer" href="'+esc(htYouTube(x))+'">Find trailer ↗</a>'):'')+
    '<button class="small-button" type="button" data-save="'+x.rank+'">'+(saved.includes(x.rank)?'✓ Saved':'+ Save')+'</button></div>';
    return '<article class="ht-media-card"><a class="ht-art ht-art-link" aria-label="See details for '+esc(x.title)+'" href="./detail.html?kind='+(film?'movie':'book')+'&id='+x.rank+'">'+
-   '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' movie poster or themed title artwork':' book cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>'+
+   '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' film image or themed title artwork':' cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="ht-image-source" data-ht-credit="'+kind+'-'+x.rank+'">'+esc(sourced?('Image: '+record.source):(film&&foundTrailer?'Trailer image · YouTube':'Haunted Towne title art'))+'</span></a>'+
    '<div class="ht-media-copy"><p class="ht-media-rank">#'+x.rank+' · '+(film?esc(x.year+' · '+x.genre):esc(x.author))+'</p>'+
    '<h3>'+esc(x.title)+'</h3><p>'+esc(x.description||'Discover this horror classic.')+'</p>'+actions+'</div></article>';
  }).join('');
  Q('rank-results').innerHTML=tile||'<p class="empty">No matching titles.</p>';
- if(film)htLookupMovieArt();else htLookupBookArt();
+ if(window.HTMediaSource){htUpdateArtworkProgress(kind);window.HTMediaSource.begin(kind).then(()=>htUpdateArtworkProgress(kind)).catch(()=>htUpdateArtworkProgress(kind));}
 };
-function htUpdateImages(kind){
- const elements=document.querySelectorAll('[data-ht-img]'),cache=htMediaCache[kind];
- for(const img of elements){const [k,rank]=img.dataset.htImg.split('-');if(k===kind&&cache[rank]&&!(kind==='movies'&&HT_TRAILERS[CATALOG.movies[Number(rank)-1]?.title+'|'+CATALOG.movies[Number(rank)-1]?.year]))img.src=cache[rank];}
+function htUpdateArtworkProgress(kind){
+ const e=Q('ht-artwork-progress');if(!e||!window.HTMediaSource)return;
+ const t=window.HTMediaSource.stats(kind);
+ e.textContent=t.running?'Matching '+(kind==='books'?'book covers':'film images')+'… '+t.real+' sourced, '+(t.missing+t.pending)+' using branded artwork while searching.':
+ t.real+' of '+t.total+' titles matched to external artwork; '+(t.missing+t.pending)+' display original Haunted Towne artwork or video thumbnails. Some external images may be unavailable.';
 }
-async function htLookupMovieArt(){
- if(htPosterLookupStarted)return;htPosterLookupStarted=true;
- const cached=htReadCache('posters');Object.assign(htMediaCache.movies,cached);htUpdateImages('movies');
- const missing=CATALOG.movies.filter(x=>!cached[x.rank]);if(!missing.length)return;
- const queries=[];
- for(const x of missing){
-   queries.push({rank:x.rank,title:x.title+' ('+x.year+' film)',preference:3});
-   queries.push({rank:x.rank,title:x.title+' (film)',preference:2});
-   queries.push({rank:x.rank,title:x.title,preference:1});
+function htApplyArtwork(kind,rank,entry){
+ if(view()!==kind)return;
+ const img=document.querySelector('[data-ht-img="'+kind+'-'+rank+'"]'),badge=document.querySelector('[data-ht-credit="'+kind+'-'+rank+'"]');
+ if(!img)return;
+ if(entry&&entry.url){img.src=entry.url;img.alt=(kind==='books'?'Cover image':'Film image')+' for '+(kind==='books'?CATALOG.books:CATALOG.movies)[rank-1].title;
+   if(badge)badge.textContent='Image: '+entry.source;
+ }else{
+   const item=(kind==='books'?CATALOG.books:CATALOG.movies)[rank-1];
+   if(item){const video=kind==='movies'&&HT_TRAILERS[item.title+'|'+item.year];
+     img.src=video?'https://i.ytimg.com/vi/'+video+'/hqdefault.jpg':window.HTMediaSource.fallback(item.title,kind);
+     if(badge)badge.textContent=video?'Trailer image · YouTube':'Haunted Towne title art';}
  }
- const winners={};
- for(let i=0;i<queries.length;i+=40){
-   const batch=queries.slice(i,i+40);
-   try{
-     const url='https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&redirects=1&prop=pageimages&piprop=thumbnail&pilicense=any&pithumbsize=320&titles='+encodeURIComponent(batch.map(v=>v.title).join('|'));
-     const res=await fetch(url,{signal:AbortSignal.timeout(11000)});
-     if(!res.ok)continue;const result=await res.json(),pages=Object.values(result.query?.pages||{});
-     for(const p of pages){
-       const thumb=p.thumbnail?.source;if(!thumb||!thumb.startsWith('https://'))continue;
-       const n=p.title.toLowerCase().replace(/[_–]/g,' ').replace(/\s+/g,' ').trim();
-       for(const q of batch){
-         const desired=q.title.toLowerCase().replace(/[_–]/g,' ').replace(/\s+/g,' ').trim();
-         if(n!==desired)continue;
-         if(!winners[q.rank]||winners[q.rank].priority<q.preference){winners[q.rank]={url:thumb,priority:q.preference};}
-       }
-     }
-   }catch(e){/* Keep branded original artwork when Wikipedia is unreachable. */}
-   for(const [rank,win] of Object.entries(winners)){htMediaCache.movies[rank]=win.url;}
-   htUpdateImages('movies');htWriteCache('posters',htMediaCache.movies);
- }
+ htUpdateArtworkProgress(kind);
 }
-async function htLookupBookArt(){
- if(htBookLookupStarted)return;htBookLookupStarted=true;
- Object.assign(htMediaCache.books,htReadCache('books'));htUpdateImages('books');
- const queue=CATALOG.books.filter(x=>!htMediaCache.books[x.rank]);let index=0;
- async function worker(){
-   while(index<queue.length){
-     const b=queue[index++];
-     try {
-       const url='https://www.googleapis.com/books/v1/volumes?q='+encodeURIComponent('intitle:'+b.title+' inauthor:'+b.author)+'&maxResults=4&printType=books';
-       const res=await fetch(url,{signal:AbortSignal.timeout(9000)});if(!res.ok)continue;
-       const data=await res.json();
-       const norm=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]/g,'');
-       const t=norm(b.title),a=norm(b.author);
-       const match=(data.items||[]).find(x=>{
-         const info=x.volumeInfo||{},title=norm(info.title),authors=(info.authors||[]).map(norm);
-         return (title===t||title.startsWith(t)||t.startsWith(title))&&(authors.length===0||authors.some(z=>z.includes(a.slice(-5))||a.includes(z.slice(-5))));
-       });
-       const urls=match?.volumeInfo?.imageLinks;
-       let thumb=urls?.thumbnail||urls?.smallThumbnail||urls?.medium;
-       if(thumb){thumb=thumb.replace(/^http:/,'https:');htMediaCache.books[b.rank]=thumb;htWriteCache('books',htMediaCache.books);htUpdateImages('books');}
-     }catch(e){/* Cover unavailable; clear title-art remains. */}
-   }
- }
- await Promise.all([worker(),worker(),worker()]);
+if(window.HTMediaSource){
+ window.HTMediaSource.listen(function(kind,rank,entry){if(rank)htApplyArtwork(kind,rank,entry);else htUpdateArtworkProgress(kind);});
+ document.addEventListener('error',function(e){
+   const img=e.target;if(!img||!img.dataset||!img.dataset.htImg)return;
+   const m=img.dataset.htImg.match(/^(books|movies)-(\d+)$/);if(!m)return;
+   const kind=m[1],rank=Number(m[2]),record=window.HTMediaSource.get(kind,rank);
+   const row=(kind==='books'?CATALOG.books:CATALOG.movies)[rank-1];
+   if(!row||img.dataset.htErrorHandled==='yes')return;
+   img.dataset.htErrorHandled='yes';
+   if(record?.url)window.HTMediaSource.failed(kind,rank);
+   img.src=window.HTMediaSource.fallback(row.title,kind);
+   const badge=document.querySelector('[data-ht-credit="'+kind+'-'+rank+'"]');
+   if(badge)badge.textContent='Haunted Towne title art';
+ },true);
 }
 function htCloseTrailer(){
  const modal=Q('ht-player');if(!modal)return;modal.hidden=true;modal.setAttribute('aria-hidden','true');
