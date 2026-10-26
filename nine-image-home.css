@@ -20,3 +20,10 @@ body.ht-final-home-route #content{background:#040202!important}
 .ht9-tile{background:none!important;border:none!important;outline:none!important;box-shadow:none!important;border-radius:0!important;overflow:visible!important}
 .ht9-tile img{display:block!important;object-fit:fill!important;width:100%!important;height:100%!important;border:0!important;border-radius:0!important;background:transparent!important;mix-blend-mode:normal}
 .ht9-tile:hover,.ht9-tile:focus-visible{background:transparent!important;outline:none!important;border:none!important;box-shadow:none!important;filter:drop-shadow(0 0 10px #d62a22);transform:translateY(-3px) scale(1.018)}
+
+/* Single frameless image surface, crop black padding from source images. */
+.ht9-cards{gap:0.85%!important}
+.ht9-tile{overflow:hidden!important;background:transparent!important;outline:0!important;border:0!important;border-radius:8px!important;box-shadow:none!important;line-height:0}
+.ht9-tile img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;transform:scale(1.115);transform-origin:center}
+.ht9-tile:hover,.ht9-tile:focus-visible{outline:0!important;border:0!important;background:transparent!important;box-shadow:0 0 20px #ba211a80!important}
+.ht9-tile:hover img{transform:scale(1.15)}
