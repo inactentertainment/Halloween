@@ -33,3 +33,8 @@ body.ht-final-home-route .ht9-home{width:100%!important;max-width:none!important
 body.ht-final-home-route .ht9-backdrop{width:100%!important;max-width:none!important;margin:0!important}
 body.ht-final-home-route .ht9-art{display:block!important;width:100%!important;max-width:none!important;height:auto!important}
 body.ht-final-home-route #content{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
+
+/* Hide original perimeter rules without stripping the lettering in each card. */
+.ht9-tile{overflow:hidden!important;border:0!important;outline:0!important;background:transparent!important}
+.ht9-tile img{width:100%!important;height:100%!important;object-fit:fill!important;transform:scale(1.055)!important;transform-origin:50% 50%!important}
+.ht9-tile:hover img,.ht9-tile:focus-visible img{transform:scale(1.07)!important}
