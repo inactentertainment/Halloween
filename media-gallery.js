@@ -4,7 +4,10 @@ const HT_TRAILERS={
   "Get Out|2017":"AHEl7Pji0f8",
   "Hereditary|2018":"V6wWKNij_1M",
   "Midsommar|2019":"1Vnghdsjmd0",
-  "Nope|2022":"In8fuzj3gck"
+  "Nope|2022":"In8fuzj3gck",
+  "The Witch|2015":"iQXmlf3Sefg",
+  "A Quiet Place|2018":"WR7cc5t7tv8",
+  "The Substance|2024":"B1B3HZRHpEw"
 };
 const htMediaCache={movies:{},books:{}};
 let htPosterLookupStarted=false,htBookLookupStarted=false;
@@ -121,7 +124,7 @@ function htOpenTrailer(rank){
  const x=CATALOG.movies.find(x=>x.rank===Number(rank));if(!x)return;
  const id=HT_TRAILERS[x.title+'|'+x.year];if(!id)return;
  const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;
- Q('ht-trailer-title').textContent=x.title+' ('+x.year+') — Official Trailer';
+ Q('ht-trailer-title').textContent=x.title+' ('+x.year+') — Trailer / Teaser Preview';
  slot.replaceChildren();
  const frame=document.createElement('iframe');frame.title=x.title+' trailer';
  frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&start=0&rel=0';
