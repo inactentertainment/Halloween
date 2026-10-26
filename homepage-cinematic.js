@@ -34,9 +34,7 @@ header=function(){
   let top=host.querySelector('.ht-toprail');
   if(!top){top=document.createElement('div');top.className='ht-toprail';top.innerHTML='<span>STORIES <b>•</b> MOVIES <b>•</b> GAMES <b>•</b> SHOP <b>•</b> DOWNLOADS</span>';host.insertBefore(top,main);}
  }
- const costume=nav.querySelector('.ht-nav-menu');
- if(costume){const div=costume.querySelector('.ht-nav-dropdown');if(div&&!div.dataset.extended){div.insertAdjacentHTML('beforeend','<a href="#shop-guide/costumes/0">Plus Size & Accessories</a>');div.dataset.extended='1';}}
- // Keep all available destinations reachable even when the mobile menu is collapsed.
+  // Keep all available destinations reachable even when the mobile menu is collapsed.
  const menuButton=document.getElementById('nav-toggle');if(menuButton)menuButton.setAttribute('aria-label','Open or close the main navigation');
 };
 const originalNavigate=navigate;
