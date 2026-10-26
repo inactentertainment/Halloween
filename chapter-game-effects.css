@@ -1,0 +1,27 @@
+/* Distinct effects per chapter and game, no external visual dependencies. */
+main[data-ht-scene]{isolation:isolate}main[data-ht-scene] .panel{position:relative;overflow:hidden}
+main[data-ht-scene] .panel::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22}
+main[data-ht-scene="grave"] .panel::before{background:linear-gradient(0deg,#abb4b088,transparent 42%)}
+main[data-ht-scene="witch"] .panel::before{background:radial-gradient(circle at 85% 10%,#355b2166,transparent 36%)}
+main[data-ht-scene="hollow"] .panel::before{background:repeating-linear-gradient(90deg,transparent 0 75px,#5d626014 77px 80px)}
+main[data-ht-scene="clock"] .panel::before{background:conic-gradient(from 5deg at 80% 15%,transparent,#5d2c2444,transparent)}
+main[data-ht-scene="carnival"] .panel::before{background:repeating-conic-gradient(from 0deg at 75% 10%,#64121918 0deg 20deg,transparent 20deg 45deg)}
+main[data-ht-scene="school"] .panel::before{background:repeating-linear-gradient(0deg,transparent 0 29px,#bdc3bb20 30px 31px)}
+main[data-ht-scene="asylum"] .panel::before{background:radial-gradient(circle at 8% 85%,#37644b55,transparent 42%)}
+main[data-ht-scene="bridge"] .panel::before{background:linear-gradient(110deg,#28425333,transparent,#28425333)}
+main[data-ht-scene="cathedral"] .panel::before{background:linear-gradient(160deg,transparent,#67110e4d 65%,transparent)}
+.ht-atmosphere-caption{font:italic 1rem Georgia,serif;color:#c99988;margin:-6px 0 22px;letter-spacing:.03em}
+[data-ht-game-effect="rune"]{filter:drop-shadow(0 0 9px #6c120d)}[data-ht-game-effect="stamp"]{border-color:#7c2c21!important}
+.ht-scene-reveal{animation:ht-reveal .58s ease-out}
+[data-ht-scene-effect="ink"].ht-scene-reveal{animation-name:ht-ink}
+[data-ht-scene-effect="stamp"].ht-scene-reveal{animation-name:ht-stamp}
+[data-ht-scene-effect="rune"].ht-scene-reveal{animation-name:ht-rune}
+[data-ht-scene-effect="whisper"].ht-scene-reveal{animation-name:ht-whisper}
+[data-ht-scene-effect="pulse"].ht-scene-reveal{animation-name:ht-pulse}
+@keyframes ht-reveal{from{opacity:.7;filter:brightness(.6)}to{opacity:1;filter:none}}
+@keyframes ht-ink{from{filter:contrast(2) brightness(.55)}to{filter:none}}
+@keyframes ht-stamp{from{transform:scale(.97);filter:sepia(1)}to{transform:none;filter:none}}
+@keyframes ht-rune{50%{filter:drop-shadow(0 0 32px #a12817)}}
+@keyframes ht-whisper{from{opacity:.3;letter-spacing:.4em}to{opacity:1;letter-spacing:normal}}
+@keyframes ht-pulse{50%{filter:brightness(1.5)}}
+@media(prefers-reduced-motion:reduce){.ht-scene-reveal{animation:none!important}}
