@@ -38,3 +38,12 @@
 3. Detailed product pages with real photo galleries, available seller specs and historical notes.
 4. Build accessible free Google Drive collections, real printables, and new games.
 5. Whole-site interaction QA including mobile menu, products, links, downloads and performance.
+
+## Cinematic browser engine (added October 26, 2026)
+- Shared `cinematic-engine.js` and `cinematic-engine.css` added to the homepage, Halloween history and ghost-story pages; pure vanilla JS/CSS with no paid services or frameworks.
+- Toggleable vignette and static film grain; short visual glitch on explicitly designated cursed elements; respects reduced-motion preference.
+- Sound **off by default**. Web Audio-generated low drone and interaction tones use StereoPanner when the device supports it; user can switch audio on and off.
+- Limited browser-only state machine tracks clicks on `data-cursed-object` elements; a clearly labeled reset erases the cinematic interaction memory. It does not track all user browsing or typing speed.
+- `HTCinema.typewriter(element,text)`, `HTCinema.glitch(element)`, `HTCinema.tone(frequency,x)` and `HTCinema.record(id)` provide extension points for future story and game builds.
+- First playable demonstration: **The Whispering Relic** under Fun & Games, responding differently to repeated visits. Existing games remain intact.
+- Next cinematic phases: incorporate story branch choices in dedicated fiction, more object interactions, actual audio ambience sound design, mobile/performance and accessibility testing, visual screenshots. Keep engagement optional, not manipulative.
