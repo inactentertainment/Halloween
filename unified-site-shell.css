@@ -1,0 +1,62 @@
+/* One skinny black header, canonical home, differentiated film/music, black legal footer. */
+#header.ht-universal-header{position:sticky!important;top:0;z-index:6000;background:#000!important;color:#f7e8df}
+#header.ht-universal-header .ht-toprail,#header.ht-universal-header .brand{display:none!important}
+#header.ht-universal-header .bar{background:#000!important;border:0!important;border-bottom:1px solid #471010!important;box-shadow:none!important}
+#header.ht-universal-header .bar-inner{width:100%;max-width:1900px;min-height:45px;padding:4px 12px;justify-content:center}
+#header.ht-universal-header #main-nav{display:flex;align-items:center;justify-content:center;flex-wrap:nowrap;gap:clamp(2px,.45vw,9px);width:100%}
+#header.ht-universal-header #main-nav>a,#header.ht-universal-header .ht-costume-menu>a{display:inline-flex;align-items:center;gap:4px;white-space:nowrap;padding:8px clamp(3px,.42vw,9px);border:0;font:700 clamp(10px,.78vw,15px)/1.2 Georgia,serif;color:#f6eae4;text-decoration:none;background:transparent}
+#header.ht-universal-header #main-nav>a:hover,#header.ht-universal-header #main-nav>a.active,#header.ht-universal-header .ht-costume-menu>a:hover{background:#370808!important;color:#f9ded5!important}
+#header.ht-universal-header .ht-nav-icon{color:#bb4838;font-size:1.1em}
+#header.ht-universal-header .ht-shell-brand{font:700 clamp(12px,1vw,17px) Georgia,serif!important;margin-right:auto}
+.ht-shell-brand strong{color:#f6eae4}.ht-shell-brand em,.ht-foot-title em{color:#b52720;font-style:normal}
+#header.ht-universal-header .ht-costume-menu{display:flex;position:relative;align-items:center}
+#header.ht-universal-header .ht-costume-expand{background:#120405!important;color:#f2d4c9;border:1px solid #55201d;border-radius:6px;padding:5px;cursor:pointer;min-height:28px}
+#header.ht-universal-header .ht-costume-sub{position:absolute;top:100%;left:0;width:205px;display:none;flex-direction:column;background:#070202;border:1px solid #86241d;box-shadow:0 14px 22px #000d;z-index:7000;padding:6px;border-radius:8px}
+#header.ht-universal-header .ht-costume-sub>a{padding:10px;color:#f8e6dc;text-decoration:none;font:700 13px Georgia,serif}
+#header.ht-universal-header .ht-costume-sub>a:hover{background:#4b1010;color:#fff}
+#header.ht-universal-header .ht-costume-menu.expanded .ht-costume-sub,#header.ht-universal-header .ht-costume-menu:hover .ht-costume-sub,#header.ht-universal-header .ht-costume-menu:focus-within .ht-costume-sub{display:flex}
+#header.ht-universal-header .nav-toggle{background:#170506!important;color:#e7d0c6}
+body .ht-global-footer{background:#000!important;background-image:none!important;border-top:1px solid #3c1312;color:#d9c5bd;padding:26px 0 14px}
+.ht-global-foot-inner{display:flex;justify-content:space-between;gap:30px;align-items:center;flex-wrap:wrap}
+.ht-foot-title{font:700 18px Georgia,serif;color:#f5e6df;text-decoration:none}
+.ht-global-footer p{font:12px system-ui;color:#bda9a2}
+.ht-global-footer nav{display:flex;flex-wrap:wrap;gap:18px}.ht-global-footer nav a{color:#e8ccc0;font:700 12px system-ui;text-decoration:none}.ht-global-footer nav a:hover{color:#ef6d5d}
+.ht-global-foot-copy{padding:14px 12px 0;border-top:1px solid #30100d;margin:18px auto 0;text-align:center;max-width:1400px}
+#footer .logo{display:none!important}
+.ht-final-more{position:absolute!important;bottom:0;left:0;right:0;background:linear-gradient(transparent,#060202a9)!important;border:0!important;padding:0 0 10px!important;text-align:center}
+.ht-final-home{position:relative}
+.ht-final-more .eyebrow,.ht-final-more h2,.ht-final-more p{display:none!important}
+.ht-final-more .actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.ht-final-more .actions a{padding:12px 20px;min-width:180px;background:#160606de!important;border:1px solid #982d27!important;color:#f9e5d9}
+.ht-final-more .actions a:hover{background:#6b1513!important}
+.ht-underground-link:hover,.ht-underground-link:focus-visible{box-shadow:none!important;outline:none!important}
+.ht-music-page{background:#090303;min-height:70vh}
+.ht-music-page h1{font:700 clamp(36px,5vw,60px) Georgia,serif}
+.ht-music-feature{display:grid;grid-template-columns: minmax(150px,230px) 1fr;gap:28px;padding:22px;border:1px solid #5f1a18;border-radius:18px;background:#1d0708;margin:22px 0}
+.ht-music-art{background:radial-gradient(#6e1610,#080303);display:grid;place-items:center;border-radius:12px;font-size:100px;color:#da7b57;min-height:220px}
+.ht-music-item{display:grid;grid-template-columns:45px 1fr auto;align-items:center;gap:12px;padding:14px;border-bottom:1px solid #511816}
+.ht-track-no{color:#bc7967}.ht-music-item h3{margin:0}.ht-music-item p{font-size:13px;margin:3px 0;color:#c5a8a1}
+body:has(#rank-results) .ht-gallery{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+body:has(#rank-results) .ht-media-card:has([data-ht-img^="movies-"]) .ht-art{aspect-ratio:16/9!important}
+body:has(#rank-results) .ht-media-card:has([data-ht-img^="movies-"]) .ht-art img{object-fit:cover!important}
+body:has(#rank-results) .ht-media-card:has([data-ht-img^="books-"]) .ht-art{aspect-ratio:2/3!important}
+body:has(#rank-results) .ht-media-card:has([data-ht-img^="books-"]) .ht-art img{object-fit:contain!important}
+body.ht-reader-page #ht-reader-toolbar{z-index:5000!important}
+@media(max-width:1100px){
+#header.ht-universal-header .bar-inner{justify-content:space-between}
+#header.ht-universal-header #main-nav{display:none;position:absolute;top:100%;left:0;right:0;width:100%;max-height:75vh;overflow:auto;background:#000;border-bottom:1px solid #62221a;padding:10px 15px;flex-direction:column;align-items:stretch}
+#header.ht-universal-header #main-nav.open{display:flex}
+#header.ht-universal-header .nav-toggle{display:block!important}
+#header.ht-universal-header #main-nav>a{width:100%;font-size:14px;padding:11px}
+#header.ht-universal-header .ht-costume-menu{flex-wrap:wrap}
+#header.ht-universal-header .ht-costume-menu>a{flex:1}
+#header.ht-universal-header .ht-costume-sub{position:static;width:100%}
+}
+@media(max-width:760px){
+.ht-final-more{position:static!important;background:#050202!important;padding:16px!important}
+.ht-final-more .actions{flex-direction:column;align-items:stretch}
+.ht-final-more .actions a{width:100%}
+.ht-music-feature{grid-template-columns:1fr}.ht-music-art{min-height:140px}
+.ht-music-item{grid-template-columns:25px 1fr}.ht-music-item>a{grid-column:2}
+}
+@media(prefers-reduced-motion:reduce){.ht-live-arrow{animation:none!important}}
