@@ -19,7 +19,7 @@ home=function(){
  '<div class="ht-live-descent"><h2>DESCEND DEEPER INTO THE NIGHTMARE</h2><a href="#descent" class="ht-live-arrow" aria-label="Enter the nine-chapter haunted descent"><span aria-hidden="true">⌄</span><small>ENTER THE ABYSS</small></a></div>'+
  '<a class="ht-underground-link" href="#descent" aria-label="Explore the haunted road beneath the town"></a>'+
  '</section><nav class="ht-mobile-photo-grid" aria-label="Horror destinations">'+mobile+'</nav>'+
- '<section class="ht-final-more"><div class="wrap"><p class="eyebrow">THE HORROR CONTINUES</p><h2>Stories, cinema, curiosities & nightmares</h2><p>Enter the interactive ghost story, trace the history of Halloween, explore horror favorites, or descend to the nine connected locations beneath Haunted Towne.</p><div class="actions"><a class="button" href="./story.html">Enter the Ghost Story</a><a class="button-outline" href="./history.html">Halloween History</a><a class="button-outline" href="#descent">The Haunted Road</a></div></div></section></div>';
+ '<section class="ht-final-more"><div class="wrap"><p class="eyebrow">THE HORROR CONTINUES</p><h2>Stories, cinema, curiosities & nightmares</h2><p>Enter the interactive ghost story, trace the history of Halloween, explore horror favorites, or descend to the nine connected locations beneath Haunted Towne.</p><div class="actions"><a class="button" href="./history.html">The History of Halloween</a><a class="button-outline" href="./story.html">Ghost Stories — Enter If You Will</a><a class="button-outline" href="#descent">Travel Along the Haunted Road</a></div></div></section></div>';
 };
 const oldNavigate=navigate;
 navigate=function(scroll=true){
