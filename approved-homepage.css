@@ -1,0 +1,20 @@
+/* User-approved full-art homepage, with independently clickable links and mobile controls. */
+@media(min-width:761px){
+body.ht-on-approved-home #header{display:none!important}
+body.ht-on-approved-home main#content{padding:0!important;margin:0!important;max-width:none!important}
+body.ht-on-approved-home .ht-approved-mobile{display:none!important}
+.ht-approved-stage{position:relative;width:100%;margin:0 auto;background:#050203}
+.ht-approved-art{display:block;width:100%;height:auto;vertical-align:top}
+.ht-real-hit{display:block;position:absolute;z-index:2;background:transparent;border:1px solid transparent;border-radius:6px;transition:background .18s,border-color .18s,box-shadow .18s}
+.ht-real-hit span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.ht-real-hit:hover,.ht-real-hit:focus-visible{background:#930c171c;border-color:#cf3328;box-shadow:0 0 21px #d61b19b9,inset 0 0 22px #ba14134d;outline:0}
+body.ht-on-approved-home .ht-toprail{display:none!important}
+}
+@media(max-width:760px){
+.ht-approved-stage{display:none!important}
+.ht-approved-mobile .ht-hero-scene{background-image:linear-gradient(90deg,#0b0202a8,#0b020263),url('./assets/homepage-approved.webp')!important;background-size:cover!important;background-position:35% 24%!important}
+.ht-approved-mobile .ht-home-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ht-approved-mobile .ht-visual-tile{background-image:linear-gradient(#2603044c,#080303aa),url('./assets/homepage-approved.webp');background-position:center;background-size:cover}
+.ht-approved-mobile .ht-tile-graphic{font-size:43px}
+}
+@media(prefers-reduced-motion:reduce){.ht-real-hit{transition:none}}
