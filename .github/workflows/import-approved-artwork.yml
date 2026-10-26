@@ -1,0 +1,42 @@
+name: Import approved Haunted Towne image
+on:
+  push:
+    paths:
+      - '.github/workflows/import-approved-artwork.yml'
+permissions:
+  contents: write
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Import full-resolution approved site art
+        env:
+          URLS: "https://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2Fd298a6e0-89c0-4d23-9e47-185cb06fb907/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAEYzRCURbqMCNfZ5_BpiC05PWSkvJi_9YQXbiujAggzu&exp=1793042851&osig=AAAAAAAAAAAAAAAAAAAAAKIIY_-369ybBp-Qq8x4qK9jJ2MSJk8Gwv1e4lyzY4Kq&signer=media-rpc&token=AAIAAU0AJGQyOThhNmUwLTg5YzAtNGQyMy05ZTQ3LTE4NWNiMDZmYjkwNwAAAAABoXmupLiHOLOlFMDwYbiQuMOUXJJW1MG4JMChV1IsNcDMRcYYHg&x-canva-quality=thumbnail\nhttps://media.canva.com/v2/image-resize/format:PNG/height:768/quality:100/uri:ifs%3A%2F%2FM%2Fd298a6e0-89c0-4d23-9e47-185cb06fb907/watermark:F/width:1152?csig=AAAAAAAAAAAAAAAAAAAAAEYzRCURbqMCNfZ5_BpiC05PWSkvJi_9YQXbiujAggzu&exp=1793042851&osig=AAAAAAAAAAAAAAAAAAAAAKIIY_-369ybBp-Qq8x4qK9jJ2MSJk8Gwv1e4lyzY4Kq&signer=media-rpc&token=AAIAAU0AJGQyOThhNmUwLTg5YzAtNGQyMy05ZTQ3LTE4NWNiMDZmYjkwNwAAAAABoXmupLiHOLOlFMDwYbiQuMOUXJJW1MG4JMChV1IsNcDMRcYYHg&x-canva-quality=thumbnail\nhttps://media.canva.com/v2/image-resize/format:PNG/height:1024/quality:100/uri:ifs%3A%2F%2FM%2Fd298a6e0-89c0-4d23-9e47-185cb06fb907/watermark:F/width:1536?csig=AAAAAAAAAAAAAAAAAAAAAEYzRCURbqMCNfZ5_BpiC05PWSkvJi_9YQXbiujAggzu&exp=1793042851&osig=AAAAAAAAAAAAAAAAAAAAAKIIY_-369ybBp-Qq8x4qK9jJ2MSJk8Gwv1e4lyzY4Kq&signer=media-rpc&token=AAIAAU0AJGQyOThhNmUwLTg5YzAtNGQyMy05ZTQ3LTE4NWNiMDZmYjkwNwAAAAABoXmupLiHOLOlFMDwYbiQuMOUXJJW1MG4JMChV1IsNcDMRcYYHg&x-canva-quality=full\nhttps://media.canva.com/v2/image-resize/format:PNG/height:133/quality:100/uri:ifs%3A%2F%2FM%2Fd298a6e0-89c0-4d23-9e47-185cb06fb907/watermark:F/width:200?csig=AAAAAAAAAAAAAAAAAAAAAEYzRCURbqMCNfZ5_BpiC05PWSkvJi_9YQXbiujAggzu&exp=1793042851&osig=AAAAAAAAAAAAAAAAAAAAAKIIY_-369ybBp-Qq8x4qK9jJ2MSJk8Gwv1e4lyzY4Kq&signer=media-rpc&token=AAIAAU0AJGQyOThhNmUwLTg5YzAtNGQyMy05ZTQ3LTE4NWNiMDZmYjkwNwAAAAABoXmupLiHOLOlFMDwYbiQuMOUXJJW1MG4JMChV1IsNcDMRcYYHg&x-canva-quality=thumbnail"
+        run: |
+          python - <<'PY'
+          import os, urllib.request, io, struct, subprocess, sys
+          urls=os.environ["URLS"].splitlines()
+          for index,url in enumerate(urls):
+              try:
+                  req=urllib.request.Request(url,headers={"User-Agent":"Mozilla/5.0"})
+                  data=urllib.request.urlopen(req,timeout=25).read()
+                  if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+                      print(index,"Not PNG",len(data));continue
+                  w,h=struct.unpack(">II",data[16:24])
+                  print("Candidate",index,"dimensions",w,h,"bytes",len(data))
+                  if w>=1000 and h>=650:
+                      os.makedirs("assets",exist_ok=True)
+                      open("assets/approved-homepage-full.png","wb").write(data)
+                      break
+              except Exception as exc: print("Candidate",index,"failure",str(exc)[:180])
+          else:
+              print("No full-resolution public source available; refusing to use 200px thumbnail.");sys.exit(1)
+          PY
+      - name: Commit artwork into Pages repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/approved-homepage-full.png
+          git commit -m "Import approved high-resolution cinematic homepage image" || exit 0
+          git push
