@@ -12,3 +12,5 @@ body.ht-final-home-route #content{background:#040202!important}
 .ht9-path a:hover,.ht9-path a:focus-visible{background:#6b1414;box-shadow:0 0 28px #c4221d8a}
 @media(max-width:760px){.ht9-art{width:100%;height:auto}.ht9-cards{position:relative;top:auto;left:auto;width:auto;margin:-8px 8px 0;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ht9-tile{aspect-ratio:1}.ht9-path{position:relative;top:auto;left:auto;transform:none;width:auto;gap:16px;max-width:480px;padding:28px 14px 36px;margin:auto}.ht9-backdrop{background:#050202}}
 @media(prefers-reduced-motion:reduce){.ht9-tile,.ht9-path a{transition:none!important}}
+
+.ht9-tile{outline:0!important;border:0!important;background:transparent!important;box-shadow:none!important}.ht9-tile img{width:100%;height:100%;object-fit:fill}.ht9-tile:hover,.ht9-tile:focus-visible{outline:0!important;border:0!important;box-shadow:0 0 18px #d8231a88!important}
