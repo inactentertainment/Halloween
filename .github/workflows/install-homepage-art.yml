@@ -1,0 +1,32 @@
+name: Install approved homepage artwork
+on:
+  push:
+    paths:
+      - 'assets/homepage-approved.webp.base64'
+      - '.github/workflows/install-homepage-art.yml'
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode and verify actual artwork
+        run: |
+          python - <<'PY'
+          import base64, pathlib
+          src=pathlib.Path('assets/homepage-approved.webp.base64')
+          raw=base64.b64decode(src.read_text().strip(),validate=True)
+          if not raw.startswith(b'RIFF') or raw[8:12]!=b'WEBP' or len(raw)<50000:
+              raise SystemExit('Expected real optimized WEBP image; refusing corrupt asset')
+          pathlib.Path('assets/homepage-approved.webp').write_bytes(raw)
+          print('Decoded approved artwork',len(raw),'bytes')
+          PY
+      - name: Commit finished artwork
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/homepage-approved.webp
+          git rm assets/homepage-approved.webp.base64
+          git commit -m "Publish approved full-resolution Haunted Towne homepage artwork"
+          git push
