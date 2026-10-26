@@ -68,7 +68,7 @@ navigate=function(scroll=true){
  if(view()==='home'){
    const content=document.getElementById('content');
    // Final image page contains only the canonical approved art and interactive overlays.
-   if(content&&!content.querySelector('.ht-final-home'))content.innerHTML=canonicalHome();
+   if(content&&!content.querySelector('.ht-final-home')&&!content.querySelector('.ht9-home'))content.innerHTML=home();
  }
  document.body.classList.toggle('ht-final-home-route',view()==='home');
  const elem=document.getElementById('header');if(elem)elem.classList.add('ht-universal-header');
