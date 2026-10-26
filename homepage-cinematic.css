@@ -1,0 +1,50 @@
+/* Homepage cinematic UI; static illustrated art is local and light. */
+#header.ht-site-header{position:sticky;top:0;z-index:3000;background:#060202}
+.ht-toprail{height:30px;display:flex;align-items:center;justify-content:flex-end;max-width:1470px;margin:auto;padding:0 20px;font:600 10px/1.2 Georgia,serif;letter-spacing:.14em;color:#f0dad5}
+.ht-toprail b{color:#c6281c;padding:0 9px}
+.ht-site-header .bar{background:linear-gradient(#160506,#050202)!important;border-bottom:1px solid #931e1c!important}
+.ht-site-header .bar-inner{max-width:1470px}
+.ht-site-header .brand{flex-direction:column;display:flex;gap:0;text-align:center;line-height:1}
+.ht-brand-main{font:900 clamp(18px,2.7vw,38px)/1.05 Georgia,serif;letter-spacing:.07em;color:#f4e8e0;text-shadow:2px 3px 3px #000}
+.ht-brand-main em{font-style:normal;color:#a71917}
+.ht-site-header .brand small{display:block!important;font:700 10px Georgia,serif;letter-spacing:.18em;color:#e7d9d1}
+.ht-site-header .nav{gap:3px}
+.ht-site-header .nav>a,.ht-site-header .ht-nav-menu>a{border:1px solid transparent;border-radius:6px;font:700 12px Georgia,serif;padding:10px 7px;white-space:nowrap}
+.ht-site-header .nav>a:hover,.ht-site-header .nav>a.active,.ht-site-header .ht-nav-menu>a:hover{border-color:#7d1918;background:#230707}
+.ht-cover-world{background:#050203;padding-bottom:0}
+.ht-hero-scene{height:clamp(340px,38vw,580px);background:linear-gradient(90deg,#050303c9,#11040455 45%,#050303b6),url('./assets/scene-gates.svg') center/cover;position:relative;overflow:hidden}
+.ht-hero-scene::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 52% 30%,transparent 0%,#05020233 45%,#02010199 100%)}
+.ht-hero-layout{max-width:1470px;display:grid;grid-template-columns:1fr 2fr 1fr;height:100%;position:relative;align-items:center;gap:14px}
+.ht-hero-message{text-align:center;text-shadow:0 3px 7px #000;align-self:start;padding-top:clamp(55px,6vw,105px)}
+.ht-hero-overline{font:500 clamp(20px,3vw,41px)/1.2 Georgia,serif;letter-spacing:.08em;margin:0}
+.ht-hero-message h1{font:900 clamp(38px,5.4vw,79px)/1 Georgia,serif;color:#e2c5bd;margin:2px 0 12px;text-shadow:2px 4px #170102,0 0 18px #890e0b}
+.ht-hero-message>p:not(.ht-hero-overline){font:500 clamp(15px,1.8vw,25px)/1.3 Georgia,serif;margin:0}
+.ht-hero-action{margin-top:22px}.ht-hero-action a{font:700 11px system-ui;letter-spacing:.18em;text-decoration:none;background:#2a0708c9;border:1px solid #8d2722;padding:10px 20px;color:#f5d8d1}
+.ht-haunting-left,.ht-hero-carnival{text-align:center;align-self:end;margin-bottom:10%;color:#f0d1c8;font:700 clamp(12px,1.4vw,20px) Georgia,serif;text-shadow:2px 3px #000}
+.ht-fright-eyes{display:block;font-size:clamp(45px,7vw,130px);letter-spacing:-.18em;color:#cd2823;text-shadow:0 0 30px #c01115}
+.ht-hero-carnival span{display:block;font-size:clamp(65px,10vw,180px);color:#cfc2b0;filter:drop-shadow(0 0 16px #8d130e)}
+.ht-home-tiles{max-width:1470px;display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:7px;margin-top:-6px;position:relative;z-index:2}
+.ht-visual-tile{min-width:0;position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:1/1.12;padding:8px 6px 14px;overflow:hidden;background:radial-gradient(circle at 50% 25%,#4b0b11,#120507 72%);border:1px solid #991b1c;border-radius:12px;text-align:center;text-decoration:none;box-shadow:0 8px 15px #000a;transition:transform .25s ease,box-shadow .25s,border-color .25s}
+.ht-visual-tile::before{content:"";position:absolute;inset:0;background-size:cover;background-position:center;opacity:.85;transition:transform .4s}
+.ht-tile-ghost::before,.ht-tile-costumes::before{background-image:linear-gradient(0deg,#050303 5%,transparent 88%),url('./assets/scene-gates.svg')}
+.ht-tile-movies::before,.ht-tile-masks::before{background-image:linear-gradient(0deg,#050303 5%,transparent 88%),url('./assets/scene-carnival.svg')}
+.ht-tile-books::before,.ht-tile-games::before{background-image:linear-gradient(0deg,#050303 5%,transparent 88%),url('./assets/scene-descent.svg')}
+.ht-tile-decor::before,.ht-tile-downloads::before{background-image:linear-gradient(0deg,#050303 5%,transparent 88%),url('./assets/scene-gates.svg')}
+.ht-tile-graphic{font-size:clamp(30px,4vw,68px);color:#f4e2d6;text-shadow:0 3px 7px black;position:relative;z-index:1;margin:auto;filter:drop-shadow(0 0 7px #ad2c1e)}
+.ht-tile-name{position:relative;z-index:1;text-transform:uppercase;font:700 clamp(10px,1.2vw,17px)/1.2 Georgia,serif;color:#fff4e7;text-shadow:0 2px 5px #000;padding-top:20px}
+.ht-visual-tile:hover,.ht-visual-tile:focus-visible{transform:translateY(-7px) scale(1.02);border-color:#ff5440;box-shadow:0 0 18px #a61c17a9,0 14px 22px #000b}
+.ht-visual-tile:hover::before{transform:scale(1.12)}
+.ht-descent-invite{text-align:center;background:#080303;padding:28px 12px 10px}
+.ht-descent-invite h2{font:700 clamp(19px,2.6vw,32px) Georgia,serif;letter-spacing:.13em;color:#f3d7cb;margin:0}
+.ht-descent-arrow{display:inline-grid;place-items:center;color:#ff3b28;text-decoration:none;font:900 65px/1 Georgia,serif;text-shadow:0 0 12px #e52415;animation:ht-abyss-cue 2.5s ease-in-out infinite}
+.ht-descent-arrow span{font:700 11px/1.3 system-ui;letter-spacing:.17em;text-transform:uppercase;color:#e7ac9f}
+@keyframes ht-abyss-cue{50%{transform:translateY(5px);filter:brightness(1.8)}}
+.ht-descent-preview{display:block;position:relative;overflow:hidden;max-height:570px;background:#0b0202}
+.ht-descent-preview img{display:block;width:100%;height:auto;max-height:570px;object-fit:cover;object-position:center}
+.ht-descent-preview span{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,#090202);padding:32px;text-align:center;letter-spacing:.2em;font:bold 16px Georgia,serif;color:#f6d6ce}
+.ht-home-after{padding:48px 0 65px;background:linear-gradient(#070303,#140405);border-top:1px solid #67201a}
+.ht-home-after h2{font:700 clamp(27px,4vw,50px) Georgia,serif;margin:8px 0}
+.ht-home-after p{max-width:810px}
+@media(max-width:1120px){.ht-home-tiles{grid-template-columns:repeat(4,minmax(0,1fr))}.ht-site-header .nav>a,.ht-site-header .ht-nav-menu>a{font-size:11px;padding:7px 5px}.ht-hero-layout{grid-template-columns:1fr 3fr 1fr}}
+@media(max-width:760px){.ht-toprail{display:none}.ht-hero-scene{height:490px;background-position:45% center}.ht-hero-layout{grid-template-columns:1fr}.ht-hero-message{padding-top:46px;grid-column:1;grid-row:1}.ht-haunting-left{position:absolute;bottom:12px;left:0;width:30%;margin:0}.ht-hero-carnival{position:absolute;bottom:12px;right:0;width:30%;margin:0}.ht-haunting-left p,.ht-hero-carnival p{font-size:10px}.ht-fright-eyes{font-size:43px}.ht-hero-carnival span{font-size:55px}.ht-home-tiles{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;padding:9px}.ht-visual-tile{aspect-ratio:1.5/1;min-height:144px}.ht-tile-name{font-size:14px}.ht-site-header .brand{align-items:flex-start}.ht-brand-main{font-size:21px}.ht-site-header .brand small{font-size:8px}.ht-descent-invite h2{font-size:19px}.ht-descent-preview img{min-height:290px;object-fit:cover}.ht-home-after{padding:28px 12px}}
+@media(prefers-reduced-motion:reduce){.ht-descent-arrow{animation:none!important}.ht-visual-tile,.ht-visual-tile::before{transition:none!important}.ht-visual-tile:hover{transform:none!important}}
