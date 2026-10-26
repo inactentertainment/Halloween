@@ -1,0 +1,19 @@
+:root{--ht-reader-size:1}html[data-ht-mood="0"]{--ht-read-bg:#0b0809;--ht-read-accent:#82414c}html[data-ht-mood="1"]{--ht-read-bg:#14070a;--ht-read-accent:#aa3950}html[data-ht-mood="2"]{--ht-read-bg:#270408;--ht-read-accent:#ed304c}
+body.ht-reader-page{padding-bottom:75px!important;background-color:var(--ht-read-bg,#14070a)!important}
+body.ht-reader-page main p,body.ht-reader-page main li{font-size:calc(1em * var(--ht-reader-size))!important;line-height:1.9!important}
+body.ht-reader-page main{transition:background-color .22s ease}
+html[data-ht-mood="2"] body.ht-reader-page main{filter:drop-shadow(0 0 9px #6f0c1522)}
+#ht-reader-toolbar{position:fixed;bottom:0;left:0;right:0;z-index:9000;background:linear-gradient(90deg,#080405ed,#2d0811f0,#090405ed);color:#ffecdf;border-top:1px solid #b14559;box-shadow:0 -8px 30px #0009;font:500 12px/1.2 system-ui,sans-serif;backdrop-filter:blur(12px);transition:bottom .08s linear}
+#ht-reader-toolbar .ht-reader-inner{display:flex;max-width:1300px;margin:auto;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;min-height:51px;padding:7px 12px}
+#ht-reader-toolbar button,#ht-reader-toolbar select{border:1px solid #814050;background:#19090d;color:#fff1eb;font:700 12px system-ui,sans-serif;border-radius:8px;padding:7px 10px;min-height:33px;cursor:pointer}
+#ht-reader-toolbar button:hover,#ht-reader-toolbar button:focus-visible,#ht-reader-toolbar select:focus-visible{background:#712031;border-color:#e78d90;outline-offset:2px}
+#ht-reader-toolbar [data-read="start"]{background:linear-gradient(135deg,#852237,#470c1b)}
+#ht-reader-toolbar .ht-reader-label{letter-spacing:.13em;color:#efaa9a;font-weight:900;font-size:11px;white-space:nowrap}
+#ht-reader-toolbar .ht-reader-break{width:1px;height:25px;background:#733240}
+#ht-reader-toolbar .ht-voice-label{color:#d8b4b8;font-size:11px}
+#ht-reader-toolbar select{max-width:195px}
+#ht-reader-toolbar .ht-reader-status{font-size:11px;color:#efc59e;max-width:110px}
+.ht-spooky-shift{animation:ht-fog-shift .6s ease-out}
+@keyframes ht-fog-shift{0%{opacity:.65;filter:contrast(1.4) sepia(.3)}40%{opacity:.83;filter:brightness(.8) sepia(.12)}100%{opacity:1;filter:none}}
+@media(max-width:780px){#ht-reader-toolbar .ht-reader-inner{gap:4px;padding:5px;justify-content:center}#ht-reader-toolbar .ht-reader-label{display:none}#ht-reader-toolbar .ht-reader-break{display:none}#ht-reader-toolbar button{padding:6px 7px;font-size:11px}#ht-reader-toolbar select{max-width:140px;font-size:11px;min-height:30px}#ht-reader-toolbar .ht-reader-status{display:none}body.ht-reader-page{padding-bottom:110px!important}}
+@media(prefers-reduced-motion:reduce){.ht-spooky-shift{animation:none!important}#ht-reader-toolbar{transition:none}}
