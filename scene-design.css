@@ -1,0 +1,14 @@
+
+/* Haunted Towne cinematic imagery, local reusable vector panels. */
+.hero{background-image:linear-gradient(90deg,#030203ef 0%,#0a0303c2 45%,#09030455 100%),url('./assets/scene-gates.svg')!important;background-position:center,center!important;background-size:cover!important;min-height:610px}
+.ht-scene-panel{display:block;position:relative;overflow:hidden;border:1px solid #5e1818;border-radius:16px;box-shadow:0 23px 55px #000b;color:#f2d7cd;text-decoration:none}
+.ht-scene-panel img{display:block;width:100%;aspect-ratio:16/8;object-fit:cover;transform:scale(1);transition:transform 1s ease-out,filter .6s}
+.ht-scene-panel:hover img{transform:scale(1.045);filter:brightness(1.15)}
+.ht-scene-panel span{position:absolute;bottom:0;left:0;right:0;text-align:center;padding:19px 10px;background:linear-gradient(transparent,#090303ef);font:700 clamp(13px,2vw,18px)/1.4 Georgia,serif;letter-spacing:.13em}
+.ht-nightmare-sequence{display:grid;gap:0;background:#070303}
+.ht-nightmare-sequence img{display:block;width:100%;height:auto;aspect-ratio:1400/660;object-fit:cover;object-position:top}
+.ht-nightmare-sequence img+img{margin-top:-4px}
+.ht-descent-chapters{position:relative}
+.ht-descent-chapters>.descent{position:relative;background:linear-gradient(#0c0304,#050203)}
+@media(max-width:700px){.hero{min-height:550px;background-position:center,63% center!important}.ht-scene-panel img{aspect-ratio:3/3}.ht-nightmare-sequence img{aspect-ratio:8/5}}
+@media(prefers-reduced-motion:reduce){.ht-scene-panel img{transition:none!important}.ht-scene-panel:hover img{transform:none!important}}
