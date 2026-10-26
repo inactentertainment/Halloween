@@ -105,18 +105,29 @@
    var frame=document.createElement("iframe");frame.src="https://www.youtube-nocookie.com/embed/"+video+"?autoplay=1";frame.title=item.title+" trailer";frame.allow="autoplay; encrypted-media; fullscreen; picture-in-picture";frame.allowFullscreen=true;
    document.getElementById("ht-player-frame").appendChild(frame);modal.hidden=false;document.body.classList.add("ht-video-playing");document.getElementById("ht-modal-close").focus();
  });}
- var cover=document.getElementById("ht-detail-cover"),cached=imageFromCache();if(cached)cover.src=cached;
- async function fetchArt(){
-   if(cached)return;
-   try{
-     var u=isMovie?
-       "https://en.wikipedia.org/w/api.php?origin=*&action=query&format=json&redirects=1&prop=pageimages&piprop=thumbnail&pithumbsize=600&titles="+encode(item.title+" ("+item.year+" film)"):
-       "https://www.googleapis.com/books/v1/volumes?q="+encode("intitle:"+item.title+" inauthor:"+item.author)+"&maxResults=2";
-     var resp=await fetch(u,{signal:AbortSignal.timeout(6500)});if(!resp.ok)return;var data=await resp.json(),image="";
-     if(isMovie){var pages=Object.values(data.query?.pages||{});image=pages[0]?.thumbnail?.source||"";}
-     else{var v=(data.items||[])[0]?.volumeInfo;image=v?.imageLinks?.medium||v?.imageLinks?.thumbnail||"";}
-     if(image&&image.startsWith("http"))cover.src=image.replace(/^http:/,"https:");
-   }catch(e){}
+ var cover=document.getElementById("ht-detail-cover"),artKind=isMovie?"movies":"books";
+ var sourceLink=document.createElement("a");sourceLink.id="ht-detail-art-credit";sourceLink.className="ht-detail-art-credit";
+ sourceLink.textContent="Haunted Towne title illustration";
+ var coverBox=cover.parentElement;if(coverBox&&coverBox.parentElement)coverBox.parentElement.insertBefore(sourceLink,coverBox.nextSibling);
+ function applyArt(entry){
+   if(entry&&entry.url){
+     cover.src=entry.url;
+     sourceLink.textContent="Artwork source: "+entry.source+" ↗";
+     sourceLink.href=entry.credit||"";
+     sourceLink.target="_blank";sourceLink.rel="noopener noreferrer";
+   }else{
+     cover.src=window.HTMediaSource?window.HTMediaSource.fallback(item.title,artKind):titleArt();
+     sourceLink.textContent="Original Haunted Towne title illustration";
+     sourceLink.removeAttribute("href");sourceLink.removeAttribute("target");
+   }
  }
- fetchArt();
+ cover.addEventListener("error",function(){
+   if(cover.dataset.errorDone)return;cover.dataset.errorDone="yes";
+   if(window.HTMediaSource)window.HTMediaSource.failed(artKind,id);
+   applyArt(null);
+ });
+ if(window.HTMediaSource){
+   applyArt(window.HTMediaSource.get(artKind,id));
+   window.HTMediaSource.one(artKind,id).then(function(entry){if(entry&&!cover.dataset.errorDone)applyArt(entry);}).catch(function(){applyArt(null);});
+ }else applyArt(null);
 })();
