@@ -1,0 +1,30 @@
+/* Haunted Towne: final blood-black palette, 2026. Oxblood not scarlet, magenta, cranberry or purple. */
+:root{color-scheme:dark;--blood-black:#050303;--blood-shadow:#0d0304;--blood-deep:#190405;--blood-ox:#290607;--blood-ox-mid:#40090b;--blood-border:#4e1718;--blood-highlight:#7a191b;--blood-accent:#a03a30;--blood-text:#f4e8e1;--blood-muted:#d0bcb4;
+--bg:#050303;--bg2:#100405;--panel:#180506;--panel2:#210707;--line:#4c1718;--text:#f4e8e1;--sub:#d0bcb4;--purple:#5d1819;--green:#7e2922;--orange:#8f291e;--amber:#d9ad81;--ht-read-bg:#0d0304;--ht-read-accent:#641416}
+html,body{background-color:#050303!important;color:#f4e8e1}
+body{background-image:radial-gradient(ellipse at 50% -15%,#300707 0%,#130404 29%,#050303 68%)!important}
+.bar,.top,.ht-detail-nav,.horror-bar{background:#080303f5!important;border-bottom-color:#3e1112!important;box-shadow:0 4px 26px #0009!important}
+.hero,.horror-hero{background-image:linear-gradient(90deg,#050303ed,#170404ce 53%,#100303a6),radial-gradient(ellipse at 70% 20%,#4c090933,transparent 55%),url('./assets/haunted-mansion.webp')!important}
+.page-head,.hero:not(.horror-hero),.panel,.card,.horror-card,.chapter-card,.section,.ht-detail-hero,.ht-media-card,.book-tile,.ht-explorer,.ht-reflection,.ht-side-panel,.ht-related-card,.milestone,.toc-list button,.ht-player-panel,.ht-modal-card{border-color:#451718!important}
+.page-head,.panel,.card,.horror-card,.chapter-card,.ht-detail-hero,.ht-media-card,.book-tile,.ht-explorer,.ht-reflection,.ht-side-panel,.ht-related-card,.milestone,.ht-player-panel,.ht-modal-card{background:linear-gradient(140deg,#200607 0%,#100405 55%,#090303 100%)!important}
+.page-head{background:linear-gradient(115deg,#260708 0%,#080303 72%)!important}
+.section.alt,.descent,.footer,.ht-detail-footer{background:#080303!important;border-color:#3b1011!important}
+.card-icon,.card-icon.t2,.card-icon.t3,.ht-art,.ht-cover,.book-cover-wrap{background:radial-gradient(ellipse at 50% 35%,#3f0a0b 0%,#100405 75%)!important;border-color:#471516!important}
+.button,.navbtn,.ht-btn:not(.ht-btn-muted),.primary{background:linear-gradient(155deg,#6a1515 0%,#42090b 50%,#250607 100%)!important;border-color:#77312d!important;box-shadow:0 5px 20px #19020377!important;color:#f9eae3!important}
+.button-outline,.button-quiet,.small-button,.filter,.button2,.ghost,.ht-btn-muted,.ht-tabs button,.chapter-link{background:linear-gradient(155deg,#240708,#100405)!important;border-color:#572020!important;color:#f8e7e0!important}
+button:hover,.button:hover,.button-outline:hover,.small-button:hover,.ht-btn:hover,.toc-list button.active,.ht-tabs button[aria-pressed="true"]{background:#541011!important;border-color:#8d4139!important;color:#fff1e7!important}
+.eyebrow,.ht-kicker,.ht-media-rank,.number,.hero-kicker{color:#bd8270!important}
+.highlight{color:#e7ac8e!important;text-shadow:0 0 23px #590708!important}
+.note,.lead,.card p,.ht-media-copy p,.ht-detail-content p{color:#d8c2bb!important}
+.notice,.callout,.ht-theme-panel{border-color:#7c2924!important;background:#200809!important}
+input,select,textarea,.field{background:#0e0405!important;border-color:#542022!important;color:#f8eae4!important}
+#ht-reader-toolbar{background:linear-gradient(90deg,#060202f7,#210506f5,#060202f7)!important;border-top-color:#5c1a19!important}
+#ht-reader-toolbar button,#ht-reader-toolbar select{background:#150506!important;border-color:#4f1c1c!important}
+#ht-reader-toolbar [data-read="start"]{background:linear-gradient(135deg,#5d1414,#280607)!important}
+.ht-art .ht-image-source,.ht-detail-art-credit{background:linear-gradient(0deg,#100304fa,#1c0505bb)!important;border-color:#4c1718!important}
+.ht-player-shade,.ht-modal-backdrop{background:#020101f0!important}
+:focus-visible{outline-color:#ba7461!important}
+html[data-ht-mood="0"]{--ht-read-bg:#080505!important;--ht-read-accent:#3b1010!important}
+html[data-ht-mood="1"]{--ht-read-bg:#140404!important;--ht-read-accent:#5a1717!important}
+html[data-ht-mood="2"]{--ht-read-bg:#200505!important;--ht-read-accent:#7a1b17!important}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
