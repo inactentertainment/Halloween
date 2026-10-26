@@ -51,12 +51,11 @@
    }).filter(function(x){return x&&x.url;}).sort(function(a,b){return b.score-a.score;});
    return ranked[0]||null;
  }
- var lastOpenLibrary=0;
+ var lastOpenLibrary=0,openLibraryQueue=Promise.resolve();
+ function rateLimitOL(){var slot=openLibraryQueue.then(async function(){var wait=Math.max(0,lastOpenLibrary+1200-Date.now());if(wait)await new Promise(function(done){setTimeout(done,wait);});lastOpenLibrary=Date.now();});openLibraryQueue=slot.catch(function(){});return slot;}
  async function openLibraryBook(book){
    // Secondary low-volume fallback; Open Library's published limit for browser clients is 1 request/sec.
-   var gap=Date.now()-lastOpenLibrary;
-   if(gap<1200)await new Promise(function(resolve){setTimeout(resolve,1200-gap);});
-   lastOpenLibrary=Date.now();
+   await rateLimitOL();
    var url="https://openlibrary.org/search.json?title="+encodeURIComponent(book.title)+"&author="+encodeURIComponent(book.author)+"&limit=5&fields=title,author_name,cover_i,key";
    var res=await fetch(url,{signal:timeoutSignal(11000)});
    if(!res.ok)throw Error("Open Library response "+res.status);
