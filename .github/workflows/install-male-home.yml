@@ -1,0 +1,31 @@
+name: Install approved male horror homepage
+on:
+  push:
+    paths:
+      - 'assets/haunted-male-approved-v2.webp.base64'
+      - '.github/workflows/install-male-home.yml'
+permissions:
+  contents: write
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode web artwork
+        run: |
+          python - <<'PY'
+          import base64,pathlib
+          f=pathlib.Path('assets/haunted-male-approved-v2.webp.base64')
+          b=base64.b64decode(f.read_text(),validate=True)
+          assert b[:4]==b'RIFF' and b[8:12]==b'WEBP' and len(b)>100000
+          pathlib.Path('assets/haunted-male-approved-v2.webp').write_bytes(b)
+          PY
+      - name: Commit image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/haunted-male-approved-v2.webp
+          git rm assets/haunted-male-approved-v2.webp.base64
+          git commit -m "Publish approved horror character image" || exit 0
+          git pull --rebase origin main
+          git push
