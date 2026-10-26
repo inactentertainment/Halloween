@@ -60,3 +60,15 @@ body.ht-reader-page #ht-reader-toolbar{z-index:5000!important}
 .ht-music-item{grid-template-columns:25px 1fr}.ht-music-item>a{grid-column:2}
 }
 @media(prefers-reduced-motion:reduce){.ht-live-arrow{animation:none!important}}
+
+/* Make the illustrated burial stairs extend below the hero as a restrained scene continuation. */
+.ht-final-home .ht-final-more{position:relative!important;left:auto!important;right:auto!important;bottom:auto!important;min-height:230px;background:linear-gradient(to bottom,#09020233 0%,#060202e6 78%,#000 100%),url('./assets/haunted-towne-final.webp') center 95%/cover no-repeat!important;display:flex;align-items:center;justify-content:center;padding:55px 20px 42px!important;margin-top:-2px;isolation:isolate}
+.ht-final-more .wrap{position:relative;z-index:1;width:100%}
+.ht-final-more .actions{display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.ht-final-more .actions a{border-radius:12px;min-height:48px;box-shadow:0 0 13px #460f0eaa}
+.ht-final-art-scene .ht-live-descent{top:73%}
+.ht-final-art-scene .ht-live-arrow{animation:ht-abyss-blink 2.7s ease-in-out infinite}
+.ht-final-home-route #footer{background:#000}
+.ht-final-home-route #content{background:#050202}
+.ht-underground-link:hover,.ht-underground-link:focus-visible{background:transparent!important;border:0!important}
+@media(max-width:760px){.ht-final-home .ht-final-more{min-height:230px;background-position:center 91%!important;background-size:auto 320px!important;padding:28px 13px!important}.ht-final-home .ht-final-more .actions{display:flex;flex-direction:column}.ht-final-home .ht-final-more .actions a{width:min(100%,380px)}}
