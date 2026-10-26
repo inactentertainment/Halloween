@@ -43,12 +43,12 @@ filteredRanking=function(){
  else if(sort==='author')items.sort((a,b)=>a.author.localeCompare(b.author));
  const cached=htMediaCache[kind],limit=items.length;
  const tile=items.map(x=>{
-   const image=cached[x.rank]||htArtwork(x.title,kind),url=htAmazon(x,film),foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];
-   const actions='<div class="ht-actions"><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
+   const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const image=foundTrailer?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':cached[x.rank]||htArtwork(x.title,kind),url=htAmazon(x,film);
+   const actions='<div class="ht-actions"><a href="./detail.html?kind='+(film?'movie':'book')+'&id='+x.rank+'" class="small-button">See More →</a><a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
    (film?(foundTrailer?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">▶ Play trailer</button>':'<a class="small-button" target="_blank" rel="noopener noreferrer" href="'+esc(htYouTube(x))+'">Find trailer ↗</a>'):'')+
    '<button class="small-button" type="button" data-save="'+x.rank+'">'+(saved.includes(x.rank)?'✓ Saved':'+ Save')+'</button></div>';
-   return '<article class="ht-media-card"><div class="ht-art">'+
-   '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' movie poster or themed title artwork':' book cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"></div>'+
+   return '<article class="ht-media-card"><a class="ht-art ht-art-link" aria-label="See details for '+esc(x.title)+'" href="./detail.html?kind='+(film?'movie':'book')+'&id='+x.rank+'">'+
+   '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' movie poster or themed title artwork':' book cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"></a>'+
    '<div class="ht-media-copy"><p class="ht-media-rank">#'+x.rank+' · '+(film?esc(x.year+' · '+x.genre):esc(x.author))+'</p>'+
    '<h3>'+esc(x.title)+'</h3><p>'+esc(x.description||'Discover this horror classic.')+'</p>'+actions+'</div></article>';
  }).join('');
@@ -57,7 +57,7 @@ filteredRanking=function(){
 };
 function htUpdateImages(kind){
  const elements=document.querySelectorAll('[data-ht-img]'),cache=htMediaCache[kind];
- for(const img of elements){const [k,rank]=img.dataset.htImg.split('-');if(k===kind&&cache[rank])img.src=cache[rank];}
+ for(const img of elements){const [k,rank]=img.dataset.htImg.split('-');if(k===kind&&cache[rank]&&!(kind==='movies'&&HT_TRAILERS[CATALOG.movies[Number(rank)-1]?.title+'|'+CATALOG.movies[Number(rank)-1]?.year]))img.src=cache[rank];}
 }
 async function htLookupMovieArt(){
  if(htPosterLookupStarted)return;htPosterLookupStarted=true;
