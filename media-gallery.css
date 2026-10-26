@@ -24,3 +24,5 @@ body.ht-trailer-open{overflow:hidden}
 @media(max-width:600px){.ht-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ht-media-copy{padding:11px 10px 13px;gap:6px}.ht-media-copy h3{font-size:.98rem}.ht-media-copy p{font-size:.78rem}.ht-actions{gap:6px}.ht-actions .small-button{flex:1;font-size:.7rem;padding:7px 6px;min-height:36px}.ht-player{padding:8px}.ht-player-panel{padding:12px}.ht-close{font-size:.75rem;padding:7px 9px}}
 @media(max-width:390px){.ht-gallery{grid-template-columns:1fr}.ht-art{aspect-ratio:3/3;max-height:340px}.ht-media-copy h3{font-size:1.18rem}}
 @media(prefers-reduced-motion:reduce){.ht-media-card{transition:none}.ht-media-card:hover{transform:none}}
+
+.ht-art-link{text-decoration:none;cursor:pointer}.ht-art-link:focus-visible{outline:3px solid #ed9a94;outline-offset:-4px}.ht-media-card .ht-media-copy .ht-actions{margin-top:auto}
