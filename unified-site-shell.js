@@ -34,14 +34,12 @@ header=function(){
  let items=mainLinks.map(([id,ico,label,href])=>{
   const text='<span class="ht-nav-icon" aria-hidden="true">'+ico+'</span><span>'+label+'</span>';
   if(id!=='costumes')return '<a href="'+href+'"'+(route===id?' class="active" aria-current="page"':'')+'>'+text+'</a>';
-  return '<div class="ht-costume-menu"><a href="#costumes">'+text+'</a><button type="button" class="ht-costume-expand" aria-label="Show costume categories" aria-expanded="false" aria-controls="ht-costume-sub">⌄</button><div class="ht-costume-sub" id="ht-costume-sub">'+costumes.map((name,i)=>'<a href="#shop-guide/costumes/'+i+'">'+name+(i===4?'':' Costumes')+'</a>').join('')+'</div></div>';
+  return '<div class="ht-costume-menu"><a href="#costumes">'+text+'</a><div class="ht-costume-sub" id="ht-costume-sub">'+costumes.map((name,i)=>'<a href="#shop-guide/costumes/'+i+'">'+name+(i===4?'':' Costumes')+'</a>').join('')+'</div></div>';
  }).join('');
  nav.innerHTML='<a class="ht-shell-brand" href="./index.html#home" aria-label="Haunted Towne home"><strong>HAUNTED</strong> <em>TOWNE</em></a>'+items;
- const menu=nav.querySelector('.ht-costume-menu'),btn=nav.querySelector('.ht-costume-expand');
- if(btn){
- btn.onclick=function(e){e.preventDefault();const opened=menu.classList.toggle('expanded');btn.setAttribute('aria-expanded',String(opened));};
- menu.addEventListener('keydown',e=>{if(e.key==='Escape'){menu.classList.remove('expanded');btn.setAttribute('aria-expanded','false');btn.focus();}});
- }
+ const menu=nav.querySelector('.ht-costume-menu');
+ // Hover or keyboard focus opens the dropdown; Costume text remains a normal clickable link.
+ if(menu)menu.addEventListener('keydown',e=>{if(e.key==='Escape'){e.target.blur();}});
  const top=document.getElementById('header');top.classList.add('ht-universal-header');
  const outer=document.querySelector('#header .bar');if(outer)outer.classList.add('ht-universal-bar');
  const toggle=document.getElementById('nav-toggle');if(toggle){
