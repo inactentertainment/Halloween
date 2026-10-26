@@ -10,6 +10,42 @@ const HT_TRAILERS={
   "The Substance|2024":"B1B3HZRHpEw"
 };
 const htMediaCache={movies:{},books:{}};
+
+/* Phase 3: only a small known trailer set embeds. Check YouTube metadata and guard against mismatched video titles. */
+const htTrailerChecks={};
+function htTrailerTitleMatches(movie,title){
+ const norm=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+ const m=norm(movie.title),t=norm(title);
+ const anchor=m==="it"?"it":m;
+ return t.includes(anchor)&&(t.includes("trailer")||t.includes("teaser")||t.includes("preview")||t.includes("official"));
+}
+async function htTrailerMetadata(movie){
+ const id=HT_TRAILERS[movie.title+'|'+movie.year];
+ if(!id)return null;
+ if(htTrailerChecks[id])return htTrailerChecks[id];
+ htTrailerChecks[id]=(async()=>{
+ try{
+ const res=await fetch('https://www.youtube.com/oembed?url='+encodeURIComponent('https://www.youtube.com/watch?v='+id)+'&format=json',{signal:AbortSignal.timeout(8000)});
+ if(!res.ok)return null;
+ const obj=await res.json();
+ if(!htTrailerTitleMatches(movie,obj.title))return null;
+ return {id:id,title:obj.title,author:obj.author_name||'',image:obj.thumbnail_url||('https://i.ytimg.com/vi/'+id+'/hqdefault.jpg')};
+ }catch(e){return null;}
+ })();
+ return htTrailerChecks[id];
+}
+async function htVerifyTrailerGallery(){
+ if(view()!=='movies')return;
+ const candidates=CATALOG.movies.filter(x=>HT_TRAILERS[x.title+'|'+x.year]);
+ for(const movie of candidates){
+ const result=await htTrailerMetadata(movie);
+ const play=document.querySelector('[data-trailer-rank="'+movie.rank+'"]');
+ if(play){play.textContent=result?'▶ Watch trailer':'Search for trailer ↗';play.dataset.available=result?'yes':'no';play.setAttribute('aria-label',result?'Watch '+movie.title+' trailer':'Search YouTube for '+movie.title+' trailer');}
+ const img=document.querySelector('[data-ht-img="movies-'+movie.rank+'"]');
+ if(result&&img&&!window.HTMediaSource?.get('movies',movie.rank)?.url){img.src=result.image;img.alt=movie.title+' trailer thumbnail';}
+ }
+}
+
 let htPosterLookupStarted=false,htBookLookupStarted=false;
 const htArtwork=(title,kind)=>{
  const cleaned=String(title).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -54,7 +90,7 @@ filteredRanking=function(){
    '<h3>'+esc(x.title)+'</h3><p>'+esc(x.description||'Discover this horror classic.')+'</p>'+actions+'</div></article>';
  }).join('');
  Q('rank-results').innerHTML=tile||'<p class="empty">No matching titles.</p>';
- if(window.HTMediaSource){htUpdateArtworkProgress(kind);window.HTMediaSource.begin(kind).then(()=>htUpdateArtworkProgress(kind)).catch(()=>htUpdateArtworkProgress(kind));}
+ if(window.HTMediaSource){htUpdateArtworkProgress(kind);window.HTMediaSource.begin(kind).then(()=>htUpdateArtworkProgress(kind)).catch(()=>htUpdateArtworkProgress(kind));}if(film)htVerifyTrailerGallery();
 };
 function htUpdateArtworkProgress(kind){
  const e=Q('ht-artwork-progress');if(!e||!window.HTMediaSource)return;
@@ -96,11 +132,12 @@ function htCloseTrailer(){
  const slot=Q('ht-video-slot');if(slot)slot.replaceChildren();
  document.body.classList.remove('ht-trailer-open');
 }
-function htOpenTrailer(rank){
+async function htOpenTrailer(rank){
  const x=CATALOG.movies.find(x=>x.rank===Number(rank));if(!x)return;
  const id=HT_TRAILERS[x.title+'|'+x.year];if(!id)return;
+ const verified=await htTrailerMetadata(x);if(!verified){window.open(htYouTube(x),'_blank','noopener,noreferrer');return;}
  const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;
- Q('ht-trailer-title').textContent=x.title+' ('+x.year+') — Trailer / Teaser Preview';
+ Q('ht-trailer-title').textContent=verified.title+' · '+verified.author;
  slot.replaceChildren();
  const frame=document.createElement('iframe');frame.title=x.title+' trailer';
  frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&start=0&rel=0';
