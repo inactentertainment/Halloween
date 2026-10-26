@@ -27,3 +27,9 @@ body.ht-final-home-route #content{background:#040202!important}
 .ht9-tile img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;transform:scale(1.115);transform-origin:center}
 .ht9-tile:hover,.ht9-tile:focus-visible{outline:0!important;border:0!important;background:transparent!important;box-shadow:0 0 20px #ba211a80!important}
 .ht9-tile:hover img{transform:scale(1.15)}
+
+/* Full-bleed homepage across wide desktop displays: keep image and interactive overlays in the same coordinate system. */
+body.ht-final-home-route .ht9-home{width:100%!important;max-width:none!important}
+body.ht-final-home-route .ht9-backdrop{width:100%!important;max-width:none!important;margin:0!important}
+body.ht-final-home-route .ht9-art{display:block!important;width:100%!important;max-width:none!important;height:auto!important}
+body.ht-final-home-route #content{width:100%!important;max-width:none!important;margin:0!important;padding:0!important}
