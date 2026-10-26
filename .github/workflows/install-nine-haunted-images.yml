@@ -1,0 +1,38 @@
+name: Install nine Haunted Towne illustrations
+on:
+  push:
+    paths:
+      - 'assets/haunted-nine.tar.gz.base64'
+      - '.github/workflows/install-nine-haunted-images.yml'
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode original nine image assets
+        run: |
+          python - <<'PY'
+          import base64,tarfile,pathlib,io
+          p=pathlib.Path('assets/haunted-nine.tar.gz.base64')
+          raw=base64.b64decode(p.read_text().strip(),validate=True)
+          with tarfile.open(fileobj=io.BytesIO(raw),mode='r:gz') as tf:
+              members=tf.getmembers()
+              assert len(members)==9
+              for member in members:
+                  assert member.name in ['background.webp']+['card-'+str(n)+'.webp' for n in range(1,9)]
+                  b=tf.extractfile(member).read()
+                  assert b[0:4]==b'RIFF' and b[8:12]==b'WEBP'
+                  pathlib.Path('assets/haunted-'+member.name).write_bytes(b)
+                  print(member.name,len(b))
+          PY
+      - name: Publish into repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/haunted-*.webp
+          git rm assets/haunted-nine.tar.gz.base64
+          git commit -m "Publish 9 individual illustrated homepage assets" || exit 0
+          git pull --rebase origin main
+          git push
