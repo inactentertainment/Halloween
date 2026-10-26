@@ -1,0 +1,32 @@
+name: Install final Haunted Towne artwork
+on:
+  push:
+    paths:
+      - 'assets/haunted-towne-final.webp.base64'
+      - '.github/workflows/install-final-home-art.yml'
+permissions:
+  contents: write
+jobs:
+  convert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and decode staged artwork
+        run: |
+          python - <<'PY'
+          import pathlib,base64
+          f=pathlib.Path('assets/haunted-towne-final.webp.base64')
+          b=base64.b64decode(f.read_text().strip(),validate=True)
+          assert b[0:4]==b'RIFF' and b[8:12]==b'WEBP' and len(b)>150000
+          pathlib.Path('assets/haunted-towne-final.webp').write_bytes(b)
+          print('Installed image:',len(b),'bytes')
+          PY
+      - name: Commit site image
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/haunted-towne-final.webp
+          git rm assets/haunted-towne-final.webp.base64
+          git commit -m "Install redesigned cinematic homepage without baked navigation" || exit 0
+          git pull --rebase origin main
+          git push
