@@ -2,19 +2,19 @@
 (function(){
 'use strict';
 const destinations=[
-['History of Halloween','./history.html',35,52],
-['Ghost Stories','./story.html',50,16],
+['History of Halloween','./history.html',19,77],
+['Ghost Stories','./story.html',31,15],
 ['Costumes','#costumes',55,78],
 ['Masks','#masks',59,22],
 ['Decor','#decor',63,76],
 ['Party Ideas','#party',68,19],
-['Haunted Road','#descent',47,51],
+['Haunted Road','#descent',49,51],
 ['Movies & Trailers','#movies',77,80],
 ['Music','#music',88,22],
 ['Fun & Games','#games',85,75],
 ['Free Downloads','#downloads',78,18],
 ['Events','#events',92,79],
-['About','#about',87,50]
+['About','#about',36,50]
 ];
 home=function(){
  const links=destinations.map(([title,href,y,x])=>'<a class="ht-journey-link" href="'+href+'" style="--journey-y:'+y+'%;--journey-x:'+x+'%" data-journey="true">'+title+'</a>').join('');
