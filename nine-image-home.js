@@ -10,7 +10,7 @@ const destinations=[
 ['Party Ideas','#party',68,19],
 ['Haunted Road','#descent',47,51],
 ['Movies & Trailers','#movies',77,80],
-['Music','#music',81,19],
+['Music','#music',83,33],
 ['Fun & Games','#games',85,75],
 ['Free Downloads','#downloads',78,18],
 ['Events','#events',92,79],
@@ -22,17 +22,7 @@ home=function(){
  '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/haunted-home-enhanced.webp" width="1604" height="3072" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
  '<nav class="ht-journey-links" aria-label="Explore the haunted staircase">'+links+'</nav><footer class="ht-immersive-footer"><div class="ht-immersive-footer-layout"><div class="ht-immersive-footer-left"><a class="ht-immersive-footer-title" href="#home">HAUNTED <em>TOWNE</em></a><p>The Darker Side of Halloween · InAct Entertainment LLC</p></div><nav aria-label="Legal and information"><a href="#about">About</a><a href="#privacy">Privacy</a><a href="#affiliate">Affiliate Disclosure</a><a href="#terms">Terms</a></nav></div><div class="ht-immersive-footer-rule"></div><small>© 2026 InAct Entertainment LLC. Original experiences and artwork. Third-party copyrights remain with their owners.</small></footer></div></section>';
 };
-function journeySound(){
- if(document.documentElement.dataset.htJourneySound==='off')return;
- try{
- const Context=window.AudioContext||window.webkitAudioContext;if(!Context)return;
- const ctx=window.__htJourneyAudio||(window.__htJourneyAudio=new Context());ctx.resume();
- const now=ctx.currentTime,osc=ctx.createOscillator(),gain=ctx.createGain();
- osc.type='triangle';osc.frequency.setValueAtTime(380,now);osc.frequency.exponentialRampToValueAtTime(85,now+.33);
- gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.08,now+.025);gain.gain.exponentialRampToValueAtTime(.0001,now+.42);
- osc.connect(gain);gain.connect(ctx.destination);osc.start(now);osc.stop(now+.45);
- }catch(e){}
-}
+function journeySound(){window.HTCinema?.horrorEffect?.('dread')}
 document.addEventListener('click',function(e){
  const a=e.target.closest('.ht-journey-link');if(!a||e.defaultPrevented||e.button!==0||e.ctrlKey||e.metaKey||e.shiftKey||e.altKey)return;
  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
