@@ -53,3 +53,9 @@ body.ht-journey-transition .ht9-art{filter:brightness(.72);transition:filter .32
 .ht-journey-link:hover,.ht-journey-link:focus-visible,.ht-journey-link.ht-journey-depart{transform:scale(1.025)}
 }
 @media(prefers-reduced-motion:reduce){.ht-journey-link,.ht-journey .ht9-art{transition:none!important}}
+
+@media(max-width:760px){
+.ht-journey-links{position:absolute!important;inset:0!important;display:block!important;padding:0!important;background:transparent!important}
+.ht-journey-link{position:absolute!important;top:var(--journey-y)!important;left:var(--journey-x)!important;transform:translate(-50%,-50%)!important;width:24%!important;max-width:120px!important;min-width:0!important;min-height:0!important;padding:4px 2px!important;font-size:clamp(7px,1.9vw,10px)!important;border-radius:5px!important;line-height:1.1!important}
+.ht-journey-link:hover,.ht-journey-link:focus-visible{transform:translate(-50%,-50%) scale(1.05)!important}
+}
