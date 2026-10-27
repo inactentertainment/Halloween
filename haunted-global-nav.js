@@ -15,9 +15,9 @@ root.innerHTML='<header class="ht-global-bar"><a class="ht-global-logo" href="./
 let audio,enabled=false;
 function tone(){try{const C=window.AudioContext||window.webkitAudioContext;if(!C)return;audio=audio||new C();audio.resume();const osc=audio.createOscillator(),gain=audio.createGain();osc.type='sine';osc.frequency.setValueAtTime(190,audio.currentTime);osc.frequency.exponentialRampToValueAtTime(63,audio.currentTime+.28);gain.gain.setValueAtTime(.0001,audio.currentTime);gain.gain.exponentialRampToValueAtTime(.09,audio.currentTime+.025);gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+.38);osc.connect(gain);gain.connect(audio.destination);osc.start();osc.stop(audio.currentTime+.4);}catch(e){}}
 function setup(){if(document.getElementById('ht-global-navigation'))return;document.body.insertBefore(root,document.body.firstChild);const menu=root.querySelector('#ht-global-menu'),toggle=root.querySelector('.ht-global-menu-toggle');const setOpen=v=>{menu.hidden=!v;toggle.setAttribute('aria-expanded',String(v));toggle.setAttribute('aria-label',v?'Close destinations':'Open destinations');document.body.classList.toggle('ht-global-menu-open',v)};
-toggle.addEventListener('click',()=>{setOpen(menu.hidden);if(window.HTCinema?.preferences?.sound)tone()});
+toggle.addEventListener('click',()=>{setOpen(menu.hidden);window.HTCinema?.horrorEffect?.('bell')});
 // The shared cinema engine owns sound and lens controls in the header.
-menu.addEventListener('click',e=>{const a=e.target.closest('.ht-global-target');if(!a)return;if(enabled)tone();setOpen(false)});
+menu.addEventListener('click',e=>{const a=e.target.closest('.ht-global-target');if(!a)return;window.HTCinema?.horrorEffect?.('dread');setOpen(false)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!menu.hidden){setOpen(false);toggle.focus()}});
 window.addEventListener('hashchange',()=>setOpen(false));
 }
