@@ -89,3 +89,19 @@ html body #ht-global-navigation{display:block!important;visibility:visible!impor
 #ht-cinema-options p,#ht-cinema-reset{display:none!important}
 .ht-sound-active .ht-sound-bars i{animation:ht-sound-wave .55s ease-in-out infinite alternate!important}
 @media(prefers-reduced-motion:reduce){.ht-heart-active #ht-heart-toggle svg,.ht-sound-active .ht-sound-bars i{animation:none!important}}
+
+/* Mini anatomical heart and EKG: two synchronized pulses per 1.25s cycle. */
+#ht-heart-toggle{width:96px!important;min-width:96px!important;height:42px!important;padding:0!important;overflow:hidden;position:relative!important}
+.ht-cardiac-scene{position:relative;display:block;width:94px;height:42px}
+.ht-ekg{position:absolute;inset:0;width:94px;height:42px;overflow:visible}
+.ht-ekg-dim{fill:none;stroke:rgba(145,15,26,.35);stroke-width:1.6}
+.ht-ekg-trace{fill:none;stroke:#f53b47;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:126;stroke-dashoffset:126;filter:drop-shadow(0 0 2px #db172a)}
+.ht-anatomical-heart{position:absolute;width:34px;height:40px;top:1px;left:30px;transform-origin:50% 55%;filter:drop-shadow(0 0 3px #a70917)}
+.ht-heart-active .ht-cardiac-scene .ht-anatomical-heart{animation:ht-anatomical-beat 1.25s linear infinite!important}
+.ht-heart-active .ht-cardiac-scene .ht-ekg-trace{animation:ht-ekg-travel 1.25s linear infinite!important}
+@keyframes ht-anatomical-beat{0%,6%,25%,32%,50%,100%{transform:scale(1)}10%{transform:scale(1.17)}36%{transform:scale(1.1)}}
+@keyframes ht-ekg-travel{0%{stroke-dashoffset:126;opacity:.6}46%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:-126;opacity:.4}}
+#ht-heart-toggle[aria-pressed="false"] .ht-ekg-trace{stroke-dashoffset:0;opacity:.28}
+#ht-heart-toggle[aria-pressed="false"] .ht-anatomical-heart{opacity:.55;filter:none}
+@media(max-width:500px){#ht-heart-toggle{width:70px!important;min-width:70px!important}.ht-cardiac-scene{transform:scale(.74);transform-origin:left center}}
+@media(prefers-reduced-motion:reduce){.ht-heart-active .ht-cardiac-scene .ht-anatomical-heart,.ht-heart-active .ht-cardiac-scene .ht-ekg-trace{animation:none!important;stroke-dashoffset:0!important}}
