@@ -119,3 +119,9 @@ body.ht-final-home-route #ht-global-navigation .ht-global-bar{background:rgba(7,
 body.ht-final-home-route #ht-global-navigation .ht-global-menu{background:rgba(8,2,6,.66)!important}
 body.ht-final-home-route .ht-journey .ht-immersive-footer{background:linear-gradient(to top,rgba(4,1,4,.84),rgba(4,1,4,.50) 55%,rgba(4,1,4,.08))!important}
 body.ht-final-home-route .ht-journey .ht-immersive-footer-rule{display:none!important}
+
+/* 2026-10-27: navigation placements requested for revised artwork. Existing other targets unchanged. */
+.ht-journey-link[href='./history.html']{top:19%!important;left:77%!important}
+.ht-journey-link[href='./story.html']{top:31%!important;left:15%!important}
+.ht-journey-link[href='#about']{top:36%!important;left:50%!important}
+.ht-journey-link[href='#descent']{top:49%!important;left:51%!important}
