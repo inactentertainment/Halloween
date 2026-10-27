@@ -105,10 +105,17 @@ body.ht-final-home-route #content{background:transparent!important}
 }
 
 /* Approved placement: music below skull, and responsive proportional coordinates. */
-.ht-journey-link[href="#music"]{top:86%;left:42%}
+.ht-journey-link[href="#music"]{top:88%;left:22%}
 /* Preserve full artwork scaling on small screens. */
 
 /* Bottom overlay: no red divider, legible lettering with image visible. */
 .ht-journey .ht-immersive-footer{background:linear-gradient(0deg,rgba(5,1,5,.75),rgba(7,1,5,.32) 80%,transparent)!important}
 .ht-journey .ht-immersive-footer-rule{display:none!important}
 .ht-journey .ht-immersive-footer-layout{border:0!important}
+
+/* Haunted Town header/footer live transparency correction */
+body.ht-final-home-route #ht-global-navigation{position:fixed!important;top:0!important;left:0!important;right:0!important;z-index:30000!important}
+body.ht-final-home-route #ht-global-navigation .ht-global-bar{background:rgba(7,2,5,.56)!important;border:0!important;box-shadow:none!important;backdrop-filter:blur(5px)!important}
+body.ht-final-home-route #ht-global-navigation .ht-global-menu{background:rgba(8,2,6,.66)!important}
+body.ht-final-home-route .ht-journey .ht-immersive-footer{background:linear-gradient(to top,rgba(4,1,4,.84),rgba(4,1,4,.50) 55%,rgba(4,1,4,.08))!important}
+body.ht-final-home-route .ht-journey .ht-immersive-footer-rule{display:none!important}
