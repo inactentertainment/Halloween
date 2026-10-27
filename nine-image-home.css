@@ -82,3 +82,24 @@ body.ht-final-home-route #content{background:transparent!important}
 .ht-immersive-footer-rule{margin:3px auto}
 .ht-immersive-footer small{font-size:7px}
 }
+
+/* Original footer alignment preserved while floating directly above artwork */
+.ht-journey .ht-immersive-footer{background:transparent!important;text-align:left!important;padding:0 clamp(10px,2vw,28px) clamp(9px,1.2vw,20px)!important}
+.ht-immersive-footer-layout{display:flex;justify-content:space-between;align-items:center;gap:18px;width:100%}
+.ht-immersive-footer-left{flex:1;min-width:0}
+.ht-immersive-footer-title{text-decoration:none;color:#f2e8e2}
+.ht-immersive-footer-left p{margin:3px 0!important;letter-spacing:normal!important;font-size:clamp(8px,.8vw,13px)!important}
+.ht-immersive-footer-layout nav{display:flex;justify-content:flex-end!important;gap:clamp(6px,1.3vw,19px)!important}
+.ht-immersive-footer-rule{width:100%!important;height:1px!important;margin:8px 0 4px!important}
+.ht-immersive-footer small{display:block;text-align:right;text-shadow:0 2px 5px #000}
+@media(max-width:760px){
+.ht-journey .ht-immersive-footer{padding:0 6px 5px!important}
+.ht-immersive-footer-layout{flex-direction:row!important;gap:5px!important;align-items:center!important}
+.ht-immersive-footer-left{flex:1 1 47%}
+.ht-immersive-footer-title{font-size:clamp(9px,2.6vw,17px)!important}
+.ht-immersive-footer-left p{font-size:clamp(5px,1vw,8px)!important}
+.ht-immersive-footer-layout nav{flex:1 1 53%;justify-content:flex-end!important;gap:1px 5px!important}
+.ht-immersive-footer-layout nav a{font-size:clamp(5px,1.15vw,9px)!important;padding:1px!important}
+.ht-immersive-footer-rule{margin:3px 0 2px!important}
+.ht-immersive-footer small{font-size:clamp(5px,.85vw,8px)!important}
+}
