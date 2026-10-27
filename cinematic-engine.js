@@ -29,6 +29,8 @@ function render(){apply();ui.querySelector('#ht-cinema-lens').textContent=prefs.
 render();
 document.addEventListener('pointermove',e=>{if(!pan)return;const x=e.clientX/Math.max(1,innerWidth);try{pan.pan.setTargetAtTime(x*2-1,ctx.currentTime,.12)}catch{}},{passive:true});
 document.addEventListener('click',e=>{const target=e.target.closest('[data-cursed-object]');if(!target)return;const id=target.dataset.cursedObject;record(id);glitch(target);tone(115,e.clientX/Math.max(1,innerWidth));});
+// Browsers require a fresh gesture to resume sound after a full page navigation.
+if(prefs.sound){const resumeAmbient=()=>{if(prefs.sound&&heartbeatTimer===null)startAmbient()};document.addEventListener('pointerdown',resumeAmbient,{once:true});document.addEventListener('keydown',resumeAmbient,{once:true})}
 window.addEventListener('pagehide',stopAmbient);
 reduced.addEventListener?.('change',render);
 }
