@@ -103,3 +103,7 @@ body.ht-final-home-route #content{background:transparent!important}
 .ht-immersive-footer-rule{margin:3px 0 2px!important}
 .ht-immersive-footer small{font-size:clamp(5px,.85vw,8px)!important}
 }
+
+/* Approved placement: music below skull, and responsive proportional coordinates. */
+.ht-journey-link[href="#music"]{top:83%;left:33%}
+/* Preserve full artwork scaling on small screens. */
