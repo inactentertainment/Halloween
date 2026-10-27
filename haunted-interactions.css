@@ -45,3 +45,51 @@ body:has(.ht-road-experience) #footer{display:none!important}
 .ht-road-scene .ht-road-hotspots a.ht-road-destination{z-index:16!important;cursor:pointer!important;touch-action:manipulation!important;pointer-events:auto!important}
 .ht-road-scene .ht-road-hotspots a.ht-road-destination:active{background:rgba(168,12,22,.89)!important;transform:translate(-50%,-50%) scale(.98)!important}
 .ht-road-scene .ht-road-footer{z-index:20!important}
+
+/* 2026-10-27: clear, accessible destination cards over approved Road artwork. */
+.ht-road-experience .ht-road-scene{width:100%!important;max-width:none!important;overflow:hidden}
+.ht-road-experience .ht-road-art{width:100%!important;max-width:none!important;height:auto!important;object-fit:contain!important;image-rendering:auto;filter:contrast(1.045) saturate(1.035)}
+.ht-road-experience .ht-road-hotspots{z-index:18!important;pointer-events:none!important}
+.ht-road-experience .ht-road-hotspots a.ht-road-destination,
+.ht-road-experience .ht-road-hotspots a.ht-road-destination:link,
+.ht-road-experience .ht-road-hotspots a.ht-road-destination:visited{
+ position:absolute!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+ top:var(--road-y)!important;left:var(--road-x)!important;transform:translate(-50%,-50%)!important;
+ width:clamp(165px,19vw,310px)!important;min-height:69px!important;
+ padding:11px 14px!important;box-sizing:border-box!important;
+ color:#fff7ed!important;background:rgba(10,1,5,.30)!important;
+ border:1px solid rgba(255,160,160,.25)!important;border-radius:12px!important;
+ box-shadow:0 2px 14px #0008!important;
+ text-shadow:0 2px 6px #000,0 0 11px #000!important;
+ text-decoration:none!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;
+ transition:background .2s ease,box-shadow .2s ease,transform .2s ease!important;
+}
+.ht-road-experience .ht-road-hotspots a.ht-road-destination .ht-road-name{
+ display:block!important;opacity:1!important;visibility:visible!important;
+ color:#fff6ef!important;font:700 clamp(15px,1.42vw,23px)/1.14 Georgia,serif!important;text-align:center!important;
+ text-shadow:0 2px 6px #000,0 0 12px #000!important;
+}
+.ht-road-experience .ht-road-hotspots a.ht-road-destination .ht-road-explore{
+ display:block!important;opacity:.85!important;visibility:visible!important;
+ background:transparent!important;border:0!important;box-shadow:none!important;padding:3px 0 0!important;
+ color:#f8b6af!important;font:700 clamp(11px,.92vw,15px)/1.1 Georgia,serif!important;
+}
+.ht-road-experience .ht-road-hotspots a.ht-road-destination:hover,
+.ht-road-experience .ht-road-hotspots a.ht-road-destination:focus-visible{
+ background:rgba(164,13,28,.87)!important;border-color:#ff6663!important;
+ box-shadow:0 0 26px #fb2735b8,inset 0 0 18px #f43b4466!important;
+ transform:translate(-50%,-50%) scale(1.075)!important;
+}
+.ht-road-experience .ht-road-hotspots a.ht-road-destination:focus-visible{outline:2px solid #fff0e5!important;outline-offset:3px!important}
+@media(max-width:760px){
+ .ht-road-experience .ht-road-hotspots a.ht-road-destination{
+ width:40%!important;min-height:41px!important;padding:5px 4px!important;border-radius:8px!important;
+ background:rgba(12,2,8,.59)!important;
+ }
+ .ht-road-experience .ht-road-hotspots a.ht-road-destination .ht-road-name{font-size:clamp(11px,3vw,16px)!important;line-height:1.1!important}
+ .ht-road-experience .ht-road-hotspots a.ht-road-destination .ht-road-explore{font-size:clamp(9px,2.25vw,12px)!important;padding-top:1px!important}
+ .ht-road-experience .ht-road-hotspots a.ht-road-destination:nth-child(9){top:89%!important;left:52%!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .ht-road-experience .ht-road-hotspots a.ht-road-destination{transition:none!important}
+}
