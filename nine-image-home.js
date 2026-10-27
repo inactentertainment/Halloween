@@ -19,7 +19,7 @@ const destinations=[
 home=function(){
  const links=destinations.map(([title,href,y,x])=>'<a class="ht-journey-link" href="'+href+'" style="--journey-y:'+y+'%;--journey-x:'+x+'%" data-journey="true">'+title+'</a>').join('');
  return '<section class="ht9-home ht-journey" aria-label="Explore Haunted Towne">'+
- '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/haunted-home-enhanced.webp" width="1604" height="3072" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
+ '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/Haunted_Towne_Homepage_4K.webp" width="1604" height="3072" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
  '<nav class="ht-journey-links" aria-label="Explore the haunted staircase">'+links+'</nav><footer class="ht-immersive-footer"><div class="ht-immersive-footer-layout"><div class="ht-immersive-footer-left"><a class="ht-immersive-footer-title" href="#home">HAUNTED <em>TOWNE</em></a><p>The Darker Side of Halloween · InAct Entertainment LLC</p></div><nav aria-label="Legal and information"><a href="#about">About</a><a href="#privacy">Privacy</a><a href="#affiliate">Affiliate Disclosure</a><a href="#terms">Terms</a></nav></div><div class="ht-immersive-footer-rule"></div><small>© 2026 InAct Entertainment LLC. Original experiences and artwork. Third-party copyrights remain with their owners.</small></footer></div></section>';
 };
 function journeySound(a){window.HTCinema?.horrorEffect?.(a?.getAttribute('href')==='#music'?'bell':a?.getAttribute('href')==='#descent'?'boom':'dread')}
