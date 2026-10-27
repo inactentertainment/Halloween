@@ -39,3 +39,9 @@ body:has(.ht-road-experience) #footer{display:none!important}
  .ht-road-footer{padding:5px 7px!important}.ht-road-footer strong{font-size:10px!important}.ht-road-footer small{font-size:7px!important}.ht-road-footer nav{gap:5px!important;flex-wrap:wrap;justify-content:flex-end}.ht-road-footer a{font-size:7px!important}
 }
 @media(prefers-reduced-motion:reduce){.ht-road-hotspots a{transition:none!important}}
+
+/* Road destination click reliability: pin exact hit boxes above artwork. */
+.ht-road-scene .ht-road-hotspots{z-index:15!important}
+.ht-road-scene .ht-road-hotspots a.ht-road-destination{z-index:16!important;cursor:pointer!important;touch-action:manipulation!important;pointer-events:auto!important}
+.ht-road-scene .ht-road-hotspots a.ht-road-destination:active{background:rgba(168,12,22,.89)!important;transform:translate(-50%,-50%) scale(.98)!important}
+.ht-road-scene .ht-road-footer{z-index:20!important}
