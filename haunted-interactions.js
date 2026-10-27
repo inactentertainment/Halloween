@@ -1,11 +1,11 @@
 /* Consistent horror UI audio and artwork-only road navigation. No external sound service. */
 (function(){
 'use strict';
-const effects=['heartbeat','thud','bell','growl','sting','dread','boom'];
+const effects=['heartbeat','bell','growl','sting','dread','boom'];
 function effectFor(el){
  const text=((el.getAttribute('aria-label')||'')+' '+(el.textContent||'')+' '+(el.getAttribute('href')||'')).toLowerCase();
  if(/haunted road|#descent|road\//.test(text))return 'boom';
- if(/haunted towne|#home|index\.html/.test(text))return 'thud';
+ if(/haunted towne|#home|index\.html/.test(text))return 'bell';
  if(/ghost|story|spirit/.test(text))return 'growl';
  if(/movie|horror|trailer/.test(text))return 'sting';
  if(/music|soundtrack/.test(text))return 'bell';
