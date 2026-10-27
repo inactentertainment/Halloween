@@ -23,3 +23,14 @@
 @media(prefers-reduced-motion:reduce){.ht-global-menu-toggle i,.ht-global-target{transition:none!important}}
 
 .ht-global-targets{display:block!important;inset:0!important;padding:0!important}.ht-global-target{position:absolute!important}
+
+/* Keep only the new shared sticky masthead. Override legacy high-specificity header rules. */
+html body #header,
+html body #header.ht-universal-header,
+html body #header.ht-final-home-header,
+html body .ht-article-topbar,
+html body > header.top,
+html body > .top,
+html body .ht-toprail,
+html body .ht-old-atmosphere {display:none!important;visibility:hidden!important;height:0!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;overflow:hidden!important}
+html body #ht-global-navigation{display:block!important;visibility:visible!important}
