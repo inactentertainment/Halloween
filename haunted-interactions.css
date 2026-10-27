@@ -17,3 +17,25 @@
  .ht-road-hotspots a .ht-road-explore{font-size:clamp(9px,2.4vw,14px)!important}
 }
 @media(prefers-reduced-motion:reduce){.ht-road-hotspots a .ht-road-explore{transition:none!important}}
+
+/* Road 2026: independently rendered, accessible destination buttons; image alone holds heading. */
+.ht-road-experience{width:100%!important;max-width:none!important;background:#030102!important}
+.ht-road-scene{width:100%!important;max-width:none!important;position:relative!important}
+.ht-road-art{display:block!important;width:100%!important;max-width:none!important;height:auto!important}
+.ht-road-hotspots{position:absolute!important;inset:0!important;display:block!important;pointer-events:none!important}
+.ht-road-hotspots a{box-sizing:border-box!important;pointer-events:auto!important;position:absolute!important;top:var(--road-y)!important;left:var(--road-x)!important;transform:translate(-50%,-50%)!important;width:clamp(145px,16vw,270px)!important;max-width:none!important;min-height:56px!important;padding:11px!important;background:rgba(11,2,6,.12)!important;border:1px solid transparent!important;border-radius:12px!important;color:#fff4ed!important;text-shadow:0 2px 7px #000,0 0 6px #000!important;box-shadow:none!important;display:flex!important;flex-direction:column;align-items:center;justify-content:center;gap:3px!important;text-align:center;font:700 clamp(15px,1.45vw,23px)/1.15 Georgia,serif!important;transition:background .23s,box-shadow .23s,transform .23s!important}
+.ht-road-hotspots .ht-road-name{display:block!important;color:inherit!important;font:inherit!important;text-shadow:inherit!important}
+.ht-road-hotspots .ht-road-explore{opacity:0!important;display:block!important;color:#ffd8d5!important;font:700 .69em/1.1 Georgia,serif!important;border:0!important;background:transparent!important;padding:0!important;box-shadow:none!important}
+.ht-road-hotspots a:hover,.ht-road-hotspots a:focus-visible{background:rgba(132,9,20,.86)!important;border-color:#f74d49!important;box-shadow:0 0 24px #e9282a88, inset 0 0 18px #f3292a50!important;transform:translate(-50%,-50%) scale(1.07)!important}
+.ht-road-hotspots a:hover .ht-road-explore,.ht-road-hotspots a:focus-visible .ht-road-explore{opacity:1!important}
+.ht-road-mobile{display:none!important}
+.ht-road-footer{position:absolute;bottom:0;left:0;right:0;z-index:7;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px clamp(10px,2vw,26px);background:linear-gradient(0deg,rgba(6,1,4,.84),transparent);font:12px Georgia,serif}
+.ht-road-footer strong{display:block;font-size:16px}.ht-road-footer em{font-style:normal;color:#ed3539}.ht-road-footer small{display:block;font-size:10px}.ht-road-footer nav{display:flex;gap:14px}.ht-road-footer a{color:#eee0da;text-decoration:none}
+body:has(.ht-road-experience) #footer{display:none!important}
+@media(max-width:760px){
+ .ht-road-hotspots a{width:39%!important;min-height:44px!important;padding:6px 5px!important;font-size:clamp(12px,3.25vw,17px)!important;border-radius:7px!important}
+ .ht-road-hotspots .ht-road-explore{font-size:.7em!important;opacity:.85!important}
+ .ht-road-hotspots a:nth-child(9){top:88%!important;left:52%!important}
+ .ht-road-footer{padding:5px 7px!important}.ht-road-footer strong{font-size:10px!important}.ht-road-footer small{font-size:7px!important}.ht-road-footer nav{gap:5px!important;flex-wrap:wrap;justify-content:flex-end}.ht-road-footer a{font-size:7px!important}
+}
+@media(prefers-reduced-motion:reduce){.ht-road-hotspots a{transition:none!important}}
