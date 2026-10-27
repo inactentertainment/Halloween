@@ -2,25 +2,25 @@
 (function(){
 'use strict';
 const destinations=[
-['The History of Halloween','./history.html',46,48],
+['History of Halloween','./history.html',35,52],
 ['Ghost Stories','./story.html',50,16],
 ['Costumes','#costumes',55,78],
 ['Masks','#masks',59,22],
 ['Decor','#decor',63,76],
 ['Party Ideas','#party',68,19],
-['Travel Along the Haunted Road','#descent',72,51],
+['Haunted Road','#descent',47,51],
 ['Movies & Trailers','#movies',77,80],
 ['Music','#music',81,19],
 ['Fun & Games','#games',85,75],
-['Free Downloads','#downloads',83,25],
-['Events','#events',86,73],
+['Free Downloads','#downloads',78,18],
+['Events','#events',92,79],
 ['About','#about',87,50]
 ];
 home=function(){
  const links=destinations.map(([title,href,y,x])=>'<a class="ht-journey-link" href="'+href+'" style="--journey-y:'+y+'%;--journey-x:'+x+'%" data-journey="true">'+title+'</a>').join('');
  return '<section class="ht9-home ht-journey" aria-label="Explore Haunted Towne">'+
- '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/haunted-new-home.webp" width="802" height="1536" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
- '<nav class="ht-journey-links" aria-label="Explore the haunted staircase">'+links+'</nav><footer class="ht-immersive-footer"><div class="ht-immersive-footer-title">HAUNTED <em>TOWNE</em></div><p>THE DARKER SIDE OF HALLOWEEN</p><nav aria-label="Legal and information"><a href="#about">About</a><a href="#privacy">Privacy</a><a href="#affiliate">Affiliate Disclosure</a><a href="#terms">Terms</a></nav><div class="ht-immersive-footer-rule"></div><small>© 2026 InAct Entertainment LLC. All rights reserved.</small></footer></div></section>';
+ '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/haunted-home-enhanced.webp" width="1604" height="3072" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
+ '<nav class="ht-journey-links" aria-label="Explore the haunted staircase">'+links+'</nav><footer class="ht-immersive-footer"><div class="ht-immersive-footer-layout"><div class="ht-immersive-footer-left"><a class="ht-immersive-footer-title" href="#home">HAUNTED <em>TOWNE</em></a><p>The Darker Side of Halloween · InAct Entertainment LLC</p></div><nav aria-label="Legal and information"><a href="#about">About</a><a href="#privacy">Privacy</a><a href="#affiliate">Affiliate Disclosure</a><a href="#terms">Terms</a></nav></div><div class="ht-immersive-footer-rule"></div><small>© 2026 InAct Entertainment LLC. Original experiences and artwork. Third-party copyrights remain with their owners.</small></footer></div></section>';
 };
 function journeySound(){
  if(document.documentElement.dataset.htJourneySound==='off')return;
