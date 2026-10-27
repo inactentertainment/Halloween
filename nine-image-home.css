@@ -125,3 +125,18 @@ body.ht-final-home-route .ht-journey .ht-immersive-footer-rule{display:none!impo
 .ht-journey-link[href='./story.html']{top:31%!important;left:15%!important}
 .ht-journey-link[href='#about']{top:36%!important;left:50%!important}
 .ht-journey-link[href='#descent']{top:49%!important;left:51%!important}
+
+/* Mobile homepage labels: readable but still integrated with the poster. Desktop unchanged. */
+@media (max-width:760px){
+ body.ht-final-home-route .ht-journey .ht-journey-link{
+   width:34%!important;max-width:158px!important;min-width:0!important;
+   min-height:34px!important;padding:6px 5px!important;
+   font-size:clamp(12px,3.25vw,16px)!important;line-height:1.14!important;
+   border-radius:7px!important;
+   background:rgba(29,3,8,.88)!important;
+   text-shadow:0 2px 4px #000!important;
+   overflow-wrap:normal;
+ }
+ body.ht-final-home-route .ht-journey .ht-journey-link[href="#costumes"]{top:55%!important;left:63%!important}
+ body.ht-final-home-route .ht-journey .ht-journey-link[href="#downloads"]{top:84%!important;left:17%!important}
+}
