@@ -64,26 +64,7 @@ update();
 const canonicalHome=home;
 const baseNavigate=navigate;
 const baseHeader=header;
-header=function(){
- baseHeader();
- const nav=document.getElementById('main-nav');
- if(!nav)return;
- const route=view().split('/')[0];
- let items=mainLinks.map(([id,ico,label,href])=>{
-  const text='<span class="ht-nav-icon" aria-hidden="true">'+ico+'</span><span>'+label+'</span>';
-  if(id!=='costumes')return '<a href="'+href+'"'+(route===id?' class="active" aria-current="page"':'')+'>'+text+'</a>';
-  return '<div class="ht-costume-menu"><a href="#costumes">'+text+'</a><div class="ht-costume-sub" id="ht-costume-sub">'+costumes.map((name,i)=>'<a href="#shop-guide/costumes/'+i+'">'+name+(i===4?'':' Costumes')+'</a>').join('')+'</div></div>';
- }).join('');
- nav.innerHTML='<a class="ht-shell-brand" href="./index.html#home" aria-label="Haunted Towne home"><strong>HAUNTED</strong> <em>TOWNE</em></a>'+items;
- // The costume label is a live link; hover and keyboard focus open its submenu.
- const top=document.getElementById('header');top.classList.add('ht-universal-header');
- const outer=document.querySelector('#header .bar');if(outer)outer.classList.add('ht-universal-bar');
- const toggle=document.getElementById('nav-toggle');if(toggle){
- toggle.textContent='☰';toggle.setAttribute('aria-label','Open navigation');toggle.setAttribute('aria-controls','main-nav');
- toggle.onclick=()=>{const opened=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',String(opened));};
- }
- // Active destination still visible even when header rerenders on hash change.
-};
+header=function(){const legacy=document.getElementById('header');if(legacy&&legacy.childNodes.length)legacy.replaceChildren();};
 footer=function(){
  const e=document.getElementById('footer');if(!e)return;
  e.innerHTML='<footer class="ht-global-footer"><div class="wrap ht-global-foot-inner"><div><a class="ht-foot-title" href="./index.html#home"><span>HAUNTED</span> <em>TOWNE</em></a><p>The Darker Side of Halloween · InAct Entertainment LLC</p></div><nav aria-label="Legal and information"><a href="#about">About</a><a href="#privacy">Privacy</a><a href="#affiliate">Affiliate Disclosure</a><a href="#terms">Terms</a></nav></div><p class="ht-global-foot-copy">© '+new Date().getFullYear()+' InAct Entertainment LLC. Original experiences and artwork. Third-party copyrights remain with their owners.</p></footer>';
