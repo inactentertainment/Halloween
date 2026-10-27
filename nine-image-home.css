@@ -105,5 +105,10 @@ body.ht-final-home-route #content{background:transparent!important}
 }
 
 /* Approved placement: music below skull, and responsive proportional coordinates. */
-.ht-journey-link[href="#music"]{top:83%;left:33%}
+.ht-journey-link[href="#music"]{top:86%;left:42%}
 /* Preserve full artwork scaling on small screens. */
+
+/* Bottom overlay: no red divider, legible lettering with image visible. */
+.ht-journey .ht-immersive-footer{background:linear-gradient(0deg,rgba(5,1,5,.75),rgba(7,1,5,.32) 80%,transparent)!important}
+.ht-journey .ht-immersive-footer-rule{display:none!important}
+.ht-journey .ht-immersive-footer-layout{border:0!important}
