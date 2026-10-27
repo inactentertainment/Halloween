@@ -1,0 +1,29 @@
+name: Install approved immersive homepage artwork
+on:
+  push:
+    paths:
+      - 'assets/haunted-new-home.webp.base64'
+      - '.github/workflows/install-new-home.yml'
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python - <<'PY'
+          import pathlib,base64
+          p=pathlib.Path('assets/haunted-new-home.webp.base64')
+          b=base64.b64decode(p.read_text(),validate=True)
+          assert b[:4]==b'RIFF' and b[8:12]==b'WEBP'
+          pathlib.Path('assets/haunted-new-home.webp').write_bytes(b)
+          PY
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/haunted-new-home.webp
+          git rm assets/haunted-new-home.webp.base64
+          git commit -m "Publish new immersive homepage artwork" || exit 0
+          git pull --rebase origin main
+          git push
