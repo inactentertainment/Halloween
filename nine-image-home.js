@@ -10,7 +10,7 @@ const destinations=[
 ['Party Ideas','#party',68,19],
 ['Haunted Road','#descent',47,51],
 ['Movies & Trailers','#movies',77,80],
-['Music','#music',86,42],
+['Music','#music',88,22],
 ['Fun & Games','#games',85,75],
 ['Free Downloads','#downloads',78,18],
 ['Events','#events',92,79],
