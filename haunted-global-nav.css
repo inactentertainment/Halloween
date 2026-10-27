@@ -34,3 +34,17 @@ html body > .top,
 html body .ht-toprail,
 html body .ht-old-atmosphere {display:none!important;visibility:hidden!important;height:0!important;min-height:0!important;padding:0!important;margin:0!important;border:0!important;overflow:hidden!important}
 html body #ht-global-navigation{display:block!important;visibility:visible!important}
+
+/* Nine-zone continuous illustrated Road; the artwork never splits at scene boundaries. */
+.ht-road-experience{background:#030102;color:#f7e6de}
+.ht-road-scene{position:relative;width:min(100%,1200px);margin:0 auto}
+.ht-road-art{display:block;width:100%;height:auto}
+.ht-road-hotspots{position:absolute;inset:0}
+.ht-road-hotspots a{position:absolute;transform:translate(-50%,-50%);width:min(27%,300px);min-height:40px;padding:10px;text-align:center;text-decoration:none;color:#f7e8da;background:#140507e8;border:1px solid #ac3028;border-radius:10px;font:700 clamp(11px,1.4vw,19px)/1.2 Georgia,serif;box-shadow:0 0 15px #100000bb}
+.ht-road-hotspots a span{display:block;color:#ffa095;font-size:.78em;margin-top:5px}
+.ht-road-hotspots a:hover,.ht-road-hotspots a:focus-visible{background:#751017dd;box-shadow:0 0 22px #e4232499}
+.ht-road-mobile{display:none}
+.ht-road-location{min-height:72vh;background:linear-gradient(#220508,#030102);padding:50px 0}
+.ht-road-discovery{padding:24px;background:#150609;border:1px solid #6e2824;border-radius:12px;margin:25px 0}
+.ht-road-clue{font-style:italic;color:#f5c4a6}
+@media(max-width:700px){.ht-road-scene{width:100%}.ht-road-hotspots{display:none}.ht-road-mobile{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:20px 12px 30px}.ht-road-mobile h2{grid-column:1/-1;text-align:center;font:700 22px Georgia,serif}.ht-road-mobile a{display:flex;align-items:center;justify-content:center;text-align:center;padding:13px 8px;min-height:58px;color:#fce9df;text-decoration:none;background:#2b080ae8;border:1px solid #a52b2b;border-radius:10px;font:700 12px/1.25 Georgia,serif}}
