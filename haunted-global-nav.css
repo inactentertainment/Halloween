@@ -73,3 +73,19 @@ html body #ht-global-navigation{display:block!important;visibility:visible!impor
 .ht-road-hotspots a span{display:none!important}
 .ht-road-mobile{display:none!important}
 }
+
+/* Haunting translucent frame; image visible beneath sticky header and menu. */
+#ht-global-navigation{background:transparent!important}
+#ht-global-navigation .ht-global-bar{background:rgba(9,3,7,.62)!important;backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);border-bottom:0!important}
+#ht-global-navigation .ht-global-menu{background:rgba(10,3,7,.69)!important;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);border-bottom:0!important;box-shadow:0 15px 32px rgba(0,0,0,.3)!important}
+#ht-global-navigation .ht-global-poster{background:transparent!important}
+#ht-cinema-mount{gap:5px}
+#ht-cinema-controls{display:flex!important;align-items:center;gap:7px}
+#ht-heart-toggle{background:transparent!important;border:0!important;box-shadow:none!important;padding:7px 4px!important;display:flex;align-items:center;justify-content:center;cursor:pointer}
+#ht-heart-toggle svg{width:24px;height:24px;filter:drop-shadow(0 0 3px rgba(228,29,40,.6));transform-origin:center;opacity:.65}
+.ht-heart-active #ht-heart-toggle svg{opacity:1;animation:ht-heart-throb 1.25s infinite}
+@keyframes ht-heart-throb{0%,18%,43%,100%{transform:scale(1)}9%{transform:scale(1.2)}34%{transform:scale(1.12)}}
+#ht-cinema-options{background:rgba(17,4,9,.82)!important;backdrop-filter:blur(8px)}
+#ht-cinema-options p,#ht-cinema-reset{display:none!important}
+.ht-sound-active .ht-sound-bars i{animation:ht-sound-wave .55s ease-in-out infinite alternate!important}
+@media(prefers-reduced-motion:reduce){.ht-heart-active #ht-heart-toggle svg,.ht-sound-active .ht-sound-bars i{animation:none!important}}
