@@ -1,0 +1,8 @@
+/* Existing approved menu illustration reused as atmospheric banner art. */
+body.ht-inner-route #content .page-head{position:relative;isolation:isolate;min-height:clamp(250px,35vw,490px);display:flex;align-items:end;overflow:hidden;background:#0c0507!important}
+body.ht-inner-route #content .page-head:before{content:"";position:absolute;inset:-7%;z-index:-2;background-image:url("./assets/haunted-menu.jpg");background-size:210% auto;background-position:var(--ht-banner-x,50%) var(--ht-banner-y,30%);filter:brightness(.60) saturate(1.12) blur(3px);transform:scale(1.07)}
+body.ht-inner-route #content .page-head:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,#060204eb 0%,#0d010755 65%,#09010666 100%)}
+body.ht-inner-route #content .page-head .wrap{width:100%;padding:40px clamp(14px,5vw,75px);position:relative}
+body.ht-inner-route #content .page-head h1{text-shadow:0 3px 18px #000,0 0 16px #360309}
+body.ht-inner-route #content .page-head .lead{text-shadow:0 2px 9px #000}
+@media(max-width:760px){body.ht-inner-route #content .page-head{min-height:290px}body.ht-inner-route #content .page-head:before{background-size:auto 350%;filter:brightness(.55) blur(2px)}}
