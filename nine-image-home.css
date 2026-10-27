@@ -38,3 +38,18 @@ body.ht-final-home-route #content{width:100%!important;max-width:none!important;
 .ht9-tile{overflow:hidden!important;border:0!important;outline:0!important;background:transparent!important}
 .ht9-tile img{width:100%!important;height:100%!important;object-fit:fill!important;transform:scale(1.055)!important;transform-origin:50% 50%!important}
 .ht9-tile:hover img,.ht9-tile:focus-visible img{transform:scale(1.07)!important}
+
+/* Phase 3: artwork is uninterrupted; actual destinations become a wandering trail. */
+.ht9-home.ht-journey{width:100%;max-width:none;background:#040202}
+.ht-journey .ht9-backdrop{width:100%;max-width:none;position:relative;margin:0}
+.ht-journey .ht9-art{width:100%;height:auto;display:block}
+.ht-journey-links{position:absolute;inset:0;z-index:4;pointer-events:none}
+.ht-journey-link{pointer-events:auto;position:absolute;top:var(--journey-y);left:var(--journey-x);transform:translate(-50%,-50%);max-width:min(25vw,290px);min-width:clamp(125px,14vw,220px);min-height:36px;box-sizing:border-box;display:flex;align-items:center;justify-content:center;padding:9px 12px;border-radius:9px;border:1px solid #9b201e;background:rgba(43,5,9,.88);color:#f9eeeb;text-decoration:none;text-align:center;font:700 clamp(11px,1.03vw,16px)/1.2 Georgia,serif;text-shadow:0 2px 4px black;box-shadow:0 0 15px #150101b8, inset 0 0 9px #7e0e161c;transition:background .25s,box-shadow .25s,transform .25s,color .25s}
+.ht-journey-link:hover,.ht-journey-link:focus-visible,.ht-journey-link.ht-journey-depart{background:rgba(150,12,21,.48);color:white;border-color:#fb4f3f;box-shadow:0 0 22px #d6292790,inset 0 0 15px #b51b2677;transform:translate(-50%,-50%) scale(1.065)}
+body.ht-journey-transition .ht9-art{filter:brightness(.72);transition:filter .32s}
+@media(max-width:760px){
+.ht-journey-links{position:relative;inset:auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;padding:14px 10px 24px;background:#0a0203}
+.ht-journey-link{position:relative;top:auto;left:auto;transform:none;max-width:none;min-width:0;min-height:46px;padding:9px 7px;font-size:clamp(11px,2.9vw,15px)}
+.ht-journey-link:hover,.ht-journey-link:focus-visible,.ht-journey-link.ht-journey-depart{transform:scale(1.025)}
+}
+@media(prefers-reduced-motion:reduce){.ht-journey-link,.ht-journey .ht9-art{transition:none!important}}
