@@ -12,15 +12,15 @@ const destinations=[
 ['Movies & Trailers','#movies',77,80],
 ['Music','#music',81,19],
 ['Fun & Games','#games',85,75],
-['Free Downloads','#downloads',89,25],
-['Events','#events',93,73],
-['About','#about',97,50]
+['Free Downloads','#downloads',83,25],
+['Events','#events',86,73],
+['About','#about',87,50]
 ];
 home=function(){
  const links=destinations.map(([title,href,y,x])=>'<a class="ht-journey-link" href="'+href+'" style="--journey-y:'+y+'%;--journey-x:'+x+'%" data-journey="true">'+title+'</a>').join('');
  return '<section class="ht9-home ht-journey" aria-label="Explore Haunted Towne">'+
- '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/haunted-male-approved-v2.webp" width="1024" height="1536" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
- '<nav class="ht-journey-links" aria-label="Explore the haunted staircase">'+links+'</nav></div></section>';
+ '<div class="ht9-backdrop"><img class="ht9-art" src="./assets/haunted-new-home.webp" width="802" height="1536" fetchpriority="high" alt="Cinematic Haunted Towne mansion, carnival and a continuous spooky stairway into a lantern-lit tunnel">'+
+ '<nav class="ht-journey-links" aria-label="Explore the haunted staircase">'+links+'</nav><footer class="ht-immersive-footer"><div class="ht-immersive-footer-title">HAUNTED <em>TOWNE</em></div><p>THE DARKER SIDE OF HALLOWEEN</p><nav aria-label="Legal and information"><a href="#about">About</a><a href="#privacy">Privacy</a><a href="#affiliate">Affiliate Disclosure</a><a href="#terms">Terms</a></nav><div class="ht-immersive-footer-rule"></div><small>© 2026 InAct Entertainment LLC. All rights reserved.</small></footer></div></section>';
 };
 function journeySound(){
  if(document.documentElement.dataset.htJourneySound==='off')return;
