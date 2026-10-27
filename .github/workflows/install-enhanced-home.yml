@@ -1,0 +1,29 @@
+name: Install enhanced Haunted Towne homepage
+on:
+  push:
+    paths:
+      - 'assets/haunted-home-enhanced.webp.base64'
+      - '.github/workflows/install-enhanced-home.yml'
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python - <<'PY'
+          import base64,pathlib
+          p=pathlib.Path('assets/haunted-home-enhanced.webp.base64')
+          b=base64.b64decode(p.read_text(),validate=True)
+          assert b[:4]==b'RIFF' and b[8:12]==b'WEBP' and len(b)>300000
+          pathlib.Path('assets/haunted-home-enhanced.webp').write_bytes(b)
+          PY
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/haunted-home-enhanced.webp
+          git rm assets/haunted-home-enhanced.webp.base64
+          git commit -m "Install enhanced high resolution Haunted Towne background" || exit 0
+          git pull --rebase origin main
+          git push
