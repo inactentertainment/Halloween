@@ -1,0 +1,29 @@
+name: Install continuous Haunted Road artwork
+on:
+  push:
+    paths:
+      - 'assets/haunted-road-nine-zones.webp.base64'
+      - '.github/workflows/install-haunted-road.yml'
+permissions:
+  contents: write
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          python - <<'PY'
+          import pathlib,base64
+          p=pathlib.Path('assets/haunted-road-nine-zones.webp.base64')
+          b=base64.b64decode(p.read_text(),validate=True)
+          assert b[:4]==b'RIFF' and b[8:12]==b'WEBP' and len(b)>100000
+          pathlib.Path('assets/haunted-road-nine-zones.webp').write_bytes(b)
+          PY
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/haunted-road-nine-zones.webp
+          git rm assets/haunted-road-nine-zones.webp.base64
+          git commit -m "Publish continuous nine-zone Haunted Road" || exit 0
+          git pull --rebase origin main
+          git push
