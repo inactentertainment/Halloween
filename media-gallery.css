@@ -29,3 +29,16 @@ body.ht-trailer-open{overflow:hidden}
 
 .ht-image-source{position:absolute;bottom:0;left:0;right:0;display:block;text-align:center;font:700 11px/1.3 system-ui,sans-serif;padding:8px 6px;color:#ffe3d8;background:linear-gradient(0deg,#13050cee,#240910a9);pointer-events:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ht-art-progress{display:block;margin:13px 0 0;border-left:3px solid #9b3348;background:#19090e;padding:9px 13px}
+
+/* Film gallery: cinematic landscape cards; books retain upright covers. */
+body:has(#rank-results) .ht-gallery .ht-art{background:#08050a}
+body:has(#rank-results) .ht-gallery .ht-art img{display:block;width:100%;height:100%;object-fit:contain}
+body:has(#rank-results) .ht-gallery{gap:18px}
+body:has(#rank-results) .ht-gallery .ht-media-card{min-width:0}
+body:has(#rank-results) .ht-gallery .ht-art{aspect-ratio:2/3}
+body:has(#rank-results) .ht-gallery .ht-art img{object-fit:contain}
+body:has(#rank-results) .ht-gallery:has([data-ht-img^="movies-"]) .ht-art{aspect-ratio:16/9}
+body:has(#rank-results) .ht-gallery:has([data-ht-img^="movies-"]) .ht-art img{object-fit:cover}
+body:has(#rank-results) .ht-gallery:has([data-ht-img^="movies-"]){grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr))}
+body:has(#rank-results) .ht-gallery:has([data-ht-img^="books-"]){grid-template-columns:repeat(auto-fill,minmax(min(100%,205px),1fr))}
+@media(max-width:600px){body:has(#rank-results) .ht-gallery:has([data-ht-img^="movies-"]){grid-template-columns:repeat(2,minmax(0,1fr))}body:has(#rank-results) .ht-gallery:has([data-ht-img^="books-"]){grid-template-columns:repeat(2,minmax(0,1fr))}}
