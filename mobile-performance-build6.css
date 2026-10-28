@@ -1,0 +1,35 @@
+/* Build 6 — responsive, lightweight visual quality and accessibility. */
+:root{color-scheme:dark}
+html,body{max-width:100%;overflow-x:clip}
+#content,#content>section{min-width:0}
+#content img{max-width:100%}
+#content .ht-shop-grid,#content .ht-gallery,#content .cards{min-width:0}
+#content .ht-shop-section,#content .ht-media-card,#content .ht-recipe-cover{min-width:0}
+#content .ht-shop-section img,#content .ht-media-card img,#content .ht-recipe-cover img{display:block}
+#content .ht-road-experience .ht-road-scene{background:#050208}
+#content .ht-road-experience .ht-road-art{height:auto;display:block;image-rendering:auto;filter:contrast(1.055) saturate(1.04)!important}
+#content .ht-road-experience .ht-road-hotspots>a.ht-road-destination{touch-action:manipulation}
+#content .ht-road-experience .ht-road-hotspots>a.ht-road-destination:focus-visible{outline:2px solid #fff0e9!important;outline-offset:3px!important}
+#content .ht-media-card .ht-art{overflow:hidden}
+#content .ht-gallery:has([data-ht-img^="movies-"]) .ht-art{aspect-ratio:16/9}
+#content .ht-gallery:has([data-ht-img^="books-"]) .ht-art{aspect-ratio:2/3}
+#content .ht-gallery:has([data-ht-img^="books-"]) .ht-art img{object-fit:contain}
+#content .ht-gallery:has([data-ht-img^="movies-"]) .ht-art img{object-fit:cover}
+@media(min-width:1500px){
+  #content .ht-road-experience .ht-road-scene{width:min(100%,1340px)!important;margin:0 auto}
+}
+@media(max-width:760px){
+  #content .ht-shop-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+  #content .ht-road-experience .ht-road-hotspots>a.ht-road-destination{width:39%!important;min-height:40px!important;padding:4px!important}
+  #content .ht-road-experience .ht-road-hotspots>a.ht-road-destination .ht-road-name{font-size:clamp(10px,2.7vw,16px)!important}
+  #content .ht-road-experience .ht-road-hotspots>a.ht-road-destination .ht-road-explore{font-size:clamp(9px,2.12vw,12px)!important}
+  #content .ht-road-footer{pointer-events:auto}
+}
+@media(max-width:420px){
+  #content .ht-gallery:has([data-ht-img^="movies-"]){grid-template-columns:1fr}
+  #content .ht-gallery:has([data-ht-img^="books-"]){grid-template-columns:repeat(2,minmax(0,1fr))}
+  #content .ht-gallery:has([data-ht-img^="movies-"]) .ht-art{aspect-ratio:16/9;max-height:none}
+  #content .ht-gallery:has([data-ht-img^="books-"]) .ht-art{aspect-ratio:2/3;max-height:none}
+  #content .ht-road-experience .ht-road-hotspots>a.ht-road-destination{border-width:1px!important;border-radius:5px!important}
+}
+@media(prefers-reduced-motion:reduce){#content .ht-shop-section,#content .ht-media-card,#content .ht-road-hotspots a{transition:none!important;animation:none!important}}
