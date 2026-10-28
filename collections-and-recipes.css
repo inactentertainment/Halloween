@@ -1,0 +1,10 @@
+/* Build 4 & 5: illustrated storefront, downloadable collection previews, and recipe cards */
+.ht-shop-illustration.ht-collection-photo{background-color:#11070a;background-size:cover;background-position:center;position:relative;min-height:205px}
+.ht-collection-photo .ht-shop-sigil{font-size:42px;color:#f0b28c;opacity:.78;background:rgba(10,2,8,.52);border:1px solid rgba(232,137,102,.35);width:92px;height:92px;display:grid;place-items:center;border-radius:50%;backdrop-filter:blur(2px)}
+.ht-shop-section{transition:transform .2s ease,border-color .2s ease}
+.ht-shop-section:hover{transform:translateY(-3px);border-color:#bf5c54}
+.ht-recipe-cover{border:1px solid #5c222a;border-radius:13px;overflow:hidden;background:#130710;min-width:0}
+.ht-recipe-cover>img{width:100%;height:140px;object-fit:cover;display:block}
+.ht-recipe-cover>.card{border:0!important;border-radius:0!important;min-height:100%;margin:0}
+@media(max-width:680px){.ht-shop-illustration.ht-collection-photo{min-height:164px}.ht-recipe-cover>img{height:108px}}
+@media(prefers-reduced-motion:reduce){.ht-shop-section{transition:none}.ht-shop-section:hover{transform:none}}
