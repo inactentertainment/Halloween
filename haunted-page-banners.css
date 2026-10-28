@@ -6,3 +6,8 @@ body.ht-inner-route #content .page-head .wrap{width:100%;padding:40px clamp(14px
 body.ht-inner-route #content .page-head h1{text-shadow:0 3px 18px #000,0 0 16px #360309}
 body.ht-inner-route #content .page-head .lead{text-shadow:0 2px 9px #000}
 @media(max-width:760px){body.ht-inner-route #content .page-head{min-height:290px}body.ht-inner-route #content .page-head:before{background-size:auto 350%;filter:brightness(.55) blur(2px)}}
+
+/* Independent vector art per route; no blurred or reused menu crop. */
+body.ht-inner-route #content .page-head:before{background-image:var(--ht-banner-url,url("./assets/banner-about.svg"))!important;background-size:cover!important;background-position:center center!important;filter:brightness(.79) saturate(1.13)!important;inset:0!important;transform:none!important}
+@media(max-width:760px){body.ht-inner-route #content .page-head:before{background-size:cover!important;filter:brightness(.73)!important}}
+body:has(.ht-road-location) #content .page-head:before{background-image:var(--ht-banner-url,url("./assets/banner-road.svg"))!important}
