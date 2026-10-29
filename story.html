@@ -19,6 +19,24 @@
 .door-avenue .door.sealed:hover{transform:none;box-shadow:0 20px 30px #000d}
 @media(max-width:750px){.door-avenue{background-attachment:scroll;margin:20px -14px;padding:25px 14px;gap:22px}.door-avenue .door{width:77%;min-height:205px}.door-avenue .door-name{font-size:17px;padding:40px 14px 16px}.door-avenue .door-number{font-size:24px}}
 @media(prefers-reduced-motion:reduce){.door-avenue .door{transition:none}}
+</style><style>
+/* 13 Doors: full-viewport streetscape, readable doors at every screen size. */
+body:has(.door-avenue){overflow-x:clip}
+.shell:has(.door-avenue){width:100%;max-width:none;padding:30px 0 75px}
+.shell:has(.door-avenue)>:not(.door-avenue){max-width:960px;margin-left:auto;margin-right:auto;padding-left:clamp(18px,3vw,32px);padding-right:clamp(18px,3vw,32px)}
+.shell .door-avenue{width:100%;max-width:none;margin:28px 0 35px;padding:70px clamp(24px,5vw,95px) 100px;gap:48px;box-sizing:border-box;background-size:cover;background-position:center top}
+.door-avenue .door{width:min(43vw,560px);min-height:clamp(280px,29vw,425px)}
+.door-avenue .door-name{font-size:clamp(20px,2.25vw,31px);line-height:1.23;padding:55px 24px 28px}
+.door-avenue .door-number{font-size:clamp(29px,3.2vw,42px)}
+@media(max-width:750px){
+.shell:has(.door-avenue){padding:20px 0 55px}
+.shell .door-avenue{margin:20px 0 32px;padding:30px 12px 45px;gap:24px;background-attachment:scroll}
+.door-avenue .door{width:82%;min-height:clamp(215px,62vw,330px)}
+.door-avenue .door-name{font-size:clamp(20px,5vw,25px);line-height:1.25;padding:44px 17px 20px}
+.door-avenue .door-number{font-size:30px}
+.door-avenue .door-name small{font-size:14px!important}
+}
+@media(max-width:380px){.door-avenue .door{width:86%;min-height:205px}.door-avenue .door-name{font-size:19px}}
 </style></head><body><header class="top"><a href="./index.html#home">🎃 Haunted Towne · Home</a><span>The Thirteen Doors — Interactive Story</span><a href="./history.html">History of Halloween</a></header><main class="shell" id="main" aria-live="polite"></main><footer>Original story © InAct Entertainment LLC · Progress stays in this browser.</footer>
 <script>
 "use strict";
