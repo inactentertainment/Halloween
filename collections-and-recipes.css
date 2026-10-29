@@ -8,3 +8,9 @@
 .ht-recipe-cover>.card{border:0!important;border-radius:0!important;min-height:100%;margin:0}
 @media(max-width:680px){.ht-shop-illustration.ht-collection-photo{min-height:164px}.ht-recipe-cover>img{height:108px}}
 @media(prefers-reduced-motion:reduce){.ht-shop-section{transition:none}.ht-shop-section:hover{transform:none}}
+
+/* Recipe food-photo presentation: crisp gallery crop; full photo on detail page. */
+.ht-recipe-cover>img{height:clamp(170px,17vw,245px);aspect-ratio:4/3;object-fit:cover;background:#190a0e;}
+.ht-recipe-detail-photo{display:block;width:min(100%,960px);max-height:590px;margin:26px auto 34px;aspect-ratio:16/10;object-fit:cover;border:1px solid #70383c;border-radius:16px;box-shadow:0 15px 52px #0009;}
+@media(max-width:680px){.ht-recipe-cover>img{height:155px}.ht-recipe-detail-photo{aspect-ratio:4/3;max-height:380px;margin:18px auto 25px;}}
+@media print{.ht-recipe-detail-photo{max-height:270px;break-inside:avoid;}}
