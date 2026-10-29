@@ -35,14 +35,19 @@ function roadLocation(n){
 function story(){const keys=get('story-keys',[]),fright=get('fright','eerie');return pageHero('Choose your level of fright','The Thirteen Doors','An original Halloween adventure through Haunted Towne. Find clues in nine locations; the full thirteen-door puzzle arc will expand in subsequent builds.')+`<section class="section"><div class="wrap"><div class="panel"><h3>Choose your Halloween experience</h3><div class="choices">${[['family','🎃 Family friendly'],['eerie','🕯️ Eerie mystery'],['intense','👻 Intense suspense']].map(([v,n])=>`<button class="filter ${fright===v?'active':''}" data-fright="${v}">${n}</button>`).join('')}</div><p class="note">Choice affects the narrative tone. No autoplay audio or surprise jump scares.</p><div class="progress"><span style="width:${keys.length/9*100}%"></span></div><p class="note">${keys.length} of 9 scene clues found. Progress saves in this browser.</p>${link('story/0','Start at the cemetery','button')}</div><h2 style="margin-top:45px">Explore the Chapters</h2>${cd(CATALOG.scenes.map((s,i)=>card(s.icon,(i+1)+'. '+s.title,keys.includes(i)?'✓ Clue discovered':'An original Haunted Towne mystery.','story/'+i,'Enter chapter',i%3===0?'t3':'')))}</div></section>`;}
 function storyDetail(idx){const i=Number(idx),s=CATALOG.scenes[i];if(!s)return story();let keys=get('story-keys',[]),done=keys.includes(i),fright=get('fright','eerie');const intro=fright==='family'?'The lantern sparkles invitingly as you approach.':fright==='intense'?'A dreadful stillness falls. The lantern sputters as the shadows move closer.':'Something moves just beyond the edge of your lantern light.';return pageHero('Chapter '+(i+1)+' of nine',esc(s.title),esc(s.description))+`<section class="section"><div class="wrap"><article class="panel story-card"><div class="chapter-big" aria-hidden="true">${s.icon}</div><p class="eyebrow">Your next clue</p><p>${esc(intro)}</p><p>${esc(s.clue)}</p><div class="notice">This is an original fictional story. A deeper branching narrative and additional doors are planned for future builds.</div><div class="actions"><button class="button" data-key="${i}">${done?'Clue already collected ✓':'Collect this clue'}</button>${link('story/'+Math.min(i+1,8),i===8?'Return to finale':'Continue to next chapter','button-outline')}${link('story','All chapters','button-quiet')}</div></article></div></section>`;}
 /* Verified image files uploaded to /assets on October 29, 2026. */
+/* Dedicated recipe photos use uploaded /assets files. New photos fall back until uploaded. */
 const RECIPE_ART={
+"Pumpkin Spice Pancakes":"candlelit_pumpkin_pancake_autumn_feast.webp",
 "Jack-o’-Lantern Egg Toast":"candlelit_pumpkin_jack_o_lantern_quesadillas.webp",
 "Monster-Eye Bagels":"spooky_eyeball_deviled_eggs.webp",
 "Mummy Wrap Sandwiches":"halloween_mummy_hot_dogs_on_a_dark_platter.webp",
+"Witch’s Tomato Soup":"candlelit_halloween_tomato_soup_feast.webp",
 "Pumpkin-Patch Pasta":"candlelit_pumpkin_mac_and_cheese.webp",
+"Stuffed Pepper Lanterns":"candlelit_halloween_stuffed_pepper_feast.webp",
 "Haunted Garden Chili":"monster_meatball_halloween_feast.webp",
 "Spider Deviled Eggs":"spooky_eyeball_deviled_eggs.webp",
 "Mummy Mini Pizzas":"halloween_spiderweb_pizza_feast.webp",
+"Ghost Banana Pops":"candlelit_halloween_ghost_treats.webp",
 "Midnight Chocolate Cupcakes":"spooky_monster_cupcake_display.webp",
 "Pumpkin Patch Cookies":"haunted_graveyard_brownie_treats.webp",
 "Vampire Berry Punch":"witch_s_cauldron_green_punch.webp",
