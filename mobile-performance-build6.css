@@ -15,9 +15,7 @@ html,body{max-width:100%;overflow-x:clip}
 #content .ht-gallery:has([data-ht-img^="books-"]) .ht-art{aspect-ratio:2/3}
 #content .ht-gallery:has([data-ht-img^="books-"]) .ht-art img{object-fit:contain}
 #content .ht-gallery:has([data-ht-img^="movies-"]) .ht-art img{object-fit:cover}
-@media(min-width:1500px){
-  #content .ht-road-experience .ht-road-scene{width:min(100%,1340px)!important;margin:0 auto}
-}
+@media(min-width:1500px){#content .ht-road-experience .ht-road-scene{width:100%!important;max-width:none!important;margin:0!important}}
 @media(max-width:760px){
   #content .ht-shop-grid{grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
   #content .ht-road-experience .ht-road-hotspots>a.ht-road-destination{width:39%!important;min-height:40px!important;padding:4px!important}
