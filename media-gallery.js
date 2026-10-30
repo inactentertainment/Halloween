@@ -2,6 +2,8 @@
 'use strict';
 const HT_TRAILERS={
   "Final Destination 5|2011":"g7V84i92H4A",
+  "Sinners|2025":"7joulECTx_U",
+  "The Fly|1986":"fj1SHpBsY7w",
   "The Final Destination|2009":"acQyrwQyCOk",
   "Final Destination 3|2006":"ectjqGg92M8",
   "Final Destination 2|2003":"Rvajfn-S3EI",
@@ -62,6 +64,7 @@ async function htVerifyTrailerGallery(){
  if(view()!=='movies')return;
  const candidates=htMovies().filter(x=>HT_TRAILERS[x.title+'|'+x.year]);
  for(const movie of candidates){
+ if(view()!=='movies'||!htMovies().some(x=>x.rank===movie.rank&&x.title===movie.title))break;
  const result=await htTrailerMetadata(movie);
  const play=document.querySelector('[data-trailer-rank="'+movie.rank+'"]');
  if(play){play.textContent=result?'▶ Watch trailer':'Search for trailer ↗';play.dataset.available=result?'yes':'no';play.setAttribute('aria-label',result?'Watch '+movie.title+' trailer':'Search YouTube for '+movie.title+' trailer');}
@@ -86,11 +89,11 @@ function htReadCache(k){try{return JSON.parse(sessionStorage.getItem('ht-media-'
 function htWriteCache(k,o){try{sessionStorage.setItem('ht-media-'+k,JSON.stringify(o))}catch{}}
 function htGallery(which){
  const film=which==='movies',arr=film?htMovies():CATALOG.books,sorts=film?'<option value="year">Release year</option>':'<option value="author">Author A–Z</option>';
- return pageHero(film?'The haunted cinema':'The midnight library',film?'Horror Movie Theater':'100 Horror Books',(film?'Choose between 50 outstanding modern horror films and 100 influential classics.':'Browse all 100 selections with covers and a saved reading list.'))+
- '<section class="section"><div class="wrap">'+(film?'<div class="ht-movie-choice" aria-label="Choose a movie collection"><button type="button" data-movie-mode="modern" class="ht-movie-door '+(window.HT_MOVIE_MODE==='modern'?'active':'')+'"><span class="ht-movie-door-icon">▶</span><strong>Top Horror Movies</strong><small>Recent hits + franchise favorites</small></button><button type="button" data-movie-mode="classic" class="ht-movie-door '+(window.HT_MOVIE_MODE==='classic'?'active':'')+'"><span class="ht-movie-door-icon">✦</span><strong>Classics</strong><small>100 historic and influential films</small></button></div>':'')+'<div class="notice ht-media-notice">'+(film?'Play verified trailers right here without leaving the theater. When an official trailer is not yet verified, a film-specific YouTube search is provided instead.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
- (film&&window.HT_MOVIE_MODE==='modern'?'<section class="ht-featured" id="ht-featured" aria-label="Featured recent horror movie"><div class="ht-featured-art"><img src="https://i.ytimg.com/vi/mNd1gb19A-c/hqmaxresdefault.jpg" alt="Resident Evil 2026 official trailer thumbnail" loading="eager" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/mNd1gb19A-c/hqdefault.jpg\'"></div><div class="ht-featured-copy"><p class="eyebrow">Featured 2026 Horror</p><h2>Resident Evil (2026)</h2><p>A new Raccoon City nightmare from director Zach Cregger. Start with the Sony Pictures official trailer, then explore the rest of the collection below.</p><button type="button" class="button ht-featured-play" data-trailer-rank="1">▶ Watch Official Trailer</button></div></section>':'')+'<div class="toolbar"><input id="rank-q" class="field" type="search" aria-label="Search titles" placeholder="Search '+(film?'movies or genres':'books or authors')+'"><select id="rank-cat" class="field"><option value="">All '+(film?'genres':'authors')+'</option>'+(film?[...new Set(arr.map(x=>x.genre))]:[]).map(x=>'<option>'+esc(x)+'</option>').join('')+'</select><select id="rank-order" class="field"><option value="rank">Curated order</option><option value="title">Title A–Z</option>'+sorts+'</select></div>'+
+ return pageHero(film?'The haunted cinema':'The midnight library',film?'Horror Movie Theater':'100 Horror Books',(film?'Watch trailers, discover modern horror, and revisit the films that defined the genre.':'Browse all 100 selections with covers and a saved reading list.'))+
+ '<section class="section"><div class="wrap">'+(film?'<section class="ht-exorcist-feature" aria-label="Featured film The Exorcist"><div class="ht-exorcist-art"><img src="https://i.ytimg.com/vi/BU2eYAO31Cc/hqdefault.jpg" alt="The Exorcist 1973 trailer thumbnail" loading="eager"></div><div class="ht-exorcist-copy"><p class="eyebrow">Horror Movie Theater · Featured Classic</p><h2>The Exorcist (1973)</h2><p>The supernatural horror landmark that changed the genre.</p><button class="button" type="button" data-featured-exorcist>▶ Watch The Exorcist Trailer</button></div></section><div class="ht-movie-choice" aria-label="Choose a movie collection"><button type="button" data-movie-mode="modern" class="ht-movie-door '+(window.HT_MOVIE_MODE==='modern'?'active':'')+'"><strong>Top Horror Movies</strong></button><button type="button" data-movie-mode="classic" class="ht-movie-door '+(window.HT_MOVIE_MODE==='classic'?'active':'')+'"><strong>Classics</strong></button></div>':'')+'<div class="notice ht-media-notice">'+(film?'Play verified trailers right here without leaving the theater. When an official trailer is not yet verified, a film-specific YouTube search is provided instead.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
+ (false?'<section class="ht-featured" id="ht-featured" aria-label="Featured recent horror movie"><div class="ht-featured-art"><img src="https://i.ytimg.com/vi/mNd1gb19A-c/hqmaxresdefault.jpg" alt="Resident Evil 2026 official trailer thumbnail" loading="eager" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/mNd1gb19A-c/hqdefault.jpg\'"></div><div class="ht-featured-copy"><p class="eyebrow">Featured 2026 Horror</p><h2>Resident Evil (2026)</h2><p>A new Raccoon City nightmare from director Zach Cregger. Start with the Sony Pictures official trailer, then explore the rest of the collection below.</p><button type="button" class="button ht-featured-play" data-trailer-rank="1">▶ Watch Official Trailer</button></div></section>':'')+'<div class="toolbar"><input id="rank-q" class="field" type="search" aria-label="Search titles" placeholder="Search '+(film?'movies or genres':'books or authors')+'"><select id="rank-cat" class="field"><option value="">All '+(film?'genres':'authors')+'</option>'+(film?[...new Set(arr.map(x=>x.genre))]:[]).map(x=>'<option>'+esc(x)+'</option>').join('')+'</select><select id="rank-order" class="field"><option value="rank">Curated order</option><option value="title">Title A–Z</option>'+sorts+'</select></div>'+
  '<p class="note ht-storage-note">“Save” stores a watchlist or reading list only in this browser on this device. No account or cross-device syncing is needed.</p>'+
- '<div class="actions"><button type="button" class="button-outline" id="export-list">Export saved '+(film?'movies':'books')+'</button></div><p id="ht-artwork-progress" class="note ht-art-progress" role="status">Checking artwork sources…</p><div class="ht-gallery" id="rank-results" aria-live="polite"></div>'+
+ (film?'':'<div class="actions"><button type="button" class="button-outline" id="export-list">Export saved books</button></div>')+'<h2 class="ht-movie-list-title" id="ht-movie-list-title">'+(film?(window.HT_MOVIE_MODE==='classic'?'Classics':'Top Horror Movies'):'Horror Books')+'</h2><p id="ht-artwork-progress" class="note ht-art-progress" role="status">Checking artwork sources…</p><div class="ht-gallery" id="rank-results" aria-live="polite"></div>'+
  '<div class="ht-player" id="ht-player" hidden aria-hidden="true"><div class="ht-player-shade" data-close-trailer></div><div class="ht-player-panel" role="dialog" aria-modal="true" aria-label="Horror movie trailer"><div class="ht-player-heading"><h2 id="ht-trailer-title">Movie Trailer</h2><button type="button" class="ht-close" data-close-trailer aria-label="Close trailer">✕ Close</button></div><div class="ht-video-slot" id="ht-video-slot"></div><p class="note">Trailers are hosted by their creators on YouTube. Playback is voluntary; no trailer autoplays while you browse.</p></div></div></div></section>';
 }
 ranking=htGallery;
@@ -99,6 +102,7 @@ filteredRanking=function(){
  const search=(Q('rank-q')?.value||'').trim().toLowerCase(),category=(Q('rank-cat')?.value||'');
  const sort=Q('rank-order')?.value||'rank',saved=get(film?htWatchKind():kind+'-saved',[]);
  let items=all.filter(x=>(!category||x.genre===category)&&[x.title,x.genre,x.author,x.year,x.description].join(' ').toLowerCase().includes(search));
+ if(film&&window.HT_MOVIE_MODE==='classic'&&sort==='rank')items.sort((a,b)=>((HT_TRAILERS[b.title+'|'+b.year]?1:0)-(HT_TRAILERS[a.title+'|'+a.year]?1:0))||((window.HTMediaSource?.get('movies',b.rank)?.url?1:0)-(window.HTMediaSource?.get('movies',a.rank)?.url?1:0))||(a.title==='The Exorcist'?-1:b.title==='The Exorcist'?1:a.rank-b.rank));
  if(sort==='title')items.sort((a,b)=>a.title.localeCompare(b.title));
  else if(sort==='year')items.sort((a,b)=>a.year-b.year);
  else if(sort==='author')items.sort((a,b)=>a.author.localeCompare(b.author));
@@ -156,6 +160,7 @@ function htCloseTrailer(){
  const slot=Q('ht-video-slot');if(slot)slot.replaceChildren();
  document.body.classList.remove('ht-trailer-open');
 }
+async function htPlayMovieByName(title,year){const x={title,year};const id=HT_TRAILERS[title+'|'+year];if(!id)return;const verified=await htTrailerMetadata(x);const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;Q('ht-trailer-title').textContent=verified?verified.title:title+' — Trailer';slot.replaceChildren();if(verified){const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';frame.title=title+' trailer';frame.allow='autoplay;encrypted-media;picture-in-picture';frame.allowFullscreen=true;slot.appendChild(frame)}else{const p=document.createElement('p');p.textContent='Trailer unavailable for embedding at this time.';slot.appendChild(p)}modal.hidden=false;modal.setAttribute('aria-hidden','false');document.body.classList.add('ht-trailer-open')}
 async function htOpenTrailer(rank){
  const x=htMovies().find(x=>x.rank===Number(rank));if(!x)return;
  const id=HT_TRAILERS[x.title+'|'+x.year];if(!id)return;
@@ -182,6 +187,7 @@ bind=function(){
    document.querySelectorAll('[data-movie-mode]').forEach(button=>button.addEventListener('click',()=>{if(window.HT_MOVIE_MODE===button.dataset.movieMode)return;window.HT_MOVIE_MODE=button.dataset.movieMode;htCloseTrailer();navigate(false);}));
    Q('rank-results')?.addEventListener('click',e=>{const b=e.target.closest('[data-trailer-rank]');if(b)htOpenTrailer(b.dataset.trailerRank);});
    Q('ht-featured')?.addEventListener('click',e=>{const b=e.target.closest('[data-trailer-rank]');if(b)htOpenTrailer(b.dataset.trailerRank);});
+   document.querySelector('[data-featured-exorcist]')?.addEventListener('click',()=>htPlayMovieByName('The Exorcist',1973));
    Q('ht-player')?.addEventListener('click',e=>{if(e.target.closest('[data-close-trailer]'))htCloseTrailer();});
  }
 };
