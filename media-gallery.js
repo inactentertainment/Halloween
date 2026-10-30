@@ -188,7 +188,11 @@ bind=function(){
    document.querySelectorAll('[data-movie-mode]').forEach(button=>button.addEventListener('click',()=>{if(window.HT_MOVIE_MODE===button.dataset.movieMode)return;window.HT_MOVIE_MODE=button.dataset.movieMode;htCloseTrailer();navigate(false);}));
    Q('rank-results')?.addEventListener('click',e=>{const b=e.target.closest('[data-trailer-rank]');if(b)htOpenTrailer(b.dataset.trailerRank);});
    Q('ht-featured')?.addEventListener('click',e=>{const b=e.target.closest('[data-trailer-rank]');if(b)htOpenTrailer(b.dataset.trailerRank);});
-   document.querySelector('[data-featured-exorcist]')?.addEventListener('click',()=>htPlayMovieByName('The Exorcist',1973));
+   document.querySelector('[data-featured-exorcist]')?.addEventListener('click',()=>{
+ const frame=document.querySelector('.ht-exorcist-art');if(!frame)return;
+ if(frame.querySelector('iframe')){frame.innerHTML='<img src="https://i.ytimg.com/vi/BU2eYAO31Cc/hqdefault.jpg" alt="The Exorcist trailer thumbnail">';document.querySelector('[data-featured-exorcist]').textContent='▶ Watch The Exorcist Trailer';return;}
+ const iframe=document.createElement('iframe');iframe.src='https://www.youtube-nocookie.com/embed/BU2eYAO31Cc?autoplay=1&rel=0';iframe.title='The Exorcist 1973 4K Warner Bros official trailer';iframe.allow='autoplay; encrypted-media; picture-in-picture';iframe.allowFullscreen=true;iframe.loading='eager';frame.replaceChildren(iframe);document.querySelector('[data-featured-exorcist]').textContent='■ Stop Trailer';
+ });
    Q('ht-player')?.addEventListener('click',e=>{if(e.target.closest('[data-close-trailer]'))htCloseTrailer();});
  }
 };
