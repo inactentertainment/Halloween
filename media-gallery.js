@@ -1,6 +1,12 @@
 /* Haunted Towne – film and book visual galleries, Amazon discovery and responsible trailers. */
 'use strict';
 const HT_TRAILERS={
+  "Final Destination 5|2011":"g7V84i92H4A",
+  "The Final Destination|2009":"acQyrwQyCOk",
+  "Final Destination 3|2006":"ectjqGg92M8",
+  "Final Destination 2|2003":"Rvajfn-S3EI",
+  "Final Destination|2000":"8CRuNc2i3pw",
+  "Resident Evil|2026":"mNd1gb19A-c",
   "Get Out|2017":"AHEl7Pji0f8",
   "Hereditary|2018":"V6wWKNij_1M",
   "Midsommar|2019":"1Vnghdsjmd0",
@@ -81,8 +87,8 @@ function htWriteCache(k,o){try{sessionStorage.setItem('ht-media-'+k,JSON.stringi
 function htGallery(which){
  const film=which==='movies',arr=film?htMovies():CATALOG.books,sorts=film?'<option value="year">Release year</option>':'<option value="author">Author A–Z</option>';
  return pageHero(film?'The haunted cinema':'The midnight library',film?'Horror Movie Theater':'100 Horror Books',(film?'Choose between 50 outstanding modern horror films and 100 influential classics.':'Browse all 100 selections with covers and a saved reading list.'))+
- '<section class="section"><div class="wrap">'+(film?'<div class="ht-movie-choice" aria-label="Choose a movie collection"><button type="button" data-movie-mode="modern" class="ht-movie-door '+(window.HT_MOVIE_MODE==='modern'?'active':'')+'"><span class="ht-movie-door-icon">▶</span><strong>Top Horror Movies</strong><small>Modern terror · 2016–2026</small></button><button type="button" data-movie-mode="classic" class="ht-movie-door '+(window.HT_MOVIE_MODE==='classic'?'active':'')+'"><span class="ht-movie-door-icon">✦</span><strong>Classics</strong><small>100 historic and influential films</small></button></div>':'')+'<div class="notice ht-media-notice">'+(film?'Play verified trailers right here without leaving the theater. When an official trailer is not yet verified, a film-specific YouTube search is provided instead.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
- '<div class="toolbar"><input id="rank-q" class="field" type="search" aria-label="Search titles" placeholder="Search '+(film?'movies or genres':'books or authors')+'"><select id="rank-cat" class="field"><option value="">All '+(film?'genres':'authors')+'</option>'+(film?[...new Set(arr.map(x=>x.genre))]:[]).map(x=>'<option>'+esc(x)+'</option>').join('')+'</select><select id="rank-order" class="field"><option value="rank">Curated order</option><option value="title">Title A–Z</option>'+sorts+'</select></div>'+
+ '<section class="section"><div class="wrap">'+(film?'<div class="ht-movie-choice" aria-label="Choose a movie collection"><button type="button" data-movie-mode="modern" class="ht-movie-door '+(window.HT_MOVIE_MODE==='modern'?'active':'')+'"><span class="ht-movie-door-icon">▶</span><strong>Top Horror Movies</strong><small>Recent hits + franchise favorites</small></button><button type="button" data-movie-mode="classic" class="ht-movie-door '+(window.HT_MOVIE_MODE==='classic'?'active':'')+'"><span class="ht-movie-door-icon">✦</span><strong>Classics</strong><small>100 historic and influential films</small></button></div>':'')+'<div class="notice ht-media-notice">'+(film?'Play verified trailers right here without leaving the theater. When an official trailer is not yet verified, a film-specific YouTube search is provided instead.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
+ (film&&window.HT_MOVIE_MODE==='modern'?'<section class="ht-featured" id="ht-featured" aria-label="Featured recent horror movie"><div class="ht-featured-art"><img src="https://i.ytimg.com/vi/mNd1gb19A-c/hqmaxresdefault.jpg" alt="Resident Evil 2026 official trailer thumbnail" loading="eager" onerror="this.onerror=null;this.src=\'https://i.ytimg.com/vi/mNd1gb19A-c/hqdefault.jpg\'"></div><div class="ht-featured-copy"><p class="eyebrow">Featured 2026 Horror</p><h2>Resident Evil (2026)</h2><p>A new Raccoon City nightmare from director Zach Cregger. Start with the Sony Pictures official trailer, then explore the rest of the collection below.</p><button type="button" class="button ht-featured-play" data-trailer-rank="1">▶ Watch Official Trailer</button></div></section>':'')+'<div class="toolbar"><input id="rank-q" class="field" type="search" aria-label="Search titles" placeholder="Search '+(film?'movies or genres':'books or authors')+'"><select id="rank-cat" class="field"><option value="">All '+(film?'genres':'authors')+'</option>'+(film?[...new Set(arr.map(x=>x.genre))]:[]).map(x=>'<option>'+esc(x)+'</option>').join('')+'</select><select id="rank-order" class="field"><option value="rank">Curated order</option><option value="title">Title A–Z</option>'+sorts+'</select></div>'+
  '<p class="note ht-storage-note">“Save” stores a watchlist or reading list only in this browser on this device. No account or cross-device syncing is needed.</p>'+
  '<div class="actions"><button type="button" class="button-outline" id="export-list">Export saved '+(film?'movies':'books')+'</button></div><p id="ht-artwork-progress" class="note ht-art-progress" role="status">Checking artwork sources…</p><div class="ht-gallery" id="rank-results" aria-live="polite"></div>'+
  '<div class="ht-player" id="ht-player" hidden aria-hidden="true"><div class="ht-player-shade" data-close-trailer></div><div class="ht-player-panel" role="dialog" aria-modal="true" aria-label="Horror movie trailer"><div class="ht-player-heading"><h2 id="ht-trailer-title">Movie Trailer</h2><button type="button" class="ht-close" data-close-trailer aria-label="Close trailer">✕ Close</button></div><div class="ht-video-slot" id="ht-video-slot"></div><p class="note">Trailers are hosted by their creators on YouTube. Playback is voluntary; no trailer autoplays while you browse.</p></div></div></div></section>';
@@ -99,13 +105,13 @@ filteredRanking=function(){
  const cached=htMediaCache[kind],limit=items.length;
  const tile=items.map(x=>{
    const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const record=(film&&window.HT_MOVIE_MODE==='modern')?null:window.HTMediaSource?.get(kind,x.rank),sourced=record?.url;const image=sourced||((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':window.HTMediaSource?.fallback(x.title,kind)||htArtwork(x.title,kind)),url=htAmazon(x,film);
-   const actions='<div class="ht-actions">'+(film&&window.HT_MOVIE_MODE==='modern'?'':'<a href="./detail.html?kind='+(film?'movie':'book')+'&id='+x.rank+'" class="small-button">See More →</a>')+'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
+   const actions='<div class="ht-actions">'+(film?'<span class="ht-inline-more-hint">Details below ↓</span>':'<a href="./detail.html?kind=book&id='+x.rank+'" class="small-button">See More →</a>')+'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
    (film?(foundTrailer?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">▶ Play trailer</button>':'<a class="small-button" target="_blank" rel="noopener noreferrer" href="'+esc(htYouTube(x))+'">Find trailer ↗</a>'):'')+
    '<button class="small-button" type="button" data-save="'+x.rank+'">'+(saved.includes(x.rank)?'✓ Saved':'+ Save')+'</button></div>';
    return '<article class="ht-media-card"><div class="ht-art" aria-label="Artwork for '+esc(x.title)+'">'+
    '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' film image or themed title artwork':' cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="ht-image-source" data-ht-credit="'+kind+'-'+x.rank+'">'+esc(sourced?('Image: '+record.source):(film&&foundTrailer?'Trailer image · YouTube':'Haunted Towne title art'))+'</span></div>'+
    '<div class="ht-media-copy"><p class="ht-media-rank">#'+x.rank+' · '+(film?esc(x.year+' · '+x.genre):esc(x.author))+'</p>'+
-   '<h3>'+esc(x.title)+'</h3><p>'+esc(x.description||'Discover this horror classic.')+'</p>'+actions+'</div></article>';
+   '<h3>'+esc(x.title)+'</h3>'+(film?'<details class="ht-film-details"><summary>Movie Details <span aria-hidden="true">⌄</span></summary><div class="ht-film-detail-body"><p><strong>Release:</strong> '+esc(x.year)+'</p><p><strong>Horror style:</strong> '+esc(x.genre)+'</p><p>'+esc(x.description&& !x.description.startsWith('A standout contemporary horror selection')?x.description:'Explore this film’s place in the horror genre and watch its trailer to decide whether to add it to your list.')+'</p></div></details>':'<p>'+esc(x.description||'Discover this horror classic.')+'</p>')+actions+'</div></article>';
  }).join('');
  Q('rank-results').innerHTML=tile||'<p class="empty">No matching titles.</p>';
  if(window.HTMediaSource&&!(film&&window.HT_MOVIE_MODE==='modern')){htUpdateArtworkProgress(kind);window.HTMediaSource.begin(kind).then(()=>htUpdateArtworkProgress(kind)).catch(()=>htUpdateArtworkProgress(kind));}else if(film){const p=Q('ht-artwork-progress');if(p)p.textContent='Modern titles use cinematic title artwork and verified trailer thumbnails where available.';}if(film)htVerifyTrailerGallery();
@@ -153,9 +159,9 @@ function htCloseTrailer(){
 async function htOpenTrailer(rank){
  const x=htMovies().find(x=>x.rank===Number(rank));if(!x)return;
  const id=HT_TRAILERS[x.title+'|'+x.year];if(!id)return;
- const verified=await htTrailerMetadata(x);if(!verified){window.open(htYouTube(x),'_blank','noopener,noreferrer');return;}
+ const verified=await htTrailerMetadata(x);/* Keep the video inside Haunted Towne even when YouTube metadata is temporarily unreachable. */
  const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;
- Q('ht-trailer-title').textContent=verified.title+' · '+verified.author;
+ Q('ht-trailer-title').textContent=verified?(verified.title+' · '+verified.author):(x.title+' ('+x.year+') · Trailer');
  slot.replaceChildren();
  const frame=document.createElement('iframe');frame.title=x.title+' trailer';
  frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&start=0&rel=0';
@@ -170,6 +176,7 @@ bind=function(){
  if(view()==='movies'||view()==='books'){
    document.querySelectorAll('[data-movie-mode]').forEach(button=>button.addEventListener('click',()=>{if(window.HT_MOVIE_MODE===button.dataset.movieMode)return;window.HT_MOVIE_MODE=button.dataset.movieMode;htCloseTrailer();navigate(false);}));
    Q('rank-results')?.addEventListener('click',e=>{const b=e.target.closest('[data-trailer-rank]');if(b)htOpenTrailer(b.dataset.trailerRank);});
+   Q('ht-featured')?.addEventListener('click',e=>{const b=e.target.closest('[data-trailer-rank]');if(b)htOpenTrailer(b.dataset.trailerRank);});
    Q('ht-player')?.addEventListener('click',e=>{if(e.target.closest('[data-close-trailer]'))htCloseTrailer();});
  }
 };
