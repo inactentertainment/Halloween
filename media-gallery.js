@@ -3,6 +3,7 @@
 const HT_TRAILERS={
   "Final Destination 5|2011":"g7V84i92H4A",
   "Sinners|2025":"7joulECTx_U",
+  "A Quiet Place Part II|2021":"BpdDN9d9Jio",
   "The Fly|1986":"fj1SHpBsY7w",
   "The Final Destination|2009":"acQyrwQyCOk",
   "Final Destination 3|2006":"ectjqGg92M8",
