@@ -8,7 +8,7 @@ const extra={
 const E=t=>String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\u0027':'&#39;'}[c]));
 const cleanUrl=u=>{try{const a=new URL(u,location.href);return ['https:','http:'].includes(a.protocol)?a.href:'#'}catch{return '#'}};
 let layer=null,lastFocus=null;
-const current=()=>window.HT_MOVIE_MODE==='classic'?window.CATALOG?.movies:window.HT_MODERN_MOVIES;
+const current=()=>window.HT_MOVIE_MODE==='classic'?(typeof CATALOG!=='undefined'?CATALOG.movies:[]):(typeof HT_MODERN_MOVIES!=='undefined'?HT_MODERN_MOVIES:[]);
 function close(){
  if(!layer)return;
  layer.remove();layer=null;document.body.classList.remove('ht-profile-open');
@@ -21,7 +21,7 @@ function open(rank){
  const info={...extra[movie.title+'|'+movie.year],...(typeof window.movieProfileData==='function'?window.movieProfileData(movie)||{}:{})};
  const source=document.querySelector('[data-ht-img="movies-'+rank+'"]');
  const art=source?.getAttribute('src')||'./assets/banner-movies.svg';
- const trailer=window.HT_TRAILERS?.[movie.title+'|'+movie.year]||null;
+ const trailer=(typeof HT_TRAILERS!=='undefined'?HT_TRAILERS[movie.title+'|'+movie.year]:null);
  const body=movie.description&& !movie.description.startsWith('A standout contemporary horror selection')?movie.description:'Explore this film, discover its horror themes, and decide whether it belongs on your watchlist.';
  const promos=window.movieProfilePromos||[
  {title:'Explore The Thirteen Doors',description:'A free interactive original horror mystery.',url:'./story.html#start'},
