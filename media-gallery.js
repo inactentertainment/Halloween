@@ -21,7 +21,8 @@ const HT_TRAILERS={
   "The First Omen|2024":"lmN1Op8ygno",
   "Final Destination Bloodlines|2025":"UWMzKXsY9A4",
   "The Black Phone|2021":"3eGP6im8AZA",
-  "Evil Dead Rise|2023":"BqQNO7BzN08"
+  "Evil Dead Rise|2023":"BqQNO7BzN08",
+  "Carrie|1976":"j9Mg-GRS46Y"
 };
 const htMediaCache={movies:{},books:{}};
 window.HT_MOVIE_MODE='modern';
