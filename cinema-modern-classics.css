@@ -1,0 +1,18 @@
+/* Haunted Towne cinema: animated choice hall and cinematic landscape cards */
+body:has(.ht-movie-choice) #content{background:radial-gradient(ellipse at 10% 28%,#52121c55,transparent 43%),radial-gradient(ellipse at 90% 45%,#47243645,transparent 50%),#080508}
+.ht-movie-choice{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:26px 0 34px;position:relative;isolation:isolate}
+.ht-movie-choice:before{content:"✦  ✧  ◆  ✦  ◆  ✧  ✦";position:absolute;inset:-28px 0 auto;text-align:center;color:#a34d5f;opacity:.65;font-size:20px;letter-spacing:30px;animation:htFlicker 5s ease-in-out infinite;pointer-events:none;z-index:-1}
+.ht-movie-door{position:relative;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:215px;padding:30px 18px;border-radius:20px;border:2px solid #8c4155;color:#ffe7d8;background:radial-gradient(circle at 50% 0,#8f394850,transparent 50%),linear-gradient(155deg,#2d0a16,#0b070d);cursor:pointer;box-shadow:0 20px 45px #000b,inset 0 0 24px #a32b3726;transition:transform .2s ease,border-color .2s,box-shadow .2s}
+.ht-movie-door strong{font:700 clamp(22px,2.4vw,36px)/1.18 Georgia,serif;letter-spacing:.02em}
+.ht-movie-door small{color:#efb6a7;font:600 13px/1.45 system-ui,sans-serif;margin-top:11px;letter-spacing:.05em}
+.ht-movie-door-icon{display:grid;place-items:center;color:#ffdab6;font:700 45px/1 Georgia,serif;margin-bottom:16px;width:77px;height:77px;border:2px solid #b65b64;border-radius:50%;box-shadow:0 0 24px #bd3c5577;animation:htFlicker 3.6s ease-in-out infinite alternate}
+.ht-movie-door:nth-child(2) .ht-movie-door-icon{animation-delay:-1.5s}
+.ht-movie-door:hover,.ht-movie-door:focus-visible{transform:translateY(-5px);border-color:#f4b28a;box-shadow:0 0 32px #bd344d77,0 20px 45px #000b}
+.ht-movie-door.active{border-color:#ffc28d;background:radial-gradient(circle at 50% 0,#a34f5766,transparent 55%),linear-gradient(145deg,#541322,#16080f);box-shadow:0 0 38px #c75a4d66,0 14px 36px #0009}
+body:has(.ht-movie-choice) .ht-gallery .ht-art{aspect-ratio:16/9!important}
+body:has(.ht-movie-choice) .ht-gallery .ht-art img{object-fit:cover!important}
+body:has(.ht-movie-choice) .ht-gallery{grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr))}
+@keyframes htFlicker{0%,100%{opacity:1;filter:brightness(1)}48%{opacity:.78;filter:brightness(.8)}53%{opacity:.94;filter:brightness(1.2)}}
+@media(max-width:660px){.ht-movie-choice{gap:10px}.ht-movie-door{min-height:172px;padding:18px 10px}.ht-movie-door strong{font-size:clamp(16px,4.6vw,23px)}.ht-movie-door-icon{width:51px;height:51px;font-size:28px;margin-bottom:12px}.ht-movie-door small{font-size:11px}body:has(.ht-movie-choice) .ht-gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}}
+@media(max-width:390px){body:has(.ht-movie-choice) .ht-gallery{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ht-movie-door-icon,.ht-movie-choice:before{animation:none}.ht-movie-door{transition:none}}
