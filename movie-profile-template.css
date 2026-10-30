@@ -1,0 +1,35 @@
+/* Reusable movie profile module — original Haunted Towne editorial layout. */
+body.ht-profile-open{overflow:hidden}
+.ht-profile-overlay{position:fixed;inset:0;z-index:22000;display:grid;place-items:center;padding:18px}
+.ht-profile-shade{position:absolute;inset:0;background:#010103ed;backdrop-filter:blur(8px)}
+.ht-profile-window{position:relative;display:block;overflow-y:auto;overscroll-behavior:contain;width:min(1120px,100%);max-height:calc(100dvh - 36px);border:1px solid #a35752;border-radius:18px;background:#10090e;color:#fff2e9;box-shadow:0 30px 110px #000e}
+.ht-profile-top{position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 19px;background:#160b13ef;border-bottom:1px solid #744044;font:700 11px/1.5 system-ui,sans-serif;letter-spacing:.13em;color:#f5c4a5}
+.ht-profile-top button,.ht-profile-bottom button{cursor:pointer;background:#60202d;border:1px solid #b77a75;border-radius:9px;color:#fff1ec;padding:10px 14px;font-weight:750;white-space:nowrap}
+.ht-profile-banner{display:grid;grid-template-columns:minmax(210px,34%) 1fr;gap:0;min-height:350px;background:radial-gradient(circle at 80% 15%,#702b31b0,transparent 55%),#15070d}
+.ht-profile-poster{background:#13080c;min-height:310px}
+.ht-profile-poster img{width:100%;height:100%;min-height:310px;max-height:490px;object-fit:cover}
+.ht-profile-intro{padding:clamp(23px,4.8vw,55px);align-self:center}
+.ht-profile-intro h2{font:700 clamp(32px,5vw,58px)/1.08 Georgia,serif;color:#fff5e7;margin:10px 0 16px}
+.ht-profile-intro>p{line-height:1.65;max-width:650px}
+.ht-profile-kicker{font:700 12px/1.3 system-ui,sans-serif;letter-spacing:.18em;color:#e5a88a;text-transform:uppercase}
+.ht-profile-facts{color:#f5c79e;font-weight:750}
+.ht-profile-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.ht-profile-actions button,.ht-profile-actions a{background:#8c2b37;border:1px solid #c6837d;border-radius:10px;cursor:pointer;color:#fff5ed;padding:12px 17px;text-decoration:none;font:700 14px system-ui,sans-serif}
+.ht-profile-actions button:hover,.ht-profile-actions a:hover{background:#b73b43}
+.ht-profile-body{padding:28px clamp(18px,3vw,38px);display:grid;grid-template-columns:minmax(0,1.55fr) minmax(230px,1fr);gap:clamp(16px,3vw,36px)}
+.ht-profile-body h3{font:700 26px Georgia,serif;margin:4px 0 18px}
+.ht-profile-body p{line-height:1.68}
+.ht-profile-facts-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:20px 0}
+.ht-profile-facts-grid>div{background:#1c1016;border:1px solid #472b31;border-radius:10px;padding:13px;display:flex;flex-direction:column;gap:4px}
+.ht-profile-facts-grid strong{font:700 11px system-ui,sans-serif;color:#de9e92;text-transform:uppercase;letter-spacing:.06em}
+.ht-profile-facts-grid span{font:500 15px/1.45 system-ui,sans-serif}
+.ht-profile-promo{display:flex;flex-direction:column;gap:8px;margin-bottom:13px;padding:20px;background:linear-gradient(135deg,#461b2b,#18111c);border:1px solid #9f594f;border-radius:12px;color:#fff2e6;text-decoration:none;transition:transform .18s,box-shadow .18s}
+.ht-profile-promo:hover,.ht-profile-promo:focus-visible{transform:translateY(-2px);box-shadow:0 0 20px #bd4d5970}
+.ht-profile-promo span{font:700 10px system-ui,sans-serif;letter-spacing:.15em;color:#edbd95}
+.ht-profile-promo strong{font:700 22px Georgia,serif}
+.ht-profile-promo small{font:400 13px/1.45 system-ui,sans-serif;color:#e2c8cc}
+.ht-profile-disclosure{font:400 11px/1.5 system-ui,sans-serif;color:#c5aeb2}
+.ht-profile-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:18px 25px;border-top:1px solid #623940}
+.ht-profile-bottom span{color:#cda9b0;font-size:11px}
+@media(max-width:700px){.ht-profile-overlay{padding:4px}.ht-profile-window{max-height:calc(100dvh - 8px);border-radius:10px}.ht-profile-banner{grid-template-columns:1fr}.ht-profile-poster{min-height:0;max-height:240px;overflow:hidden}.ht-profile-poster img{min-height:0;max-height:240px;object-fit:cover}.ht-profile-intro{padding:22px}.ht-profile-body{grid-template-columns:1fr;padding:21px}.ht-profile-bottom span{display:none}.ht-profile-top{padding:9px 12px;font-size:9px}.ht-profile-intro h2{font-size:36px}}
+@media(prefers-reduced-motion:reduce){.ht-profile-promo{transition:none}}
