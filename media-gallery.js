@@ -7,7 +7,11 @@ const HT_TRAILERS={
   "Nope|2022":"In8fuzj3gck",
   "The Witch|2015":"iQXmlf3Sefg",
   "A Quiet Place|2018":"WR7cc5t7tv8",
-  "The Substance|2024":"B1B3HZRHpEw"
+  "The Substance|2024":"B1B3HZRHpEw",
+  "Weapons|2025":"QKHySfXqN0I",
+  "Talk to Me|2023":"aLAKJu9aJys",
+  "Barbarian|2022":"Dr89pmKrqkI",
+  "Smile 2|2024":"0HY6QFlBzUY"
 };
 const htMediaCache={movies:{},books:{}};
 window.HT_MOVIE_MODE='modern';
@@ -45,7 +49,7 @@ async function htVerifyTrailerGallery(){
  const play=document.querySelector('[data-trailer-rank="'+movie.rank+'"]');
  if(play){play.textContent=result?'▶ Watch trailer':'Search for trailer ↗';play.dataset.available=result?'yes':'no';play.setAttribute('aria-label',result?'Watch '+movie.title+' trailer':'Search YouTube for '+movie.title+' trailer');}
  const img=document.querySelector('[data-ht-img="movies-'+movie.rank+'"]');
- if(result&&img&&!window.HTMediaSource?.get('movies',movie.rank)?.url){img.src=result.image;img.alt=movie.title+' trailer thumbnail';}
+ if(result&&img&&(window.HT_MOVIE_MODE==='modern'||!window.HTMediaSource?.get('movies',movie.rank)?.url)){img.src=result.image;img.alt=movie.title+' trailer thumbnail';}
  }
 }
 
@@ -66,7 +70,7 @@ function htWriteCache(k,o){try{sessionStorage.setItem('ht-media-'+k,JSON.stringi
 function htGallery(which){
  const film=which==='movies',arr=film?htMovies():CATALOG.books,sorts=film?'<option value="year">Release year</option>':'<option value="author">Author A–Z</option>';
  return pageHero(film?'The haunted cinema':'The midnight library',film?'Horror Movie Theater':'100 Horror Books',(film?'Choose between 50 outstanding modern horror films and 100 influential classics.':'Browse all 100 selections with covers and a saved reading list.'))+
- '<section class="section"><div class="wrap">'+(film?'<div class="ht-movie-choice" aria-label="Choose a movie collection"><button type="button" data-movie-mode="modern" class="ht-movie-door '+(window.HT_MOVIE_MODE==='modern'?'active':'')+'"><span class="ht-movie-door-icon">▶</span><strong>Top 50 Horror Movies</strong><small>Modern terror · 2016–2026</small></button><button type="button" data-movie-mode="classic" class="ht-movie-door '+(window.HT_MOVIE_MODE==='classic'?'active':'')+'"><span class="ht-movie-door-icon">✦</span><strong>Classic Horror Movies</strong><small>100 historic and influential films</small></button></div>':'')+'<div class="notice ht-media-notice">'+(film?'Play verified trailers right here without leaving the theater. When an official trailer is not yet verified, a film-specific YouTube search is provided instead.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
+ '<section class="section"><div class="wrap">'+(film?'<div class="ht-movie-choice" aria-label="Choose a movie collection"><button type="button" data-movie-mode="modern" class="ht-movie-door '+(window.HT_MOVIE_MODE==='modern'?'active':'')+'"><span class="ht-movie-door-icon">▶</span><strong>Top Horror Movies</strong><small>Modern terror · 2016–2026</small></button><button type="button" data-movie-mode="classic" class="ht-movie-door '+(window.HT_MOVIE_MODE==='classic'?'active':'')+'"><span class="ht-movie-door-icon">✦</span><strong>Classics</strong><small>100 historic and influential films</small></button></div>':'')+'<div class="notice ht-media-notice">'+(film?'Play verified trailers right here without leaving the theater. When an official trailer is not yet verified, a film-specific YouTube search is provided instead.':'Book covers are sourced from published book metadata when available. Amazon buttons open product searches rather than affiliate-tracked product pages.')+'</div>'+
  '<div class="toolbar"><input id="rank-q" class="field" type="search" aria-label="Search titles" placeholder="Search '+(film?'movies or genres':'books or authors')+'"><select id="rank-cat" class="field"><option value="">All '+(film?'genres':'authors')+'</option>'+(film?[...new Set(arr.map(x=>x.genre))]:[]).map(x=>'<option>'+esc(x)+'</option>').join('')+'</select><select id="rank-order" class="field"><option value="rank">Curated order</option><option value="title">Title A–Z</option>'+sorts+'</select></div>'+
  '<p class="note ht-storage-note">“Save” stores a watchlist or reading list only in this browser on this device. No account or cross-device syncing is needed.</p>'+
  '<div class="actions"><button type="button" class="button-outline" id="export-list">Export saved '+(film?'movies':'books')+'</button></div><p id="ht-artwork-progress" class="note ht-art-progress" role="status">Checking artwork sources…</p><div class="ht-gallery" id="rank-results" aria-live="polite"></div>'+
