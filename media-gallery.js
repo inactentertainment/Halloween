@@ -110,7 +110,7 @@ filteredRanking=function(){
  const tile=items.map(x=>{
    const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const record=(film&&window.HT_MOVIE_MODE==='modern')?null:window.HTMediaSource?.get(kind,x.rank),sourced=record?.url;const image=sourced||((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':window.HTMediaSource?.fallback(x.title,kind)||htArtwork(x.title,kind)),url=htAmazon(x,film);
    const actions='<div class="ht-actions">'+(film?'<button type="button" class="small-button ht-film-profile-action" data-film-profile-rank="'+x.rank+'">Full Movie Profile</button>':'<a href="./detail.html?kind=book&id='+x.rank+'" class="small-button">See More →</a>')+'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
-   (film?(foundTrailer?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">▶ Play trailer</button>':'<a class="small-button" target="_blank" rel="noopener noreferrer" href="'+esc(htYouTube(x))+'">Find trailer ↗</a>'):'')+
+   (film?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">'+(foundTrailer?'▶ Watch Trailer':'▶ Find Trailer')+'</button>':'')+
    '<button class="small-button" type="button" data-save="'+x.rank+'">'+(saved.includes(x.rank)?'✓ Saved':'+ Save')+'</button></div>';
    return '<article class="ht-media-card"><div class="ht-art" aria-label="Artwork for '+esc(x.title)+'">'+
    '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' film image or themed title artwork':' cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="ht-image-source" data-ht-credit="'+kind+'-'+x.rank+'">'+esc(sourced?('Image: '+record.source):(film&&foundTrailer?'Trailer image · YouTube':'Haunted Towne title art'))+'</span></div>'+
@@ -163,18 +163,18 @@ function htCloseTrailer(){
 async function htPlayMovieByName(title,year){const x={title,year};const id=HT_TRAILERS[title+'|'+year];if(!id)return;const verified=await htTrailerMetadata(x);const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;Q('ht-trailer-title').textContent=verified?verified.title:title+' — Trailer';slot.replaceChildren();if(verified){const frame=document.createElement('iframe');frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0';frame.title=title+' trailer';frame.allow='autoplay;encrypted-media;picture-in-picture';frame.allowFullscreen=true;slot.appendChild(frame)}else{const p=document.createElement('p');p.textContent='Trailer unavailable for embedding at this time.';slot.appendChild(p)}modal.hidden=false;modal.setAttribute('aria-hidden','false');document.body.classList.add('ht-trailer-open')}
 async function htOpenTrailer(rank){
  const x=htMovies().find(x=>x.rank===Number(rank));if(!x)return;
- const id=HT_TRAILERS[x.title+'|'+x.year];if(!id)return;
- const verified=await htTrailerMetadata(x);
+ const id=HT_TRAILERS[x.title+'|'+x.year];
+ const verified=id?await htTrailerMetadata(x):null;
  const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;
  Q('ht-trailer-title').textContent=verified?(verified.title+' · '+verified.author):(x.title+' ('+x.year+') · Trailer not verified');
  slot.replaceChildren();
- if(verified){
+ if(id&&verified){
   const frame=document.createElement('iframe');frame.title=x.title+' trailer';
   frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&start=0&rel=0';
   frame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
   frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';slot.appendChild(frame);
  }else{
-  const message=document.createElement('div');message.className='ht-trailer-unverified';message.innerHTML='<p>We could not verify this trailer, so we will not show an unrelated video.</p>';
+  const message=document.createElement('div');message.className='ht-trailer-unverified';message.innerHTML='<p>A playable official trailer is not yet verified for this film.</p>';
   const a=document.createElement('a');a.href=htYouTube(x);a.target='_blank';a.rel='noopener noreferrer';a.textContent='Find the official trailer on YouTube ↗';message.appendChild(a);slot.appendChild(message);
  }
  modal.hidden=false;modal.setAttribute('aria-hidden','false');document.body.classList.add('ht-trailer-open');
