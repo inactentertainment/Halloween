@@ -159,14 +159,19 @@ function htCloseTrailer(){
 async function htOpenTrailer(rank){
  const x=htMovies().find(x=>x.rank===Number(rank));if(!x)return;
  const id=HT_TRAILERS[x.title+'|'+x.year];if(!id)return;
- const verified=await htTrailerMetadata(x);/* Keep the video inside Haunted Towne even when YouTube metadata is temporarily unreachable. */
+ const verified=await htTrailerMetadata(x);
  const modal=Q('ht-player'),slot=Q('ht-video-slot');if(!modal||!slot)return;
- Q('ht-trailer-title').textContent=verified?(verified.title+' · '+verified.author):(x.title+' ('+x.year+') · Trailer');
+ Q('ht-trailer-title').textContent=verified?(verified.title+' · '+verified.author):(x.title+' ('+x.year+') · Trailer not verified');
  slot.replaceChildren();
- const frame=document.createElement('iframe');frame.title=x.title+' trailer';
- frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&start=0&rel=0';
- frame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
- frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';slot.appendChild(frame);
+ if(verified){
+  const frame=document.createElement('iframe');frame.title=x.title+' trailer';
+  frame.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&start=0&rel=0';
+  frame.allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share';
+  frame.allowFullscreen=true;frame.referrerPolicy='strict-origin-when-cross-origin';slot.appendChild(frame);
+ }else{
+  const message=document.createElement('div');message.className='ht-trailer-unverified';message.innerHTML='<p>We could not verify this trailer, so we will not show an unrelated video.</p>';
+  const a=document.createElement('a');a.href=htYouTube(x);a.target='_blank';a.rel='noopener noreferrer';a.textContent='Find the official trailer on YouTube ↗';message.appendChild(a);slot.appendChild(message);
+ }
  modal.hidden=false;modal.setAttribute('aria-hidden','false');document.body.classList.add('ht-trailer-open');
  modal.querySelector('[data-close-trailer]')?.focus();
 }
