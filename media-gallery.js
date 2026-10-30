@@ -16,7 +16,12 @@ const HT_TRAILERS={
   "The Thing|1982":"ySvzHdtCiWE",
   "Halloween|1978":"xHuOtLTQ_1I",
   "Scream|1996":"AWm_mkbdpCA",
-  "Alien|1979":"iQ2Jx_EaZOo"
+  "Alien|1979":"iQ2Jx_EaZOo",
+  "The Conjuring: Last Rites|2025":"bMgfsdYoEEo",
+  "The First Omen|2024":"lmN1Op8ygno",
+  "Final Destination Bloodlines|2025":"UWMzKXsY9A4",
+  "The Black Phone|2021":"3eGP6im8AZA",
+  "Evil Dead Rise|2023":"BqQNO7BzN08"
 };
 const htMediaCache={movies:{},books:{}};
 window.HT_MOVIE_MODE='modern';
