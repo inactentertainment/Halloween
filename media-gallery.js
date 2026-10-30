@@ -105,7 +105,7 @@ filteredRanking=function(){
  const cached=htMediaCache[kind],limit=items.length;
  const tile=items.map(x=>{
    const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const record=(film&&window.HT_MOVIE_MODE==='modern')?null:window.HTMediaSource?.get(kind,x.rank),sourced=record?.url;const image=sourced||((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':window.HTMediaSource?.fallback(x.title,kind)||htArtwork(x.title,kind)),url=htAmazon(x,film);
-   const actions='<div class="ht-actions">'+(film?'<span class="ht-inline-more-hint">Details below ↓</span>':'<a href="./detail.html?kind=book&id='+x.rank+'" class="small-button">See More →</a>')+'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
+   const actions='<div class="ht-actions">'+(film?'<button type="button" class="small-button ht-film-profile-action" data-film-profile-rank="'+x.rank+'">Full Movie Profile</button>':'<a href="./detail.html?kind=book&id='+x.rank+'" class="small-button">See More →</a>')+'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
    (film?(foundTrailer?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">▶ Play trailer</button>':'<a class="small-button" target="_blank" rel="noopener noreferrer" href="'+esc(htYouTube(x))+'">Find trailer ↗</a>'):'')+
    '<button class="small-button" type="button" data-save="'+x.rank+'">'+(saved.includes(x.rank)?'✓ Saved':'+ Save')+'</button></div>';
    return '<article class="ht-media-card"><div class="ht-art" aria-label="Artwork for '+esc(x.title)+'">'+
