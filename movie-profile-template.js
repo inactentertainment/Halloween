@@ -21,7 +21,7 @@ function open(rank){
  const info={...extra[movie.title+'|'+movie.year],...(typeof window.movieProfileData==='function'?window.movieProfileData(movie)||{}:{})};
  const source=document.querySelector('[data-ht-img="movies-'+rank+'"]');
  const art=source?.getAttribute('src')||'./assets/banner-movies.svg';
- const trailer=(typeof HT_TRAILERS!=='undefined'?HT_TRAILERS[movie.title+'|'+movie.year]:null);
+ const trailer=(window.movieProfileTrailerIds||{})[movie.title+'|'+movie.year]||(typeof HT_TRAILERS!=='undefined'?HT_TRAILERS[movie.title+'|'+movie.year]:null);
  const body=movie.description&& !movie.description.startsWith('A standout contemporary horror selection')?movie.description:'Explore this film, discover its horror themes, and decide whether it belongs on your watchlist.';
  const promos=window.movieProfilePromos||[
  {title:'Explore The Thirteen Doors',description:'A free interactive original horror mystery.',url:'./story.html#start'},
