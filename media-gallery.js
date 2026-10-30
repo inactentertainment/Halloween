@@ -11,7 +11,12 @@ const HT_TRAILERS={
   "Weapons|2025":"QKHySfXqN0I",
   "Talk to Me|2023":"aLAKJu9aJys",
   "Barbarian|2022":"Dr89pmKrqkI",
-  "Smile 2|2024":"0HY6QFlBzUY"
+  "Smile 2|2024":"0HY6QFlBzUY",
+  "The Exorcist|1973":"BU2eYAO31Cc",
+  "The Thing|1982":"ySvzHdtCiWE",
+  "Halloween|1978":"xHuOtLTQ_1I",
+  "Scream|1996":"AWm_mkbdpCA",
+  "Alien|1979":"iQ2Jx_EaZOo"
 };
 const htMediaCache={movies:{},books:{}};
 window.HT_MOVIE_MODE='modern';
