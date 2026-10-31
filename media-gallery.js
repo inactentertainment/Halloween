@@ -1,6 +1,8 @@
 /* Haunted Towne – film and book visual galleries, Amazon discovery and responsible trailers. */
 'use strict';
 const HT_TRAILERS={
+ "Resident Evil|2026":"mNd1gb19A-c",
+ "Backrooms|2026":"0HjdiohVOik",
  "The Shining|1980":"S014oGZiSdI",
  "Jaws|1975":"U1fu_sA7XhE",
  "Don't Breathe|2016":"76yBTNDB6vU",
@@ -57,7 +59,7 @@ const htWatchKind=()=>window.HT_MOVIE_MODE==='classic'?'movies-classic-saved':'m
 
 /* Phase 3: only a small known trailer set embeds. Check YouTube metadata and guard against mismatched video titles. */
 // IDs below were matched to film trailers through an independent official/distributor source.
-const htEditoriallyChecked=new Set(["76yBTNDB6vU","Vfugwq2uoa0","2Tshycci2ZA","ek1ePFp-nBI","i_mAWKyfj6c","WO_FJdiY9dA","BcDK7lkzzsU","jWbHo2toQOk","Ymoh5SIqgtw","QF-oyCwaArU","tLNDvnv8B3A","4qm59Rcq1Fw","A5PaKL70hcI","cvt-mauboTc","apghx7q9oeY"]);
+const htEditoriallyChecked=new Set(["mNd1gb19A-c","0HjdiohVOik","76yBTNDB6vU","Vfugwq2uoa0","2Tshycci2ZA","ek1ePFp-nBI","i_mAWKyfj6c","WO_FJdiY9dA","BcDK7lkzzsU","jWbHo2toQOk","Ymoh5SIqgtw","QF-oyCwaArU","tLNDvnv8B3A","4qm59Rcq1Fw","A5PaKL70hcI","cvt-mauboTc","apghx7q9oeY"]);
 const htTrailerChecks={};
 function htTrailerTitleMatches(movie,title){
  const norm=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
