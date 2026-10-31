@@ -1,6 +1,9 @@
 /* Haunted Towne – film and book visual galleries, Amazon discovery and responsible trailers. */
 'use strict';
 const HT_TRAILERS={
+ "The Nun II|2023":"QF-oyCwaArU",
+ "Oddity|2024":"tLNDvnv8B3A",
+ "Train to Busan|2016":"4qm59Rcq1Fw",
   "Halloween|2018":"ek1ePFp-nBI",
   "Halloween Ends|2022":"i_mAWKyfj6c",
   "The Invisible Man|2020":"WO_FJdiY9dA",
