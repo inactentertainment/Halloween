@@ -125,19 +125,34 @@ filteredRanking=function(){
  const search=(Q('rank-q')?.value||'').trim().toLowerCase(),category=(Q('rank-cat')?.value||'');
  const sort=Q('rank-order')?.value||'rank',saved=get(film?htWatchKind():kind+'-saved',[]);
  let items=all.filter(x=>(!category||x.genre===category)&&[x.title,x.genre,x.author,x.year,x.description].join(' ').toLowerCase().includes(search));
- if(film&&window.HT_MOVIE_MODE==='classic'&&sort==='rank')items.sort((a,b)=>((HT_TRAILERS[b.title+'|'+b.year]?1:0)-(HT_TRAILERS[a.title+'|'+a.year]?1:0))||((window.HTMediaSource?.get('movies',b.rank)?.url?1:0)-(window.HTMediaSource?.get('movies',a.rank)?.url?1:0))||(a.title==='The Exorcist'?-1:b.title==='The Exorcist'?1:a.rank-b.rank));
+ if(film&&sort==='rank'){
+  // Highlight completed trailer artwork first; keep each Final Destination sequel together.
+  const priority=x=>{
+   if(window.HT_MOVIE_MODE==='modern'&&x.title.startsWith('Final Destination')||window.HT_MOVIE_MODE==='modern'&&x.title==='The Final Destination')return 2;
+   if(x.title==='The Exorcist'&&window.HT_MOVIE_MODE==='classic')return -1;
+   if(HT_TRAILERS[x.title+'|'+x.year])return 0;
+   if(window.HT_MOVIE_MODE==='classic'&&window.HTMediaSource?.get('movies',x.rank)?.url)return 1;
+   return 3;
+  };
+  items.sort((a,b)=>priority(a)-priority(b)||a.rank-b.rank);
+  if(window.HT_MOVIE_MODE==='modern'){
+   const fd=items.filter(x=>x.title.startsWith('Final Destination')||x.title==='The Final Destination');
+   const others=items.filter(x=>!fd.includes(x));
+   items=[...others.slice(0,8),...fd,...others.slice(8)];
+  }
+ }
  if(sort==='title')items.sort((a,b)=>a.title.localeCompare(b.title));
  else if(sort==='year')items.sort((a,b)=>a.year-b.year);
  else if(sort==='author')items.sort((a,b)=>a.author.localeCompare(b.author));
  const cached=htMediaCache[kind],limit=items.length;
  const tile=items.map((x,index)=>{
-   const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const record=(film&&window.HT_MOVIE_MODE==='modern')?null:window.HTMediaSource?.get(kind,x.rank),sourced=record?.url;const image=sourced||((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':window.HTMediaSource?.fallback(x.title,kind)||htArtwork(x.title,kind)),url=htAmazon(x,film);
+   const foundTrailer=film&&HT_TRAILERS[x.title+'|'+x.year];const record=(film&&window.HT_MOVIE_MODE==='modern')?null:window.HTMediaSource?.get(kind,x.rank),sourced=record?.url;const image=((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':sourced)||((film&&foundTrailer)?'https://i.ytimg.com/vi/'+foundTrailer+'/hqdefault.jpg':window.HTMediaSource?.fallback(x.title,kind)||htArtwork(x.title,kind)),url=htAmazon(x,film);
    const actions='<div class="ht-actions">'+(film?'<button type="button" class="small-button ht-film-profile-action" data-film-profile-rank="'+x.rank+'">Full Movie Profile</button>':'<a href="./detail.html?kind=book&id='+x.rank+'" class="small-button">See More →</a>')+'<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" class="small-button">Amazon ↗</a>'+
    (film?'<button type="button" class="small-button ht-play" data-trailer-rank="'+x.rank+'">'+(foundTrailer?'▶ Watch Trailer':'▶ Find Trailer')+'</button>':'')+
    '<button class="small-button" type="button" data-save="'+x.rank+'">'+(saved.includes(x.rank)?'✓ Saved':'+ Save')+'</button></div>';
    return '<article class="ht-media-card"><div class="ht-art" aria-label="Artwork for '+esc(x.title)+'">'+
    '<img src="'+esc(image)+'" data-ht-img="'+kind+'-'+x.rank+'" alt="'+esc(x.title+(film?' film image or themed title artwork':' cover or themed title artwork'))+'" loading="lazy" decoding="async" referrerpolicy="no-referrer"><span class="ht-image-source" data-ht-credit="'+kind+'-'+x.rank+'">'+esc(sourced?('Image: '+record.source):(film&&foundTrailer?'Trailer image · YouTube':'Haunted Towne title art'))+'</span></div>'+
-   '<div class="ht-media-copy"><p class="ht-media-rank">#'+(film&&window.HT_MOVIE_MODE==='classic'&&sort==='rank'?index+1:x.rank)+' · '+(film?esc(x.year+' · '+x.genre):esc(x.author))+'</p>'+
+   '<div class="ht-media-copy"><p class="ht-media-rank">#'+(film&&sort==='rank'?index+1:x.rank)+' · '+(film?esc(x.year+' · '+x.genre):esc(x.author))+'</p>'+
    '<h3>'+esc(x.title)+'</h3>'+(film?'<details class="ht-film-details"><summary>Movie Details <span aria-hidden="true">⌄</span></summary><div class="ht-film-detail-body"><p><strong>Release:</strong> '+esc(x.year)+'</p><p><strong>Horror style:</strong> '+esc(x.genre)+'</p><p>'+esc(x.description&& !x.description.startsWith('A standout contemporary horror selection')?x.description:'Explore this film’s place in the horror genre and watch its trailer to decide whether to add it to your list.')+'</p></div></details>':'<p>'+esc(x.description||'Discover this horror classic.')+'</p>')+actions+'</div></article>';
  }).join('');
  Q('rank-results').innerHTML=tile||'<p class="empty">No matching titles.</p>';
