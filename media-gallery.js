@@ -1,6 +1,8 @@
 /* Haunted Towne – film and book visual galleries, Amazon discovery and responsible trailers. */
 'use strict';
 const HT_TRAILERS={
+ "Late Night with the Devil|2023":"cvt-mauboTc",
+ "Sinister|2012":"apghx7q9oeY",
  "The Conjuring 2|2016":"A5PaKL70hcI",
  "The Nun II|2023":"QF-oyCwaArU",
  "Oddity|2024":"tLNDvnv8B3A",
