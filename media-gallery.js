@@ -2,7 +2,6 @@
 'use strict';
 const HT_TRAILERS={
  "The Conjuring 2|2016":"A5PaKL70hcI",
- "Friday the 13th|1980":"Ql3FFcgyvgU",
  "The Nun II|2023":"QF-oyCwaArU",
  "Oddity|2024":"tLNDvnv8B3A",
  "Train to Busan|2016":"4qm59Rcq1Fw",
