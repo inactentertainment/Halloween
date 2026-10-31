@@ -1,6 +1,8 @@
 /* Haunted Towne – film and book visual galleries, Amazon discovery and responsible trailers. */
 'use strict';
 const HT_TRAILERS={
+ "The Shining|1980":"S014oGZiSdI",
+ "Jaws|1975":"U1fu_sA7XhE",
  "Don't Breathe|2016":"76yBTNDB6vU",
  "The Ritual|2017":"Vfugwq2uoa0",
  "The Night House|2020":"2Tshycci2ZA",
