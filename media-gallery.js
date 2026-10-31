@@ -99,6 +99,7 @@ async function htVerifyTrailerGallery(){
  for(const movie of candidates){
  if(view()!=='movies'||!htMovies().some(x=>x.rank===movie.rank&&x.title===movie.title))break;
  const result=await htTrailerMetadata(movie);
+ if(!result){document.querySelector('[data-trailer-rank="'+movie.rank+'"]')?.closest('.ht-media-card')?.remove();continue;}
  const play=document.querySelector('[data-trailer-rank="'+movie.rank+'"]');
  if(play){play.textContent=result?'▶ Watch trailer':'Search for trailer ↗';play.dataset.available=result?'yes':'no';play.setAttribute('aria-label',result?'Watch '+movie.title+' trailer':'Search YouTube for '+movie.title+' trailer');}
  const img=document.querySelector('[data-ht-img="movies-'+movie.rank+'"]');
@@ -158,7 +159,7 @@ function htUpdateArtworkProgress(kind){
  t.real+' of '+t.total+' titles matched to external artwork; '+(t.missing+t.pending)+' display original Haunted Towne artwork or video thumbnails. Some external images may be unavailable.';
 }
 function htApplyArtwork(kind,rank,entry){
- if(view()!==kind || (kind==='movies'&&window.HT_MOVIE_MODE==='modern'))return;
+ if(view()!==kind || kind==='movies')return;
  const img=document.querySelector('[data-ht-img="'+kind+'-'+rank+'"]'),badge=document.querySelector('[data-ht-credit="'+kind+'-'+rank+'"]');
  if(!img)return;
  if(entry&&entry.url){img.src=entry.url;img.alt=(kind==='books'?'Cover image':'Film image')+' for '+(kind==='books'?CATALOG.books:CATALOG.movies)[rank-1].title;
@@ -177,6 +178,7 @@ if(window.HTMediaSource){
    const img=e.target;if(!img||!img.dataset||!img.dataset.htImg)return;
    const m=img.dataset.htImg.match(/^(books|movies)-(\d+)$/);if(!m)return;
    const kind=m[1],rank=Number(m[2]),record=window.HTMediaSource.get(kind,rank);
+   if(kind==='movies'){img.closest('.ht-media-card')?.remove();return;}
    const row=(kind==='books'?CATALOG.books:CATALOG.movies)[rank-1];
    if(!row||img.dataset.htErrorHandled==='yes')return;
    img.dataset.htErrorHandled='yes';
