@@ -1,6 +1,12 @@
 /* Haunted Towne – film and book visual galleries, Amazon discovery and responsible trailers. */
 'use strict';
 const HT_TRAILERS={
+  "Halloween|2018":"ek1ePFp-nBI",
+  "Halloween Ends|2022":"i_mAWKyfj6c",
+  "The Invisible Man|2020":"WO_FJdiY9dA",
+  "Smile|2022":"BcDK7lkzzsU",
+  "The Babadook|2014":"jWbHo2toQOk",
+  "It Follows|2014":"Ymoh5SIqgtw",
   "Final Destination 5|2011":"g7V84i92H4A",
   "Sinners|2025":"7joulECTx_U",
   "A Quiet Place Part II|2021":"BpdDN9d9Jio",
