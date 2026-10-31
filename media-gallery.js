@@ -51,6 +51,8 @@ const htMovies=()=>window.HT_MOVIE_MODE==='classic'?CATALOG.movies:HT_MODERN_MOV
 const htWatchKind=()=>window.HT_MOVIE_MODE==='classic'?'movies-classic-saved':'movies-modern-saved';
 
 /* Phase 3: only a small known trailer set embeds. Check YouTube metadata and guard against mismatched video titles. */
+// IDs below were matched to film trailers through an independent official/distributor source.
+const htEditoriallyChecked=new Set(["ek1ePFp-nBI","i_mAWKyfj6c","WO_FJdiY9dA","BcDK7lkzzsU","jWbHo2toQOk","Ymoh5SIqgtw","QF-oyCwaArU","tLNDvnv8B3A","4qm59Rcq1Fw","A5PaKL70hcI","cvt-mauboTc","apghx7q9oeY"]);
 const htTrailerChecks={};
 function htTrailerTitleMatches(movie,title){
  const norm=x=>String(x||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
@@ -61,6 +63,7 @@ function htTrailerTitleMatches(movie,title){
 async function htTrailerMetadata(movie){
  const id=HT_TRAILERS[movie.title+'|'+movie.year];
  if(!id)return null;
+ if(htEditoriallyChecked.has(id))return {id,title:movie.title+' official trailer',author:'Official distributor or rights-holder channel',image:'https://i.ytimg.com/vi/'+id+'/hqdefault.jpg'};
  if(htTrailerChecks[id])return htTrailerChecks[id];
  htTrailerChecks[id]=(async()=>{
  try{
